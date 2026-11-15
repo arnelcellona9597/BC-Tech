@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/lib/bootstrap.php';
 require __DIR__ . '/lib/mailer.php';
+require __DIR__ . '/lib/email_templates.php';
 
 require_post();
 check_origin();
@@ -54,17 +55,10 @@ $ok = deliver_mail(
 );
 mark_submission($ref, $ok ? 'emailed' : 'email_failed');
 
-// 3) Confirmation to the visitor
+// 3) Confirmation to the visitor (designed email, see lib/email_templates.php)
 if ($ok && !empty($cfg['mail']['autoreply'])) {
-    $first = explode(' ', $f['name'])[0];
-    $reply = ['Your reference' => $ref, 'What happens next' => 'Thank you for contacting ' . $site . '. We got your message and will get back to you soon.'];
-    $title = 'Thanks, ' . $first . '!';
-    send_mail(
-        $f['email'],
-        'We got your message (' . $ref . ') | ' . $site,
-        email_html($title, $reply, $site . ' · ' . $cfg['site']['url']),
-        email_text($title, $reply, $site . ' - ' . $cfg['site']['url'])
-    );
+    $c = confirmation_inquiry($f + ['ref' => $ref, 'need' => $need, 'package' => $package, 'message' => $message], $cfg);
+    send_mail($f['email'], $c['subject'], $c['html'], $c['text']);
 }
 
 // The copy is saved either way, so the message has been received.

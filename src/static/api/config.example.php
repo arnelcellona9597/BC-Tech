@@ -28,6 +28,12 @@ return [
     'site' => [
         'name'          => 'BC Tech',
         'url'           => 'https://bctech.com',
+        // Shown in the confirmation emails
+        'phone'         => '+63 951 487 4304',
+        'landline'      => '(082) 2929 822',
+        'hours'         => 'Monday to Friday, 9:00 AM to 5:00 PM (Philippine Time)',
+        'city'          => 'Davao City, Philippines',
+        'tagline'       => 'Built to Bring You Business.',
         // Forms only accept submissions that come from these hosts
         'allowed_hosts' => ['bctech.com', 'www.bctech.com', 'localhost', '127.0.0.1'],
     ],
