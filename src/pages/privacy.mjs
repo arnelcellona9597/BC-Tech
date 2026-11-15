@@ -36,7 +36,7 @@ export function body() {
       </ul>
       <p>We do not sell your details and we do not send marketing emails unless you ask for them.</p>
       <h2>Who can see it</h2>
-      <p>Your message is sent by email to our team at ${site.email}. Our email and website hosting providers handle it on our behalf.</p>
+      <p>Your message is sent by email to our team at ${site.email}. A copy is also kept on our website server so that no message gets lost. Our email and website hosting providers handle it on our behalf.</p>
       <h2>How long we keep it</h2>
       <p>We keep your message only as long as we need it to talk with you and do the work you ask for, or as the law requires.</p>
       <h2>Cookies and tracking</h2>

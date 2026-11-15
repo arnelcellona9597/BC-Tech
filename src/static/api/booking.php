@@ -41,7 +41,12 @@ if ($errors) {
 }
 
 $nice = $when->format('l, F j, Y') . ' at ' . $when->format('g:i A') . ' (Philippine Time)';
+// Keep a copy first, so the request is never lost
+$ref = new_reference();
+save_submission($ref, 'booking', $f + ['when' => $nice, 'purpose' => $purpose, 'notes' => $notes]);
+
 $rows = array_filter([
+    'Reference' => $ref,
     'Requested time' => $nice,
     'Name'    => $f['name'],
     'Email'   => $f['email'],
@@ -50,22 +55,20 @@ $rows = array_filter([
     'Notes'   => $notes,
 ], fn ($v) => $v !== '');
 
-$ok = send_mail(
+$ok = deliver_mail(
     $cfg['mail']['to'],
-    'Call request: ' . $when->format('D M j, g:i A') . ' - ' . $f['name'],
+    '[' . $ref . '] Call request: ' . $when->format('D M j, g:i A') . ' - ' . $f['name'],
     email_html('New free call request', $rows, 'Please confirm this time with ' . $f['name'] . ' by replying to this email.'),
     email_text('New free call request', $rows),
     $f['email'],
     $f['name'],
     (string) ($cfg['mail']['bcc'] ?? '')
 );
-if (!$ok) {
-    respond(false, 'Sorry, we could not send your request just now. Please email us at ' . $cfg['mail']['to'] . '.', 500);
-}
+mark_submission($ref, $ok ? 'emailed' : 'email_failed');
 
-if (!empty($cfg['mail']['autoreply'])) {
+if ($ok && !empty($cfg['mail']['autoreply'])) {
     $first = explode(' ', $f['name'])[0];
-    $reply = ['Requested time' => $nice, 'What happens next' => 'We will confirm this time with you by email shortly.'];
+    $reply = ['Your reference' => $ref, 'Requested time' => $nice, 'What happens next' => 'We will confirm this time with you by email shortly.'];
     $title = 'Thanks, ' . $first . '! We got your call request.';
     send_mail(
         $f['email'],
@@ -75,4 +78,4 @@ if (!empty($cfg['mail']['autoreply'])) {
     );
 }
 
-respond(true, 'Request received. We will confirm ' . $when->format('l, M j') . ' at ' . $when->format('g:i A') . ' by email.');
+respond(true, 'Request received (reference ' . $ref . '). We will confirm ' . $when->format('l, M j') . ' at ' . $when->format('g:i A') . ' by email.');
