@@ -195,6 +195,7 @@ export const packages = [
     chip: 'A small online store',
     name: 'Online Store',
     sub: 'E-commerce, up to 50 products',
+    tag: 'E-commerce, up to 50 products',
     from: 70000,
     to: 130000,
     forWho: 'Shops that are ready to sell online with a small product range.',
