@@ -1,5 +1,5 @@
-import { mark, icon, btn, slider, faqList, sectionHead, featureCard, journeyPath, statement, browserMock, leadForm, peso, esc } from '../lib/components.mjs';
-import { services, problems, promises, why, process, journey, packages, faqs, lyfd } from '../data/content.mjs';
+import { mark, icon, btn, slider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, peso, esc } from '../lib/components.mjs';
+import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
 
 export const meta = {
@@ -101,13 +101,19 @@ export function body() {
 </section>
 
 <section class="sec deep cv" aria-labelledby="process-title">
-  <div class="wrap">
-    ${sectionHead({ eyebrow: 'How it works', title: 'From first call to <span class="accent">first customer</span>', lead: 'Four simple steps. You approve everything before we build it.', id: 'process-title' })}
-    <div class="slider" data-slider data-cols="4" role="region" aria-roledescription="carousel" aria-label="How it works">
-      <div class="slider-track steps stagger">
-        ${process.map((s, i) => `<div class="slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${process.length}"><div class="step reveal"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div></div>`).join('')}
-      </div>
+  <div class="wrap split chat-split">
+    <div class="reveal">
+      <p class="eyebrow">How it works</p>
+      <h2 id="process-title">Working with us feels like <span class="accent">a good conversation</span></h2>
+      <p class="lead" style="margin-top:1.1rem">No tech talk. You tell us what you want, you see it before we build it, and you approve every step.</p>
+      <ul class="ticks chat-points">
+        <li>${icon('check', 'ic ic-tick')}<span>A free call to start, with no pressure to buy</span></li>
+        <li>${icon('check', 'ic ic-tick')}<span>A clickable preview you approve before building</span></li>
+        <li>${icon('check', 'ic ic-tick')}<span>Support after launch, so your site keeps growing</span></li>
+      </ul>
+      <p style="margin-top:1.8rem">${btn('Start the conversation', '/contact/#book')}</p>
     </div>
+    ${chatThread(conversation)}
   </div>
 </section>
 

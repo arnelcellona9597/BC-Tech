@@ -24,12 +24,12 @@
     matchMedia('(min-width: 960px)').addEventListener('change', (e) => { if (e.matches) setNav(false); });
   }
 
-  /* ---- "Stranger to customer" path: draws itself once when it scrolls into view ---- */
-  $$('[data-path]').forEach((el) => {
+  /* ---- Path and chat: play once when they scroll into view ---- */
+  $$('[data-path], [data-seq]').forEach((el) => {
     if (reduce || !('IntersectionObserver' in window)) { el.classList.add('go'); return; }
     const io = new IntersectionObserver((es) => {
       if (es[0].isIntersecting) { el.classList.add('go'); io.disconnect(); }
-    }, { threshold: 0.45 });
+    }, { threshold: 0.35 });
     io.observe(el);
   });
 

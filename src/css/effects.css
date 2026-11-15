@@ -3,6 +3,7 @@
 @keyframes drift-b{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(10%,-10%,0) scale(1.18)}}
 @keyframes float{from{transform:translate3d(0,0,0) rotate(0deg)}to{transform:translate3d(0,-22px,0) rotate(2deg)}}
 @keyframes reveal-fallback{to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:translate3d(0,16px,0) scale(.96)}to{opacity:1;transform:none}}
 @keyframes rise{from{transform:translate3d(0,26px,0)}to{transform:none}}
 
 /* Hero extras animate transform only so the headline (LCP) is never hidden */
@@ -10,6 +11,9 @@
 
 /* Scroll reveal: only hidden when JavaScript can run; a CSS timer reveals everything if it fails */
 @media (scripting:enabled){
+  /* chat bubbles pop in one by one once the phone is on screen; a timer shows them if scripts fail */
+  .msg{opacity:0;animation:reveal-fallback 0s 6s forwards}
+  [data-seq].go .msg{animation:pop .55s var(--ease) both;animation-delay:calc(var(--n)*.55s)}
   .reveal{opacity:0;transform:translate3d(0,30px,0);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s);animation:reveal-fallback 0s 4s forwards}
   .reveal.in{opacity:1;transform:none}
 }
@@ -34,6 +38,7 @@
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
   .reveal{opacity:1!important;transform:none!important}
+  .msg,[data-seq].go .msg{opacity:1!important;animation:none!important}
   .tilt{transform:none!important}
   .path::after{transform:none!important;transition:none}
   .path .node-dot{transition:none}
