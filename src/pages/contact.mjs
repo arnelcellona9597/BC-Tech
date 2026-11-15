@@ -50,7 +50,7 @@ export function body() {
           <div class="field"><label for="m-need">What do you need?</label>
             <select id="m-need" name="need">
               <option>A new website</option><option>An online store</option><option>Fix or redesign my website</option>
-              <option>Connect my website to my systems</option><option>Logo and branding</option><option>Something else</option>
+              <option>API, ERP or automation</option><option>Logo and branding</option><option>Something else</option>
             </select></div>
         </div>
         <div class="field fl"><label for="m-message">Your message</label><textarea placeholder=" " id="m-message" name="message" rows="5" required></textarea></div>

@@ -23,7 +23,7 @@ export function body() {
     <p class="lead">Last updated ${new Date(site.built).toLocaleDateString('en-PH', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
   </div>
 </section>
-<section class="sec">
+<section class="sec" aria-label="Policy details">
   <div class="wrap">
     <div class="prose">
       <p>${site.name} respects your privacy and follows the Philippine Data Privacy Act of 2012. This page explains what we collect through this website and what we do with it, in plain words.</p>

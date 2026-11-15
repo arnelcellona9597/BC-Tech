@@ -118,3 +118,20 @@
     sec.addEventListener('pointerleave', function () { ev = { clientX: -9999, clientY: -9999 }; if (!raf) raf = requestAnimationFrame(frame); });
   });
 })();
+
+/* 404: the big 404 leans toward the pointer */
+(function () {
+  var sec = document.querySelector('.nf'), sc = sec && sec.querySelector('.nf-scene');
+  if (!sc || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var raf = 0, ev;
+  sec.addEventListener('pointermove', function (e) {
+    ev = e;
+    if (raf) return;
+    raf = requestAnimationFrame(function () {
+      raf = 0;
+      var r = sec.getBoundingClientRect();
+      sc.style.setProperty('--ry', (((ev.clientX - r.left) / r.width - .5) * 18).toFixed(1) + 'deg');
+      sc.style.setProperty('--rx', ((.5 - (ev.clientY - r.top) / r.height) * 10).toFixed(1) + 'deg');
+    });
+  }, { passive: true });
+})();

@@ -18,7 +18,7 @@ function head({ meta, css, assets }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${t}</title>
 <meta name="description" content="${d}">
-<link rel="canonical" href="${url}">
+${meta.noindex ? '' : `<link rel="canonical" href="${url}">`}
 <meta name="robots" content="${meta.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}">
 <meta name="theme-color" content="${site.themeColor}">
 <meta name="color-scheme" content="dark light">
@@ -111,15 +111,15 @@ function footer(meta) {
         ${socialIcons('social-foot')}
       </div>
       <nav aria-label="Footer">
-        <h2 class="foot-h">Explore</h2>
+        <p class="foot-h">Explore</p>
         <ul>${nav.filter((n) => n.key !== 'home').map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join('')}<li><a href="/contact/">Contact</a></li></ul>
       </nav>
       <nav aria-label="Our services">
-        <h2 class="foot-h">What we do</h2>
+        <p class="foot-h">What we do</p>
         <ul>${services.map((x) => `<li><a href="/services/#${x.id}">${esc(x.title)}</a></li>`).join('')}</ul>
       </nav>
       <div>
-        <h2 class="foot-h">Talk to us</h2>
+        <p class="foot-h">Talk to us</p>
         <ul class="foot-contact">
           <li><span class="foot-ic">${icon('mail', 'ic')}</span><a href="mailto:${site.email}">${site.email}</a></li>
           <li><span class="foot-ic">${icon('phone', 'ic')}</span><a href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a></li>
@@ -170,7 +170,7 @@ function promo(meta) {
     </div>
     <div class="pop-body">
       <p class="eyebrow">Free for your business</p>
-      <h2 id="pop-title">See what a website could do for <span class="accent">your sales.</span></h2>
+      <p class="pop-h" id="pop-title">See what a website could do for <span class="accent">your sales.</span></p>
       <p class="pop-lead">Tell us where to reach you. We will call you for a free chat, show you what would bring you more customers and give you a clear price. No tech talk.</p>
       <form class="form js-form pop-form" action="/api/contact.php" method="post" novalidate>
         <input type="hidden" name="source" value="popup">

@@ -227,3 +227,44 @@
 @keyframes mc-shine{0%,55%{transform:translateY(-120%)}100%{transform:translateY(120%)}}
 @keyframes mc-glow{50%{box-shadow:0 0 50px 2px rgba(255,90,110,.95)}}
 @media (prefers-reduced-motion:reduce){.mc::before,.mc-fill::after,.go .mc-bar.ecom .mc-fill{animation:none}.mc::before{display:none}}
+
+/* ===== 404: a turning 3D "404" with a ring and the brand mark ===== */
+.nf{position:relative;isolation:isolate;overflow:hidden;background:var(--ink);padding:calc(var(--header-h) + clamp(2.5rem,6vw,5rem)) 0 clamp(3.5rem,8vw,6rem);min-height:100vh;min-height:100svh}
+.nf-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.nf-glow{position:absolute;inset:0;background:radial-gradient(60% 55% at 78% 38%,rgba(200,16,46,.34),transparent 70%),radial-gradient(45% 45% at 8% 100%,rgba(200,16,46,.16),transparent 70%)}
+.nf-floor{position:absolute;left:0;right:0;bottom:0;height:46%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 90px),repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 70px);transform:perspective(500px) rotateX(62deg);transform-origin:50% 100%;-webkit-mask:linear-gradient(to top,#000,transparent 85%);mask:linear-gradient(to top,#000,transparent 85%);opacity:.6}
+.nf-fx{position:absolute;inset:0;width:100%;height:100%}
+.nf-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1rem,4vw,3rem);align-items:center}
+.nf-copy .lead{margin:1.2rem 0 1.8rem}
+.nf-stage{position:relative;display:grid;place-items:center;min-height:clamp(15rem,34vw,26rem);perspective:1100px;--fs:clamp(6rem,17vw,14rem)}
+.nf-sway{animation:nf-sway 9s ease-in-out infinite alternate;transform-style:preserve-3d}
+.nf-scene{display:flex;align-items:center;gap:.04em;font-size:var(--fs);transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s var(--ease)}
+.nf-d,.nf-o{position:relative;display:block;transform-style:preserve-3d}
+.nf-d{line-height:1;font-family:var(--display);font-weight:800;width:.66em;text-align:center}
+.nf-l{position:absolute;inset:0;text-align:center;transform:translateZ(calc(var(--i)*-.026em));color:color-mix(in srgb,#2a0a12 calc(var(--i)*7%),var(--red-deep))}
+.nf-l::before{content:"4"}
+.nf-front{display:block;position:relative;background:linear-gradient(170deg,#fff 10%,#d9d9de 45%,#8f8f98);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 .03em .06em rgba(0,0,0,.5))}
+.nf-d .nf-l{font-weight:800}
+.nf-o{width:.8em;aspect-ratio:1;margin-inline:.03em}
+.nf-ol,.nf-ofront{position:absolute;inset:0;border-radius:50%;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - .1em),#000 calc(100% - .1em));mask:radial-gradient(farthest-side,transparent calc(100% - .1em),#000 calc(100% - .1em))}
+.nf-ol{transform:translateZ(calc(var(--i)*-.026em));background:color-mix(in srgb,#2a0a12 calc(var(--i)*7%),var(--red-deep))}
+.nf-ofront{background:linear-gradient(150deg,var(--red-hi),var(--red) 55%,var(--red-deep));filter:drop-shadow(0 0 .12em rgba(255,90,110,.6))}
+.nf-mark{position:absolute;inset:24%;transform:translateZ(-.1em);color:#fff;animation:nf-float 6s ease-in-out infinite alternate}
+.nf-mark svg{width:100%;height:100%;filter:drop-shadow(0 .04em .08em rgba(0,0,0,.6))}
+.nf-mark .mark-slash{fill:var(--red-hi)}
+.nf-orbit{position:absolute;width:calc(var(--fs)*2.3);aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,90,110,.28);transform:rotateX(74deg);animation:nf-spin 16s linear infinite}
+.nf-orbit i{position:absolute;left:50%;top:-5px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--red-hi);box-shadow:0 0 18px 4px rgba(255,90,110,.8)}
+.nf-links{margin-top:clamp(2.5rem,6vw,4.5rem)}
+.nf-links h2{font-size:clamp(1.3rem,2.4vw,1.7rem);margin-bottom:1.2rem}
+.nf-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13.5rem),1fr));gap:1rem}
+.nf-list a{position:relative;display:grid;gap:.15rem;padding:1.2rem 3rem 1.2rem 1.3rem;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02));box-shadow:0 20px 40px -26px rgba(0,0,0,.8);text-decoration:none;transition:transform .4s var(--ease),border-color .3s,box-shadow .4s}
+.nf-list a:hover,.nf-list a:focus-visible{transform:translateY(-4px);border-color:rgba(255,90,110,.6);box-shadow:0 24px 44px -20px rgba(200,16,46,.55)}
+.nf-l-t{font-family:var(--display);font-weight:700;font-size:1.15rem}
+.nf-l-d{color:var(--muted);font-size:.9rem}
+.nf-list .ic-arrow{position:absolute;right:1.2rem;top:50%;margin-top:-.67rem;color:var(--red-hi);transition:transform .3s var(--ease)}
+.nf-list a:hover .ic-arrow{transform:translateX(4px)}
+@keyframes nf-sway{from{transform:rotateY(-16deg) rotateX(4deg)}to{transform:rotateY(16deg) rotateX(-3deg)}}
+@keyframes nf-float{from{transform:translateZ(-.1em) translateY(-.03em)}to{transform:translateZ(-.1em) translateY(.03em)}}
+@keyframes nf-spin{to{transform:rotateX(74deg) rotateZ(360deg)}}
+@media (max-width:859px){.nf-grid{grid-template-columns:minmax(0,1fr)}.nf-stage{order:-1;min-height:clamp(11rem,52vw,16rem);--fs:clamp(5rem,26vw,9rem)}.nf{min-height:auto}}
+@media (prefers-reduced-motion:reduce){.nf-sway,.nf-mark,.nf-orbit{animation:none}.nf-sway{transform:rotateY(-12deg)}.nf-orbit{transform:rotateX(74deg)}}

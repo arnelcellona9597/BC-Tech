@@ -33,7 +33,7 @@ export function body() {
 
 <section class="sec cv" aria-labelledby="svc-title">
   <div class="wrap">
-    ${sectionHead({ eyebrow: 'Our services', title: 'Seven ways we help your business', lead: 'Each one explained in plain words. Technical names are shown in brackets in case you are comparing quotes.', id: 'svc-title' })}
+    ${sectionHead({ eyebrow: 'Our services', title: 'Eight ways we help your business', lead: 'Each one explained in plain words. Technical names are shown in brackets in case you are comparing quotes.', id: 'svc-title' })}
     <div class="stagger">${slider('svc-grid', 'Our services', services.map((s) => featureCard({ icon: s.icon, title: s.title, text: esc(s.blurb), items: s.items, id: s.id })), { cols: 3, always: true })}</div>
   </div>
 </section>
