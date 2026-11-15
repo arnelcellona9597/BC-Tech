@@ -1,4 +1,4 @@
-import { icon, sectionHead, ctaBand, browserMock, mark, esc } from '../lib/components.mjs';
+import { icon, sectionHead, ctaBand, browserMock, picture, esc } from '../lib/components.mjs';
 import { lyfd } from '../data/content.mjs';
 
 export const meta = {
@@ -17,7 +17,8 @@ export const meta = {
 export function body() {
   return `
 <section class="page-head" aria-labelledby="page-title">
-  <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div><div class="hero-mark-wrap">${mark('hero-mark')}</div></div>
+  <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div></div>
+  <div class="head-visual">${picture('work-head', { alt: 'Wall of screens showing charts and dashboards', sizes: '(min-width:960px) 52vw, 100vw', eager: true })}</div>
   <div class="wrap">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">Our Work</li></ol>
     <p class="eyebrow">Case study · Our first client</p>

@@ -19,7 +19,7 @@ export function body() {
   return `
 <section class="page-head" aria-labelledby="page-title">
   <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div></div>
-  <div class="head-visual">${picture('contact-head', { alt: 'AI-generated illustration of a friendly professional on a video call at a desk', sizes: '(min-width:960px) 52vw, 100vw', eager: true })}</div>
+  <div class="head-visual">${picture('contact-head', { alt: 'Elegant desk with a phone showing messages and a calendar next to an open laptop', sizes: '(min-width:960px) 52vw, 100vw', eager: true })}</div>
   <div class="wrap">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">Contact</li></ol>
     <p class="eyebrow">Let's talk</p>

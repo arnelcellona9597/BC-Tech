@@ -18,7 +18,7 @@ export function body() {
   return `
 <section class="page-head" aria-labelledby="page-title">
   <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div></div>
-  <div class="head-visual">${picture('services-head', { alt: 'AI-generated illustration of a dark design studio desk with website wireframes on a monitor', sizes: '(min-width:960px) 52vw, 100vw', eager: true })}</div>
+  <div class="head-visual">${picture('services-head', { alt: 'Dark design studio desk with website wireframes on a monitor', sizes: '(min-width:960px) 52vw, 100vw', eager: true })}</div>
   <div class="wrap">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">Services</li></ol>
     <p class="eyebrow">What we do</p>

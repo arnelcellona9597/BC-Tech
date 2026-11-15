@@ -30,7 +30,7 @@ ${items.map((it, i) => `    <div class="slide${always ? ' reveal' : ''}" role="g
 const imageManifest = JSON.parse(readFileSync(new URL('../data/images.json', import.meta.url), 'utf8'));
 
 /**
- * Responsive AI image: AVIF with WebP fallback, several widths, real width/height so nothing jumps.
+ * Responsive picture: AVIF with WebP fallback, several widths, real width/height so nothing jumps.
  * `eager` is for the one image at the top of a page; everything else is lazy.
  */
 export function picture(name, { alt, sizes = '100vw', eager = false, cls = '', pos = '' } = {}) {
@@ -150,6 +150,90 @@ export function leadForm({ source = 'home', id = 'lead' } = {}) {
   <p class="form-note">No spam. We only use your details to reply to you. <a href="/privacy/">Privacy</a></p>
   <p class="form-status" role="status" aria-live="polite"></p>
 </form>`;
+}
+
+/**
+ * Glass inquiry form that sits over the home page hero.
+ * Sends the service and package the visitor is interested in, so we know what they want.
+ */
+export function heroForm(packages) {
+  const pk = packages.map((p) => `<option value="${esc(p.name)}">${esc(p.name)} (from ${peso(p.from)})</option>`).join('');
+  return `<aside class="hero-form-card" aria-labelledby="hf-title">
+  <span class="hf-glow" aria-hidden="true"></span>
+  <p class="eyebrow">Free quote</p>
+  <h2 id="hf-title">Tell us what you need</h2>
+  <p class="hf-sub">We reply by email. No pressure to buy.</p>
+  <form class="form js-form" id="hero-form" action="/api/contact.php" method="post" novalidate>
+    <input type="hidden" name="source" value="hero">
+    <input type="hidden" name="_t" value="">
+    <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <div class="field"><label for="hf-name">Your name</label><input id="hf-name" name="name" type="text" autocomplete="name" required></div>
+    <div class="row2">
+      <div class="field"><label for="hf-email">Email</label><input id="hf-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="hf-phone">Phone or Viber <span class="opt">(optional)</span></label><input id="hf-phone" name="phone" type="tel" autocomplete="tel"></div>
+    </div>
+    <div class="field"><label for="hf-need">What do you need?</label>
+      <select id="hf-need" name="need">
+        <option>A new website</option><option>An online store</option><option>Fix or redesign my website</option>
+        <option>Connect my website to my systems</option><option>Logo and branding</option><option>Writing and content</option>
+        <option>Google visibility (SEO) and marketing</option><option>Something else</option>
+      </select></div>
+    <div class="field"><label for="hf-pkg">Package you are looking at</label>
+      <select id="hf-pkg" name="package"><option value="">Not sure yet</option>${pk}</select></div>
+    <div class="field"><label for="hf-msg">Anything else? <span class="opt">(optional)</span></label><textarea id="hf-msg" name="message" rows="2"></textarea></div>
+    <button class="btn btn-primary" type="submit"><span>Send my inquiry</span>${icon('arrow', 'ic ic-arrow')}</button>
+    <p class="form-note">You get a reference number right away. <a href="/privacy/">Privacy</a></p>
+    <p class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+  </form>
+</aside>`;
+}
+
+/** Luxury pricing card: layered for 3D tilt, with an animated price. */
+export function pricingCard(p) {
+  const range = p.open ? 'Final price depends on what you need' : `Typical range ${peso(p.from)} to ${peso(p.to)}`;
+  return `<article class="pc tilt${p.open ? ' is-custom' : ''}" id="${p.id}">
+  <span class="pc-ring" aria-hidden="true"></span>
+  ${p.open ? '<span class="pc-badge">Custom quote</span>' : ''}
+  <p class="pc-sub">${esc(p.sub)}</p>
+  <h3 class="pc-name">${esc(p.name)}</h3>
+  <p class="pc-for">${esc(p.forWho)}</p>
+  <div class="pc-price">
+    <small>Starting from</small>
+    <span class="pc-amount" data-count="${p.from}" data-prefix="₱">${peso(p.from)}</span>
+    <span class="pc-range">${range}</span>
+  </div>
+  <ul class="pc-list">${p.items.map((i) => `<li>${icon('check', 'ic ic-tick')}<span>${esc(i)}</span></li>`).join('')}</ul>
+  <a class="btn ${p.open ? 'btn-primary' : 'btn-ghost'} pc-cta" href="/contact/?package=${encodeURIComponent(p.name)}#message"><span>Get a quote</span>${icon('arrow', 'ic ic-arrow')}</a>
+  <span class="card-sheen" aria-hidden="true"></span>
+</article>`;
+}
+
+/**
+ * The package stage. Without JavaScript (or with reduced motion) it is a plain grid.
+ * Otherwise the cards sit in a 3D "cover flow": one centered, the others angled behind it.
+ * The starting positions are written here so the first paint is already correct.
+ */
+export function pricingFlow(packages, start = 2) {
+  const arrow = (d) => `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d < 0 ? 'm15 6-6 6 6 6' : 'm9 6 6 6-6 6'}"/></svg>`;
+  return `<div class="flow" data-flow role="region" aria-roledescription="carousel" aria-label="Website packages">
+  <div class="flow-chooser" role="group" aria-label="What do you need? Pick one to bring up the right package">
+    <span class="flow-q">I need</span>
+    ${packages.map((p, i) => `<button type="button" class="flow-chip" data-i="${i}" aria-pressed="false">${esc(p.chip)}</button>`).join('')}
+  </div>
+  <div class="flow-stage">
+    <div class="flow-track">
+${packages.map((p, i) => {
+    const o = i - start;
+    return `      <div class="flow-item${o === 0 ? ' is-current' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${packages.length}" data-i="${i}" style="--o:${o};--a:${Math.abs(o)}"${Math.abs(o) > 2 ? ' data-far' : ''}>${pricingCard(p)}</div>`;
+  }).join('\n')}
+    </div>
+  </div>
+  <div class="flow-ui">
+    <button type="button" class="flow-btn flow-prev" aria-label="Previous package">${arrow(-1)}</button>
+    <div class="flow-dots"></div>
+    <button type="button" class="flow-btn flow-next" aria-label="Next package">${arrow(1)}</button>
+  </div>
+</div>`;
 }
 
 /** Closing call-to-action band for inner pages. */

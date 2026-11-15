@@ -1,4 +1,4 @@
-import { icon, slider, faqList, sectionHead, ctaBand, mark, peso, esc } from '../lib/components.mjs';
+import { icon, slider, faqList, sectionHead, ctaBand, pricingFlow, picture, esc } from '../lib/components.mjs';
 import { funnel, calculator } from '../lib/charts.mjs';
 import { packages, addons, faqs } from '../data/content.mjs';
 
@@ -13,23 +13,8 @@ export const meta = {
   ogHeadline: 'Clear prices. No surprises.',
   priority: '0.9',
   usesPeso: true,
-  scripts: ['charts'],
+  scripts: ['charts', 'pricing'],
 };
-
-const pkgCard = (p) => `<article class="price-card tilt${p.open ? ' featured' : ''}" id="${p.id}">
-  ${p.open ? '<span class="badge">Custom quote</span>' : ''}
-  <p class="price-sub">${esc(p.sub)}</p>
-  <h3 class="price-name">${esc(p.name)}</h3>
-  <p class="price-for">${esc(p.forWho)}</p>
-  <div class="price-from">
-    <small>${p.open ? 'Starting from' : 'Starting from'}</small>
-    <span class="price-amount">${peso(p.from)}</span>
-    <span class="price-range">${p.open ? 'Final price depends on what you need' : `Typical range ${peso(p.from)} to ${peso(p.to)}`}</span>
-  </div>
-  <ul class="ticks">${p.items.map((i) => `<li>${icon('check', 'ic ic-tick')}<span>${esc(i)}</span></li>`).join('')}</ul>
-  <a class="btn ${p.open ? 'btn-primary' : 'btn-ghost'}" href="/contact/?package=${encodeURIComponent(p.name)}#message"><span>Get a quote</span>${icon('arrow', 'ic ic-arrow')}</a>
-  <span class="card-sheen" aria-hidden="true"></span>
-</article>`;
 
 const addonCard = (a) => `<article class="addon tilt">
   <span class="card-icon">${icon(a.icon)}</span>
@@ -43,20 +28,26 @@ const addonCard = (a) => `<article class="addon tilt">
 export function body() {
   return `
 <section class="page-head" aria-labelledby="page-title">
-  <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div><div class="hero-mark-wrap">${mark('hero-mark')}</div></div>
+  <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div></div>
+  <div class="head-visual">${picture('pricing-head', { alt: 'Glowing red bar chart rising on a dark glass floor', sizes: '(min-width:960px) 52vw, 100vw', eager: true })}</div>
   <div class="wrap">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">Pricing</li></ol>
     <p class="eyebrow">Pricing</p>
     <h1 id="page-title">Clear prices. <span class="accent">No surprises.</span></h1>
     <p class="lead">Starting prices in Philippine pesos. Your final quote depends on what you need, and we confirm it on a free call before you pay anything.</p>
+    <ul class="pg-points" aria-label="How our pricing works">
+      <li>${icon('check')}Free call to start</li>
+      <li>${icon('check')}Prices in Philippine pesos</li>
+      <li>${icon('check')}Final quote confirmed in writing</li>
+    </ul>
   </div>
 </section>
 
-<section class="sec light cv" aria-labelledby="pkg-title">
+<section class="sec lux" aria-labelledby="pkg-title">
   <div class="wrap">
-    ${sectionHead({ eyebrow: 'Website packages', title: 'Pick the one that fits <span class="accent">where you are now</span>', lead: 'Not sure which one? Book a free call and we will tell you honestly.', id: 'pkg-title' })}
-    <div class="stagger">${slider('packages', 'Website packages', packages.map(pkgCard), { cols: 3, always: true })}</div>
-    <p class="note reveal">These are one-time prices for designing and building your website. Domain, hosting and ongoing care are listed below.</p>
+    ${sectionHead({ eyebrow: 'Website packages', title: 'Pick the one that fits <span class="accent">where you are now</span>', lead: 'Tell us what you need and the right package comes to the front. Not sure? Book a free call and we will tell you honestly.', id: 'pkg-title', center: true })}
+    ${pricingFlow(packages)}
+    <p class="note reveal" style="margin-inline:auto;margin-top:2.6rem;text-align:left">These are one-time prices for designing and building your website. Domain, hosting and ongoing care are listed below.</p>
   </div>
 </section>
 

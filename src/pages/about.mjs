@@ -1,4 +1,4 @@
-import { icon, sectionHead, ctaBand, featureCard, mark, slider, esc } from '../lib/components.mjs';
+import { icon, sectionHead, ctaBand, featureCard, picture, slider, esc } from '../lib/components.mjs';
 import { stacks } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
 
@@ -24,7 +24,8 @@ const values = [
 export function body() {
   return `
 <section class="page-head" aria-labelledby="page-title">
-  <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div><div class="hero-mark-wrap">${mark('hero-mark')}</div></div>
+  <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div></div>
+  <div class="head-visual">${picture('about-head', { alt: 'Modern studio at night with desks and monitors showing website layouts', sizes: '(min-width:960px) 52vw, 100vw', eager: true })}</div>
   <div class="wrap">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">About</li></ol>
     <p class="eyebrow">About BC Tech</p>
