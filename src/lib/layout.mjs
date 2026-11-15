@@ -3,6 +3,7 @@ import { faqs, services } from '../data/content.mjs';
 import { socialIcons, messengerHref } from './social.mjs';
 import { mark, icon, esc, picture } from './components.mjs';
 import { jsonLd } from './schema.mjs';
+import { serviceUrl } from './service-url.mjs';
 
 const abs = (p) => site.url + p;
 
@@ -53,7 +54,7 @@ ${jsonLd(meta)}
 
 function header(meta) {
   const menuNav = nav.filter((n) => n.key !== 'home');
-  const cur = (k) => (meta.key === k ? ' aria-current="page"' : '');
+  const cur = (k) => (meta.key === k ? ' aria-current="page"' : meta.navKey === k ? ' aria-current="true"' : '');
   return `<body class="page-${meta.key}">
 <a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"><i></i></div>
@@ -112,11 +113,11 @@ function footer(meta) {
       </div>
       <nav aria-label="Footer">
         <p class="foot-h">Explore</p>
-        <ul>${nav.filter((n) => n.key !== 'home').map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join('')}<li><a href="/contact/">Contact</a></li></ul>
+        <ul>${nav.filter((n) => n.key !== 'home').map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join('')}<li><a href="/guides/">Guides</a></li><li><a href="/contact/">Contact</a></li></ul>
       </nav>
       <nav aria-label="Our services">
         <p class="foot-h">What we do</p>
-        <ul>${services.map((x) => `<li><a href="/services/#${x.id}">${esc(x.title)}</a></li>`).join('')}</ul>
+        <ul>${services.map((x) => `<li><a href="${serviceUrl(x.id)}">${esc(x.title)}</a></li>`).join('')}</ul>
       </nav>
       <div>
         <p class="foot-h">Talk to us</p>

@@ -56,7 +56,7 @@ function business() {
   };
 }
 
-const pageTypes = { about: 'AboutPage', contact: 'ContactPage', services: 'CollectionPage', pricing: 'CollectionPage' };
+const pageTypes = { about: 'AboutPage', contact: 'ContactPage', services: 'CollectionPage', pricing: 'CollectionPage', guides: 'CollectionPage' };
 
 export function jsonLd(meta) {
   const url = abs(meta.path);
@@ -91,7 +91,7 @@ export function jsonLd(meta) {
       '@id': url + '#breadcrumb',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: abs('/') },
-        { '@type': 'ListItem', position: 2, name: meta.crumb || meta.title, item: url },
+        ...(meta.crumbs || [[meta.crumb || meta.title, meta.path]]).map(([name, path], i) => ({ '@type': 'ListItem', position: i + 2, name, item: abs(path) })),
       ],
     });
   }
@@ -139,7 +139,38 @@ export function jsonLd(meta) {
     });
   }
 
-  const faq = faqs[meta.key];
+  if (meta.schema === 'service') {
+    const sv = meta.service;
+    graph.push({
+      '@type': 'Service',
+      '@id': url + '#service',
+      name: sv.title,
+      serviceType: sv.title,
+      description: meta.description,
+      url,
+      provider: { '@id': orgId },
+      areaServed: { '@type': 'Country', name: site.countryName },
+      mainEntityOfPage: { '@id': url + '#webpage' },
+    });
+  }
+
+  if (meta.schema === 'article') {
+    graph.push({
+      '@type': 'Article',
+      '@id': url + '#article',
+      headline: meta.guide.title,
+      description: meta.description,
+      image: abs(meta.ogImage),
+      author: { '@id': orgId },
+      publisher: { '@id': orgId },
+      datePublished: site.built,
+      dateModified: site.built,
+      mainEntityOfPage: { '@id': url + '#webpage' },
+      inLanguage: site.lang,
+    });
+  }
+
+  const faq = meta.faq || faqs[meta.key];
   if (faq) {
     graph.push({
       '@type': 'FAQPage',

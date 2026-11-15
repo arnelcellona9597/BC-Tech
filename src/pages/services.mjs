@@ -1,6 +1,8 @@
 import { icon, slider, faqList, sectionHead, featureCard, ctaBand, mark, picture, esc } from '../lib/components.mjs';
 import { compare } from '../lib/charts.mjs';
 import { services, stacks, faqs, serviceJumps } from '../data/content.mjs';
+import { serviceUrl } from '../lib/service-url.mjs';
+import { guidesStrip } from '../lib/guides-strip.mjs';
 
 export const meta = {
   key: 'services',
@@ -34,7 +36,7 @@ export function body() {
 <section class="sec cv" aria-labelledby="svc-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Our services', title: 'Eight ways we help your business', lead: 'Each one explained in plain words. Technical names are shown in brackets in case you are comparing quotes.', id: 'svc-title' })}
-    <div class="stagger">${slider('svc-grid', 'Our services', services.map((s) => featureCard({ icon: s.icon, title: s.title, text: esc(s.blurb), items: s.items, id: s.id })), { cols: 3, always: true })}</div>
+    <div class="stagger">${slider('svc-grid', 'Our services', services.map((s) => featureCard({ icon: s.icon, title: s.title, text: esc(s.blurb), items: s.items, id: s.id }).replace('</article>', `<a class="link" href="${serviceUrl(s.id)}">Learn more about ${esc(s.title)} ${icon('arrow')}</a></article>`)), { cols: 3, always: true })}</div>
   </div>
 </section>
 
@@ -61,6 +63,8 @@ export function body() {
     </ul>
   </div>
 </section>
+
+${guidesStrip({ deep: false })}
 
 <section class="sec deep cv" aria-labelledby="faq-title">
   <div class="wrap">
