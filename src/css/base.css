@@ -83,7 +83,7 @@ p{text-wrap:pretty}
 /* ===== Header ===== */
 .progress{position:fixed;inset:0 0 auto;height:3px;z-index:60;pointer-events:none}
 .progress i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--red-hi));transform-origin:0 50%;transform:scaleX(var(--p,0))}
-.site-header{position:fixed;inset:0 0 auto;z-index:50;height:var(--header-h);transition:background-color .35s,box-shadow .35s,transform .45s var(--ease)}
+.site-header{position:fixed;inset:0 0 auto;z-index:50;height:var(--header-h);transition:background-color .12s,box-shadow .35s}
 .site-header.is-scrolled{background:rgba(11,11,12,.86);box-shadow:0 1px 0 var(--line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:100%}
 .brand{display:inline-flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff}

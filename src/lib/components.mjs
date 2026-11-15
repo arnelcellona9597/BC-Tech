@@ -55,7 +55,8 @@ export function featureCard({ icon: ic, title, text, items, tag = 'article', id 
 
 /** Looping words strip (decorative; duplicated content is aria-hidden). */
 export function marqueeStrip(words, { outline = false } = {}) {
-  const row = words.map((w) => `<span>${esc(w)}</span><i aria-hidden="true"></i>`).join('');
+  // The outlined variant is pure decoration, so its words are drawn with CSS (not real text)
+  const row = words.map((w) => (outline ? `<span data-w="${esc(w)}"></span>` : `<span>${esc(w)}</span>`) + '<i aria-hidden="true"></i>').join('');
   return `<div class="marquee${outline ? ' marquee-outline' : ''}" aria-hidden="true"><div class="marquee-in">${row}${row}</div></div>`;
 }
 
