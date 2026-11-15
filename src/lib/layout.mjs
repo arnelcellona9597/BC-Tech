@@ -61,7 +61,7 @@ function header(meta) {
     <a class="brand" href="/" aria-label="BC TECH home page">${mark('brand-mark')}<span class="brand-text">BC <i></i>TECH</span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
       <ul>
-${nav.map((n) => `        <li><a href="${n.href}"${cur(n.key)}>${n.label}</a></li>`).join('\n')}
+${nav.filter((n) => n.key !== 'home').map((n) => `        <li><a href="${n.href}"${cur(n.key)}>${n.label}</a></li>`).join('\n')}
         <li class="nav-cta"><a class="btn btn-primary btn-sm" href="/contact/#book"><span>Book a free call</span></a></li>
       </ul>
     </nav>
@@ -79,6 +79,7 @@ ${nav.map((n, i) => `      <li style="--i:${i}"><a href="${n.href}"${cur(n.key)}
     <div class="menu-foot" style="--i:${nav.length}">
       <a class="btn btn-primary" href="/contact/#book"><span>Book a free call</span>${icon('arrow', 'ic ic-arrow')}</a>
       <a class="menu-mail" href="mailto:${site.email}">${site.email}</a>
+      <a class="menu-mail" href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a>
       <p class="menu-time"><span class="live-dot" aria-hidden="true"></span><span data-davao-clock>${site.city}</span></p>
       ${socialIcons('social-menu')}
     </div>
@@ -120,7 +121,8 @@ function footer(meta) {
         <h2 class="foot-h">Talk to us</h2>
         <ul class="foot-contact">
           <li><span class="foot-ic">${icon('mail', 'ic')}</span><a href="mailto:${site.email}">${site.email}</a></li>
-          ${site.phone ? `<li><span class="foot-ic">${icon('phone', 'ic')}</span><a href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a></li>` : ''}
+          <li><span class="foot-ic">${icon('phone', 'ic')}</span><a href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a></li>
+          <li><span class="foot-ic">${icon('phone', 'ic')}</span><a href="tel:${site.landline.replace(/[^+\d]/g, '')}">${site.landline}</a></li>
           <li><span class="foot-ic">${icon('pin', 'ic')}</span><span>${site.city}, ${site.countryName}</span></li>
           <li><span class="foot-ic">${icon('clock', 'ic')}</span><span>${site.hours}</span></li>
         </ul>

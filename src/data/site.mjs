@@ -11,8 +11,8 @@ export const site = {
   region: 'Davao del Sur',
   country: 'PH',
   countryName: 'Philippines',
-  // TODO(client): add real phone/Viber/WhatsApp number, e.g. '+63 9XX XXX XXXX'
-  phone: '',
+  phone: '+63 951 487 4304', // mobile, Viber and WhatsApp
+  landline: '(082) 2929 822',
   // TODO(client): add the Facebook page URL (and other profiles). Used for schema "sameAs" and the footer.
   // Leave a link empty until the page exists. The icon shows as a plain (non-clickable) badge until a link is added.
   social: { facebook: '', messenger: '', linkedin: '', youtube: '', whatsapp: '', googleBusiness: '' },

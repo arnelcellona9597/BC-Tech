@@ -45,7 +45,7 @@ export function body() {
           <div class="field fl"><label for="m-email">Email</label><input placeholder=" " id="m-email" name="email" type="email" autocomplete="email" required></div>
         </div>
         <div class="row2">
-          <div class="field fl"><label for="m-phone">Phone, Viber or WhatsApp (optional)</label><input placeholder=" " id="m-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field fl"><label for="m-phone">Phone (optional)</label><input placeholder=" " id="m-phone" name="phone" type="tel" autocomplete="tel"></div>
           <div class="field"><label for="m-need">What do you need?</label>
             <select id="m-need" name="need">
               <option>A new website</option><option>An online store</option><option>Fix or redesign my website</option>
@@ -62,7 +62,8 @@ export function body() {
   <div class="cc-info">
     <ul class="contact-list">
       <li><span class="card-icon">${icon('mail')}</span><div><strong>Email</strong><a href="mailto:${site.email}">${site.email}</a></div></li>
-      ${site.phone ? `<li><span class="card-icon">${icon('phone')}</span><div><strong>Phone, Viber or WhatsApp</strong><a href="tel:${site.phone.replace(/[^+\d]/g, '')}">${esc(site.phone)}</a></div></li>` : ''}
+      <li><span class="card-icon">${icon('phone')}</span><div><strong>Mobile or WhatsApp</strong><a href="tel:${site.phone.replace(/[^+\d]/g, '')}">${esc(site.phone)}</a></div></li>
+      <li><span class="card-icon">${icon('phone')}</span><div><strong>Office landline</strong><a href="tel:${site.landline.replace(/[^+\d]/g, '')}">${esc(site.landline)}</a></div></li>
       <li><span class="card-icon">${icon('pin')}</span><div><strong>Where we are</strong><span>${site.city}, ${site.countryName}</span></div></li>
       <li><span class="card-icon">${icon('clock')}</span><div><strong>Hours</strong><span>${esc(site.hours)}</span></div></li>
     </ul>

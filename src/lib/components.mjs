@@ -321,7 +321,7 @@ export function bookingPanel({ titleTag = 'h2' } = {}) {
             <div class="field fl"><label for="b-email">Email</label><input placeholder=" " id="b-email" name="email" type="email" autocomplete="email" required></div>
           </div>
           <div class="row2">
-            <div class="field fl"><label for="b-phone">Phone, Viber or WhatsApp (optional)</label><input placeholder=" " id="b-phone" name="phone" type="tel" autocomplete="tel"></div>
+            <div class="field fl"><label for="b-phone">Phone (optional)</label><input placeholder=" " id="b-phone" name="phone" type="tel" autocomplete="tel"></div>
             <div class="field"><label for="b-purpose">What is the call about?</label>
               <select id="b-purpose" name="purpose">
                 <option>A new website</option><option>An online store</option><option>Fix or redesign my website</option>
