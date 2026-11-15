@@ -193,3 +193,37 @@
 
 /* Light sections: the same soft, layered depth the Why cards use */
 .sec.light:not(.why-lux) .card,.sec.light .panel,.sec.light .stat,.sec.light .chart-card{border:1px solid rgba(11,11,12,.07);background:linear-gradient(165deg,#fff,#fdf8f8);box-shadow:0 1px 0 #fff inset,0 2px 4px rgba(11,11,12,.04),0 12px 22px -10px rgba(11,11,12,.12),0 34px 56px -28px rgba(11,11,12,.26)}
+
+/* ===== Market numbers: dark glass chart with glowing bars, premium stat cards ===== */
+.sec.light .mc{position:relative;isolation:isolate;overflow:hidden;color:#fff;border:1px solid rgba(255,255,255,.1);background:radial-gradient(70% 55% at 85% 0%,rgba(200,16,46,.34),transparent 70%),radial-gradient(60% 50% at 0% 100%,rgba(200,16,46,.16),transparent 70%),linear-gradient(165deg,#1a1a1f,#0b0b0c);box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 30px 60px -28px rgba(11,11,12,.7),0 60px 90px -50px rgba(200,16,46,.5);--muted:rgba(255,255,255,.74);--line:rgba(255,255,255,.14);--accent:var(--red-hi)}
+.mc::before{content:"";position:absolute;z-index:-1;inset:-60%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(255,90,110,.28) 85%,transparent 100%);animation:mc-spin 14s linear infinite;pointer-events:none}
+.mc::after{content:"";position:absolute;z-index:-1;inset:1px;border-radius:calc(var(--radius) - 1px);background:radial-gradient(70% 55% at 85% 0%,rgba(200,16,46,.3),transparent 70%),linear-gradient(165deg,#1a1a1f,#0b0b0c);pointer-events:none}
+.mc-title{color:#fff}
+.mc-plot{position:relative;border-bottom-color:rgba(255,255,255,.22);background:repeating-linear-gradient(to top,transparent 0 calc(25% - 1px),rgba(255,255,255,.08) calc(25% - 1px) 25%) 0 2rem/100% calc(100% - 2rem) no-repeat}
+.mc-bar.total .mc-fill{background:linear-gradient(180deg,#fff,#a9a9b2 60%,#5d5d66);box-shadow:0 0 28px -4px rgba(255,255,255,.35)}
+.mc-bar.ecom .mc-fill{background:linear-gradient(180deg,var(--red-hi),var(--red) 55%,var(--red-deep));box-shadow:0 0 34px -2px rgba(255,90,110,.75)}
+.mc-fill{overflow:hidden}
+.mc-fill::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateY(-120%);opacity:0}
+.mc-val{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.mc-bar.ecom .mc-val{color:var(--red-hi)}
+.mc-year{color:#fff}
+.mc-legend i.total{background:linear-gradient(180deg,#fff,#8c8c95)}
+.mc-legend i.ecom{background:linear-gradient(180deg,var(--red-hi),var(--red));box-shadow:0 0 12px rgba(255,90,110,.7)}
+.mc-source{color:rgba(255,255,255,.7)}
+.mc-source a{color:var(--red-hi)}
+.sec.light .stat{position:relative;overflow:hidden;padding:1.6rem 1.7rem 1.5rem 2rem}
+.stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--red-hi),var(--red) 60%,var(--red-deep));transform-origin:50% 0;transition:width .4s var(--ease)}
+.stat::after{content:"";position:absolute;right:-3.5rem;top:-3.5rem;width:10rem;height:10rem;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,.2),transparent 68%);pointer-events:none;transition:transform .6s var(--ease),opacity .6s;opacity:.8}
+.stat:hover::before{width:7px}
+.stat:hover::after{transform:scale(1.5);opacity:1}
+.sec.light .stat:hover{border-color:rgba(200,16,46,.4);box-shadow:0 1px 0 #fff inset,0 20px 34px -14px rgba(200,16,46,.3),0 44px 70px -34px rgba(11,11,12,.4)}
+.stat-num{background:linear-gradient(100deg,var(--red-deep),var(--red) 45%,var(--red-bright));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@media (scripting:none){.stat-num{-webkit-text-fill-color:var(--red);background:none}}
+@media (scripting:enabled){
+  .go .mc-fill::after{opacity:1;animation:mc-shine 4.5s ease-in-out calc(var(--i)*.35s + 1.6s) infinite}
+  .go .mc-bar.ecom .mc-fill{animation:mc-glow 3.2s ease-in-out calc(var(--i)*.35s + 1.6s) infinite}
+}
+@keyframes mc-spin{to{transform:rotate(1turn)}}
+@keyframes mc-shine{0%,55%{transform:translateY(-120%)}100%{transform:translateY(120%)}}
+@keyframes mc-glow{50%{box-shadow:0 0 50px 2px rgba(255,90,110,.95)}}
+@media (prefers-reduced-motion:reduce){.mc::before,.mc-fill::after,.go .mc-bar.ecom .mc-fill{animation:none}.mc::before{display:none}}
