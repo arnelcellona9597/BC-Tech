@@ -111,11 +111,23 @@ export const why = [
   { icon: 'cursor', title: 'Built to sell', text: 'We design every page around one question: will this get the customer to contact you?' },
 ];
 
-export const process = [
-  { title: 'Talk', text: 'A free call. We learn about your business and what you want more of: calls, bookings or sales.' },
-  { title: 'Preview', text: 'You see a clickable preview of your website and approve it before we build anything.' },
-  { title: 'Build', text: 'We design and build your website with your logo, your words, and the tools you need.' },
-  { title: 'Launch & grow', text: 'We go live, then keep your site updated and growing with a care plan or monthly support.' },
+// How a project goes, told as a chat between the client ("you") and BC Tech ("us")
+export const conversation = [
+  { stage: 'Talk', msgs: [
+    { who: 'you', text: 'I want my website to bring me more customers.' },
+    { who: 'us', text: 'Great! Book a free call and tell us about your business and what you want more of.' },
+  ] },
+  { stage: 'Preview', msgs: [
+    { who: 'us', text: 'Here is a clickable preview of your website. Happy with it?' },
+    { who: 'you', text: 'Looks great. Go ahead!' },
+  ] },
+  { stage: 'Build', msgs: [
+    { who: 'us', text: 'On it. We are building it with your logo, your words and the tools you need.' },
+  ] },
+  { stage: 'Launch and grow', msgs: [
+    { who: 'us', text: 'You are live! We can keep it updated and growing with a care plan or monthly support.' },
+    { who: 'you', text: 'Thank you!' },
+  ] },
 ];
 
 export const stacks = ['WordPress', 'WooCommerce', 'Shopify', 'Laravel', 'React', 'Next.js', 'Vue', 'Node.js', 'PHP', 'and more'];
