@@ -19,12 +19,35 @@ export function btn(label, href, { kind = 'primary', arrow = true, cls = '' } = 
  * Slider: a grid on desktop, a swipeable scroll-snap slider on mobile.
  * `items` are HTML strings. JS adds the arrows and dots (progressive enhancement).
  */
-export function slider(id, label, items, { cols = 3, cls = '' } = {}) {
-  return `<div class="slider ${cls}" data-slider data-cols="${cols}" role="region" aria-roledescription="carousel" aria-label="${esc(label)}">
+export function slider(id, label, items, { cols = 3, cls = '', always = false } = {}) {
+  return `<div class="slider ${cls}${always ? ' is-carousel' : ''}" data-slider data-cols="${cols}" role="region" aria-roledescription="carousel" aria-label="${esc(label)}">
   <div class="slider-track" id="${id}">
-${items.map((it, i) => `    <div class="slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${items.length}">${it}</div>`).join('\n')}
+${items.map((it, i) => `    <div class="slide${always ? ' reveal' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${items.length}">${it}</div>`).join('\n')}
   </div>
 </div>`;
+}
+
+const imageManifest = JSON.parse(readFileSync(new URL('../data/images.json', import.meta.url), 'utf8'));
+
+/**
+ * Responsive AI image: AVIF with WebP fallback, several widths, real width/height so nothing jumps.
+ * `eager` is for the one image at the top of a page; everything else is lazy.
+ */
+export function picture(name, { alt, sizes = '100vw', eager = false, cls = '', pos = '' } = {}) {
+  const m = imageManifest[name];
+  if (!m) throw new Error(`Unknown image: ${name} (run npm run images)`);
+  const vs = m.variants;
+  const big = vs[vs.length - 1];
+  const mid = vs[Math.min(1, vs.length - 1)];
+  const set = (ext) => vs.map((v) => `/assets/img/ai/${name}-${v.w}.${ext} ${v.w}w`).join(', ');
+  return `<picture class="pic ${cls}"><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="/assets/img/ai/${name}-${mid.w}.webp" width="${big.w}" height="${big.h}" alt="${esc(alt)}"${pos ? ` style="object-position:${pos}"` : ''} ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></picture>`;
+}
+
+/** Preload hint for the top-of-page image (helps the largest paint). */
+export function preloadImage(name, sizes) {
+  const m = imageManifest[name];
+  const set = m.variants.map((v) => `/assets/img/ai/${name}-${v.w}.avif ${v.w}w`).join(', ');
+  return `<link rel="preload" as="image" type="image/avif" imagesrcset="${set}" imagesizes="${sizes}" fetchpriority="high">`;
 }
 
 /** FAQ list using native <details> (works without JavaScript, keyboard friendly). */

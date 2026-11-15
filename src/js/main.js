@@ -48,7 +48,7 @@
   const header = $('.site-header');
   const bar = $('.progress');
   const float = $('.float-cta');
-  const parallax = $('.hero-mark-wrap');
+  const parallax = $('.hero-mark-wrap, .hero-visual');
   let ticking = false;
   const onScroll = () => {
     if (ticking) return;
@@ -116,6 +116,17 @@
       });
     });
 
+    /* primary buttons lean toward the cursor */
+    $$('.btn-primary').forEach((b) => {
+      b.addEventListener('pointermove', (e) => {
+        if (e.pointerType !== 'mouse') return;
+        const r = b.getBoundingClientRect();
+        b.style.setProperty('--bx', `${((e.clientX - r.left - r.width / 2) * 0.12).toFixed(1)}px`);
+        b.style.setProperty('--by', `${((e.clientY - r.top - r.height / 2) * 0.22).toFixed(1)}px`);
+      });
+      b.addEventListener('pointerleave', () => { b.style.setProperty('--bx', '0px'); b.style.setProperty('--by', '0px'); });
+    });
+
     /* soft red light that follows the cursor */
     const glow = d.createElement('div');
     glow.className = 'cursor-glow';
@@ -135,49 +146,88 @@
     d.addEventListener('pointerleave', () => glow.classList.remove('on'));
   }
 
-  /* ---- Sliders: grid on desktop, swipe slider on mobile ---- */
+  /* ---- Sliders: scroll-snap carousels with arrows, dots, mouse drag and keyboard ---- */
   const mq = matchMedia('(max-width: 899px)');
   const arrow = (dir) => `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${dir < 0 ? 'm15 6-6 6 6 6' : 'm9 6 6 6-6 6'}"/></svg>`;
   $$('[data-slider]').forEach((sl) => {
     const track = $('.slider-track', sl);
     const slides = $$('.slide', track);
     if (slides.length < 2) return;
+    const always = sl.classList.contains('is-carousel');
     const ui = d.createElement('div');
     ui.className = 'slider-ui';
     ui.innerHTML = `<button type="button" class="slider-btn" aria-label="Previous slide">${arrow(-1)}</button><div class="slider-dots"></div><button type="button" class="slider-btn" aria-label="Next slide">${arrow(1)}</button>`;
     sl.appendChild(ui);
     const [prev, next] = $$('.slider-btn', ui);
     const dots = $('.slider-dots', ui);
-    slides.forEach((_, i) => {
-      const b = d.createElement('button');
-      b.type = 'button';
-      b.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      b.addEventListener('click', () => go(i));
-      dots.appendChild(b);
-    });
-    const go = (i) => {
-      const s = slides[Math.max(0, Math.min(slides.length - 1, i))];
-      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.clientWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
-    };
-    const current = () => {
-      const mid = track.scrollLeft + track.clientWidth / 2;
-      let best = 0, dist = Infinity;
-      slides.forEach((s, i) => { const dd = Math.abs(s.offsetLeft + s.clientWidth / 2 - mid); if (dd < dist) { dist = dd; best = i; } });
-      return best;
-    };
+    if (always) track.setAttribute('tabindex', '0'); // set up front: sections below the fold are not measured until drawn
+    let pages = 1;
+    const step = () => (slides[1].offsetLeft - slides[0].offsetLeft) || slides[0].clientWidth;
+    const maxScroll = () => track.scrollWidth - track.clientWidth;
+    const page = () => Math.max(0, Math.min(pages - 1, Math.round(track.scrollLeft / step())));
+    const go = (i) => track.scrollTo({ left: Math.max(0, Math.min(maxScroll(), i * step())), behavior: reduce ? 'auto' : 'smooth' });
     const sync = () => {
-      const i = current();
+      const i = page();
       $$('button', dots).forEach((b, k) => (k === i ? b.setAttribute('aria-current', 'true') : b.removeAttribute('aria-current')));
-      prev.disabled = i === 0;
-      next.disabled = i === slides.length - 1;
+      prev.disabled = i <= 0;
+      next.disabled = i >= pages - 1 || track.scrollLeft >= maxScroll() - 2;
     };
-    prev.addEventListener('click', () => go(current() - 1));
-    next.addEventListener('click', () => go(current() + 1));
+    const build = () => {
+      const scrollable = maxScroll() > 4;
+      pages = scrollable ? Math.min(slides.length, Math.round(maxScroll() / step()) + 1) : 1;
+      sl.classList.toggle('no-scroll', !scrollable);
+      dots.innerHTML = '';
+      for (let i = 0; i < pages; i++) {
+        const b = d.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        b.addEventListener('click', () => go(i));
+        dots.appendChild(b);
+      }
+      // A scrollable region needs a keyboard stop. Carousels that scroll on every screen size always keep one.
+      if (scrollable || always) track.setAttribute('tabindex', '0'); else track.removeAttribute('tabindex');
+      sync();
+    };
+    prev.addEventListener('click', () => go(page() - 1));
+    next.addEventListener('click', () => go(page() + 1));
     let t = 0;
     track.addEventListener('scroll', () => { cancelAnimationFrame(t); t = requestAnimationFrame(sync); }, { passive: true });
-    // Only a scrollable region needs a keyboard stop
-    const fit = () => { if (mq.matches) track.setAttribute('tabindex', '0'); else track.removeAttribute('tabindex'); sync(); };
-    mq.addEventListener('change', fit);
-    fit();
+    if ('ResizeObserver' in window) new ResizeObserver(build).observe(track); else { addEventListener('resize', build); build(); }
+    // Sections below the fold are not measured until they are drawn, so measure again when they come into view
+    if ('IntersectionObserver' in window) new IntersectionObserver((es) => { if (es[0].isIntersecting) build(); }).observe(sl);
+    mq.addEventListener('change', build);
+
+    // Mouse drag (touch already scrolls natively)
+    if (always && fine) {
+      let down = false, sx = 0, start = 0, moved = 0;
+      track.addEventListener('pointerdown', (e) => {
+        if (e.pointerType !== 'mouse' || e.button !== 0 || e.target.closest('a,button,input,select,textarea')) return;
+        down = true; moved = 0; sx = e.clientX; start = track.scrollLeft;
+      });
+      addEventListener('pointermove', (e) => {
+        if (!down) return;
+        const dx = e.clientX - sx;
+        moved = Math.max(moved, Math.abs(dx));
+        if (moved > 6) { track.classList.add('dragging'); track.scrollLeft = start - dx; }
+      });
+      const up = () => {
+        if (!down) return;
+        down = false;
+        if (track.classList.contains('dragging')) {
+          track.classList.remove('dragging');
+          go(Math.round(track.scrollLeft / step()));
+        }
+      };
+      addEventListener('pointerup', up);
+      addEventListener('pointercancel', up);
+    }
+  });
+
+  /* ---- Drag-to-compare slider ---- */
+  $$('[data-compare]').forEach((el) => {
+    const input = $('.cmp-range', el);
+    const set = () => el.style.setProperty('--pos', `${input.value}%`);
+    input.addEventListener('input', set);
+    set();
   });
 })();

@@ -303,6 +303,31 @@ export const faqs = {
   ],
 };
 
+// Kinds of business for the image slider on the home page (all images are AI-generated illustrations)
+export const industries = [
+  { id: 'cafe', img: 'ind-cafe', pos: '40% 30%', name: 'Cafes & restaurants', line: 'Show your menu, take reservations and get found by hungry customers.', alt: 'AI-generated illustration of a cafe owner smiling at an order notification on her phone' },
+  { id: 'shop', img: 'ind-shop', pos: '35% 30%', name: 'Shops & boutiques', line: 'Show your products and let customers message or order in a tap.', alt: 'AI-generated illustration of a boutique owner holding a tablet in his clothing shop' },
+  { id: 'clinic', img: 'ind-clinic', pos: '35% 30%', name: 'Clinics & salons', line: 'Let clients book an appointment online, at any hour.', alt: 'AI-generated illustration of a receptionist using a tablet booking calendar at a clinic desk' },
+  { id: 'hotel', img: 'ind-hotel', pos: '30% 35%', name: 'Hotels & travel', line: 'Show your rooms and take booking requests with confidence.', alt: 'AI-generated illustration of a hotel host and a guest showing a booking on her phone' },
+  { id: 'builder', img: 'ind-builder', pos: '40% 40%', name: 'Builders & manufacturers', line: 'Show your work and make asking for a quote effortless.', alt: 'AI-generated illustration of two contractors reviewing plans next to a laptop with a quote form' },
+];
+
+// Published figures. Each one was checked against its source (see "source" and "note").
+// Bars come from page 3 of the Philippines e-Conomy SEA 2025 report (Google, Temasek, Bain & Company).
+export const market = {
+  source: { label: 'e-Conomy SEA 2025, Philippines (Google, Temasek, Bain & Company)', url: 'https://services.google.com/fh/files/misc/philippines_e_conomy_sea_2025_report.pdf' },
+  bars: [
+    { year: '2023', total: 26, ecom: 17 },
+    { year: '2024', total: 31, ecom: 20 },
+    { year: '2025', total: 36, ecom: 24, estimate: true },
+  ],
+  stats: [
+    { value: 16, prefix: '+', suffix: '%', label: 'growth of the Philippine digital economy in 2025, to about US$36 billion', cite: 'Google, Temasek, Bain & Company, e-Conomy SEA 2025', url: 'https://services.google.com/fh/files/misc/philippines_e_conomy_sea_2025_report.pdf' },
+    { value: 57, suffix: '%', label: 'of monthly retail payments in the Philippines were digital in 2024', cite: 'Bangko Sentral ng Pilipinas, as reported in e-Conomy SEA 2025', url: 'https://services.google.com/fh/files/misc/philippines_e_conomy_sea_2025_report.pdf' },
+    { value: 75, suffix: '%', label: 'of Filipinos said it is important for small businesses to have an online presence', cite: 'YouGov survey for Visa, July 2020, via The Philippine Star', url: 'https://www.philstar.com/business/2020/08/16/2035558/7-10-pinoys-prefer-online-sme-presence' },
+  ],
+};
+
 export const lyfd = {
   name: 'LYFD Stainless Fabrication and Services',
   short: 'LYFD',

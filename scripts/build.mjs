@@ -36,12 +36,12 @@ for (const f of ['favicon.ico', 'favicon.svg', 'favicon-16.png', 'favicon-32.png
 for (const f of readdirSync(join(SRC, 'fonts'))) cpSync(join(SRC, 'fonts', f), out('assets', 'fonts', f));
 
 // ---- CSS (inlined into every page: no render-blocking request)
-const cssSrc = ['base', 'components', 'effects'].map((n) => readFileSync(join(SRC, 'css', `${n}.css`), 'utf8')).join('\n');
+const cssSrc = ['base', 'components', 'effects', 'visuals'].map((n) => readFileSync(join(SRC, 'css', `${n}.css`), 'utf8')).join('\n');
 const css = (await transform(cssSrc, { loader: 'css', minify: true })).code.trim();
 
 // ---- JS (small, deferred, content-hashed)
 const js = {};
-for (const name of ['main', 'forms', 'booking']) {
+for (const name of ['main', 'forms', 'booking', 'charts']) {
   const code = (await transform(readFileSync(join(SRC, 'js', `${name}.js`), 'utf8'), { minify: true, target: 'es2019' })).code;
   const file = `${name}.${hash(code)}.js`;
   write(out('assets', 'js', file), code);

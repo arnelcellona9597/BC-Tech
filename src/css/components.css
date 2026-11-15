@@ -255,7 +255,7 @@
 .field [aria-invalid=true]{border-color:var(--red-hi)}
 .field .err{display:block;margin-top:.35rem;font-size:.83rem;color:var(--red-hi);font-weight:500}
 .sec.light .field input,.sec.light .field select,.sec.light .field textarea{border-color:rgba(11,11,12,.28);background:#fff}
-.sec.light .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B0B0C' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")}
+.sec.light .field select{background-repeat:no-repeat;background-position:right .9rem center;background-size:1.1rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B0B0C' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")}
 .sec.light .field input::placeholder,.sec.light .field textarea::placeholder{color:#6b6b73}
 .sec.light .field .err{color:var(--red)}
 .hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
