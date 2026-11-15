@@ -194,7 +194,7 @@ export function pricingCard(p) {
   return `<article class="pc tilt${p.open ? ' is-custom' : ''}" id="${p.id}">
   <span class="pc-ring" aria-hidden="true"></span>
   ${p.open ? '<span class="pc-badge">Custom quote</span>' : p.tag ? `<span class="pc-badge">${esc(p.tag)}</span>` : ''}
-  ${p.tag === p.sub ? '' : `<p class="pc-sub">${esc(p.sub)}</p>`}
+  ${p.tag && !p.open ? '' : `<p class="pc-sub">${esc(p.sub)}</p>`}
   <h3 class="pc-name">${esc(p.name)}</h3>
   <p class="pc-for">${esc(p.forWho)}</p>
   <div class="pc-price">
