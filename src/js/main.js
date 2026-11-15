@@ -7,23 +7,6 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  /* ---- Mobile navigation ---- */
-  const toggle = $('.nav-toggle');
-  const nav = $('#site-nav');
-  const setNav = (open) => {
-    root.classList.toggle('nav-open', open);
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  };
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => setNav(!root.classList.contains('nav-open')));
-    nav.addEventListener('click', (e) => { if (e.target.closest('a')) setNav(false); });
-    d.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && root.classList.contains('nav-open')) { setNav(false); toggle.focus(); }
-    });
-    matchMedia('(min-width: 960px)').addEventListener('change', (e) => { if (e.matches) setNav(false); });
-  }
-
   /* ---- Path and chat: play once when they scroll into view ---- */
   $$('[data-path], [data-seq]').forEach((el) => {
     if (reduce || !('IntersectionObserver' in window)) { el.classList.add('go'); return; }
@@ -133,9 +116,11 @@
     glow.setAttribute('aria-hidden', 'true');
     d.body.appendChild(glow);
     let gx = 0, gy = 0, gr = 0;
+    const heroEl = d.querySelector('.hero.has-form');
     addEventListener('pointermove', (e) => {
       if (e.pointerType !== 'mouse') return;
       gx = e.clientX; gy = e.clientY;
+      if (heroEl && gy < innerHeight) { heroEl.style.setProperty('--mx', ((gx / innerWidth - .5) * 2).toFixed(3)); heroEl.style.setProperty('--my', ((gy / innerHeight - .5) * 2).toFixed(3)); }
       if (!gr) gr = requestAnimationFrame(() => {
         glow.style.setProperty('--cx', `${gx}px`);
         glow.style.setProperty('--cy', `${gy}px`);

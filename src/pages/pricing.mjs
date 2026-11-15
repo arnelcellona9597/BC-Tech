@@ -1,4 +1,4 @@
-import { icon, slider, faqList, sectionHead, ctaBand, pricingFlow, picture, esc } from '../lib/components.mjs';
+import { icon, slider, faqList, sectionHead, ctaBand, pricingSection, picture, esc } from '../lib/components.mjs';
 import { funnel, calculator } from '../lib/charts.mjs';
 import { packages, addons, faqs } from '../data/content.mjs';
 
@@ -13,7 +13,7 @@ export const meta = {
   ogHeadline: 'Clear prices. No surprises.',
   priority: '0.9',
   usesPeso: true,
-  scripts: ['charts', 'pricing'],
+  scripts: ['charts', 'pricing', 'particles'],
 };
 
 const addonCard = (a) => `<article class="addon tilt">
@@ -43,13 +43,7 @@ export function body() {
   </div>
 </section>
 
-<section class="sec lux" aria-labelledby="pkg-title">
-  <div class="wrap">
-    ${sectionHead({ eyebrow: 'Website packages', title: 'Pick the one that fits <span class="accent">where you are now</span>', lead: 'Tell us what you need and the right package comes to the front. Not sure? Book a free call and we will tell you honestly.', id: 'pkg-title', center: true })}
-    ${pricingFlow(packages)}
-    <p class="note reveal" style="margin-inline:auto;margin-top:2.6rem;text-align:left">These are one-time prices for designing and building your website. Domain, hosting and ongoing care are listed below.</p>
-  </div>
-</section>
+${pricingSection(packages)}
 
 <section class="sec deep cv" id="extras" aria-labelledby="extras-title">
   <div class="wrap">

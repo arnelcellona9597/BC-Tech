@@ -310,11 +310,11 @@ export const faqs = {
 
 // Kinds of business for the image slider on the home page. Images show workplaces only (no people).
 export const industries = [
-  { id: 'cafe', img: 'ind-cafe', pos: '62% 55%', name: 'Cafes & restaurants', line: 'Show your menu, take reservations and get found by hungry customers.', alt: 'Modern coffee shop counter with an espresso machine and a tablet' },
-  { id: 'shop', img: 'ind-shop', pos: '30% 50%', name: 'Shops & boutiques', line: 'Show your products and let customers message or order in a tap.', alt: 'Boutique with hanging clothes and a tablet showing products' },
-  { id: 'clinic', img: 'ind-clinic', pos: '25% 55%', name: 'Clinics & salons', line: 'Let clients book an appointment online, at any hour.', alt: 'Clinic reception desk with a tablet showing an appointment calendar' },
-  { id: 'hotel', img: 'ind-hotel', pos: '50% 60%', name: 'Hotels & travel', line: 'Show your rooms and take booking requests with confidence.', alt: 'Hotel lobby front desk with a phone showing a booking confirmation' },
-  { id: 'builder', img: 'ind-builder', pos: '22% 55%', name: 'Builders & manufacturers', line: 'Show your work and make asking for a quote effortless.', alt: 'Contractor office with building plans, a hard hat and a laptop' },
+  { id: 'cafe', img: 'ind-cafe', name: 'Cafes & restaurants', line: 'Show your menu, take reservations and get found by hungry customers.', alt: 'Coffee shop counter with an espresso machine and a screen showing a sales chart' },
+  { id: 'shop', img: 'ind-shop', name: 'Shops & boutiques', line: 'Show your products and let customers message or order in a tap.', alt: 'Boutique with a clothing rack and a screen showing a rising sales curve' },
+  { id: 'clinic', img: 'ind-clinic', name: 'Clinics & salons', line: 'Let clients book an appointment online, at any hour.', alt: 'Clinic reception desk with a tablet and a screen showing an appointment chart' },
+  { id: 'hotel', img: 'ind-hotel', name: 'Hotels & travel', line: 'Show your rooms and take booking requests with confidence.', alt: 'Hotel lobby reception with a large screen showing booking charts' },
+  { id: 'builder', img: 'ind-builder', name: 'Builders & manufacturers', line: 'Show your work and make asking for a quote effortless.', alt: 'Office with building plans, a hard hat and a screen showing a project timeline' },
 ];
 
 // Published figures. Each one was checked against its source (see "source" and "note").

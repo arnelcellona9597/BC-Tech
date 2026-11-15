@@ -14,11 +14,11 @@ mkdirSync(OUT, { recursive: true });
 // widths to produce per image (never larger than the original)
 const plan = {
   'home-hero': [640, 960, 1280],
-  'ind-cafe': [480, 800, 1200],
-  'ind-shop': [480, 800, 1200],
-  'ind-clinic': [480, 800, 1200],
-  'ind-hotel': [480, 800, 1200],
-  'ind-builder': [480, 800, 1200],
+  'ind-cafe': [640, 1024, 1536],
+  'ind-shop': [640, 1024, 1536],
+  'ind-clinic': [640, 1024, 1536],
+  'ind-hotel': [640, 1024, 1536],
+  'ind-builder': [640, 1024, 1536],
   'services-head': [480, 800, 1200],
   'contact-head': [480, 800, 1200],
   'pricing-head': [480, 800, 1200],

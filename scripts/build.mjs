@@ -36,12 +36,12 @@ for (const f of ['favicon.ico', 'favicon.svg', 'favicon-16.png', 'favicon-32.png
 for (const f of readdirSync(join(SRC, 'fonts'))) cpSync(join(SRC, 'fonts', f), out('assets', 'fonts', f));
 
 // ---- CSS (inlined into every page: no render-blocking request)
-const cssSrc = ['base', 'components', 'effects', 'visuals', 'luxe'].map((n) => readFileSync(join(SRC, 'css', `${n}.css`), 'utf8')).join('\n');
+const cssSrc = ['base', 'components', 'effects', 'visuals', 'luxe', 'shell'].map((n) => readFileSync(join(SRC, 'css', `${n}.css`), 'utf8')).join('\n');
 const css = (await transform(cssSrc, { loader: 'css', minify: true })).code.trim();
 
 // ---- JS (small, deferred, content-hashed)
 const js = {};
-for (const name of ['main', 'forms', 'booking', 'charts', 'pricing']) {
+for (const name of ['main', 'shell', 'forms', 'booking', 'charts', 'pricing', 'particles', 'slider-full']) {
   const code = (await transform(readFileSync(join(SRC, 'js', `${name}.js`), 'utf8'), { minify: true, target: 'es2019' })).code;
   const file = `${name}.${hash(code)}.js`;
   write(out('assets', 'js', file), code);
@@ -49,7 +49,7 @@ for (const name of ['main', 'forms', 'booking', 'charts', 'pricing']) {
 }
 const assets = {
   js,
-  fonts: { cinzel: '/assets/fonts/cinzel-latin-wght-normal.woff2', montserrat: '/assets/fonts/montserrat-latin-wght-normal.woff2', peso: '/assets/fonts/peso-sign.woff2' },
+  fonts: { cinzel: '/assets/fonts/cinzel-brand.woff2', playfair: '/assets/fonts/playfair-display-latin-wght-normal.woff2', montserrat: '/assets/fonts/montserrat-latin-wght-normal.woff2', peso: '/assets/fonts/peso-sign.woff2' },
 };
 
 // ---- pages
