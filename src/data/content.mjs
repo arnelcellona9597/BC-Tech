@@ -10,9 +10,20 @@ export const services = [
     items: [
       'Websites you can edit yourself (CMS), no coding needed',
       'Online stores that take GCash, Maya and cards (e-commerce)',
-      'Link your website to your other software (REST API integration)',
-      'Connect to your inventory, accounting or ERP system',
       'Custom features built just for you (custom code)',
+    ],
+  },
+  {
+    id: 'integrations',
+    icon: 'server',
+    title: 'Integrations & Automation',
+    blurb: 'Connect your website to the software your team already uses, so the same information is never typed twice.',
+    items: [
+      'Connect your website to other software (REST API integration)',
+      'Link to your inventory, accounting, CRM or ERP system (ERP integration)',
+      'Orders, bookings and inquiries sent straight to your systems (automation)',
+      'Automatic emails, reminders and reports that save your team time',
+      'Custom APIs built for your business, with clear documentation',
     ],
   },
   {
@@ -144,6 +155,7 @@ export const journey = [
 // Jump links on the Services page
 export const serviceJumps = [
   ['systems', 'Websites & Systems'],
+  ['integrations', 'Integrations'],
   ['brand', 'Brand & Look'],
   ['words', 'Words That Sell'],
   ['preview', 'Previews'],

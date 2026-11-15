@@ -144,7 +144,7 @@ export function leadForm({ source = 'home', id = 'lead' } = {}) {
   <div class="field"><label for="${id}-need">What do you need?</label>
     <select id="${id}-need" name="need">
       <option>A new website</option><option>An online store</option><option>Fix or redesign my website</option>
-      <option>Connect my website to my systems</option><option>Logo and branding</option><option>Something else</option>
+      <option>API, ERP or automation</option><option>Logo and branding</option><option>Something else</option>
     </select></div>
   <button class="btn btn-primary" type="submit"><span>Get my free call</span>${icon('arrow', 'ic ic-arrow')}</button>
   <p class="form-note">No spam. We only use your details to reply to you. <a href="/privacy/">Privacy</a></p>
@@ -175,7 +175,7 @@ export function heroForm(packages) {
     <div class="field"><label for="hf-need">What do you need?</label>
       <select id="hf-need" name="need">
         <option>A new website</option><option>An online store</option><option>Fix or redesign my website</option>
-        <option>Connect my website to my systems</option><option>Logo and branding</option><option>Writing and content</option>
+        <option>API, ERP or automation</option><option>Logo and branding</option><option>Writing and content</option>
         <option>Google visibility (SEO) and marketing</option><option>Something else</option>
       </select></div>
     <div class="field"><label for="hf-pkg">Package you are looking at</label>
@@ -325,7 +325,7 @@ export function bookingPanel({ titleTag = 'h2' } = {}) {
             <div class="field"><label for="b-purpose">What is the call about?</label>
               <select id="b-purpose" name="purpose">
                 <option>A new website</option><option>An online store</option><option>Fix or redesign my website</option>
-                <option>Connect my website to my systems</option><option>Logo and branding</option><option>Something else</option>
+                <option>API, ERP or automation</option><option>Logo and branding</option><option>Something else</option>
               </select></div>
           </div>
           <div class="field fl"><label for="b-notes">Anything we should know? (optional)</label><textarea placeholder=" " id="b-notes" name="notes" rows="3"></textarea></div>
