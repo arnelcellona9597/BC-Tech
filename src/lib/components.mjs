@@ -158,7 +158,7 @@ export function leadForm({ source = 'home', id = 'lead' } = {}) {
  */
 export function heroForm(packages) {
   const pk = packages.map((p) => `<option value="${esc(p.name)}">${esc(p.name)} (from ${peso(p.from)})</option>`).join('');
-  return `<aside class="hero-form-card" aria-labelledby="hf-title">
+  return `<div class="hero-form-wrap"><span class="hero-orbit" aria-hidden="true"></span><aside class="hero-form-card" aria-labelledby="hf-title">
   <span class="hf-glow" aria-hidden="true"></span>
   <p class="eyebrow">Free quote</p>
   <h2 id="hf-title">Tell us what you need</h2>
@@ -185,7 +185,7 @@ export function heroForm(packages) {
     <p class="form-note">You get a reference number right away. <a href="/privacy/">Privacy</a></p>
     <p class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
   </form>
-</aside>`;
+</aside></div>`;
 }
 
 /** Luxury pricing card: layered for 3D tilt, with an animated price. */
@@ -249,3 +249,38 @@ export function ctaBand({ title = 'Ready for a website that works as hard as you
 }
 
 export const contactEmail = () => `<a href="mailto:${site.email}">${site.email}</a>`;
+
+/** Full-width autoplay slider with rotating transition effects. Works without JavaScript (first slide shows). */
+export function heroSlider(id, label, items) {
+  const fx = ['fade', 'wipe', 'slide'];
+  const slides = items.map((it, i) => `<li class="hs-slide${i === 0 ? ' is-active' : ''}" id="${id}-${i}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${items.length}">
+    <div class="hs-media">${picture(it.img, { alt: it.alt, sizes: '100vw', eager: i === 0 })}</div>
+    <div class="hs-cap wrap"><p class="hs-count" aria-hidden="true"><b>0${i + 1}</b> / 0${items.length}</p><h3>${esc(it.name)}</h3><p>${esc(it.line)}</p></div>
+  </li>`).join('');
+  const dots = items.map((it, i) => `<button type="button" class="hs-dot${i === 0 ? ' is-active' : ''}" aria-label="Show ${esc(it.name)}" aria-controls="${id}-${i}"></button>`).join('');
+  return `<div class="hs" id="${id}" role="region" aria-roledescription="carousel" aria-label="${esc(label)}" data-fx="${fx.join(',')}">
+  <ul class="hs-track">${slides}</ul>
+  <div class="hs-ui wrap">
+    <div class="hs-dots">${dots}</div>
+    <div class="hs-btns">
+      <button type="button" class="hs-btn hs-prev" aria-label="Previous slide">${icon('arrow')}</button>
+      <button type="button" class="hs-btn hs-play" aria-label="Pause slideshow" aria-pressed="false"><span class="hs-ico-pause" aria-hidden="true"></span></button>
+      <button type="button" class="hs-btn hs-next" aria-label="Next slide">${icon('arrow')}</button>
+    </div>
+  </div>
+  <span class="hs-bar" aria-hidden="true"><i></i></span>
+</div>`;
+}
+
+/** The luxury package stage. Used on the home page and /pricing/ so both always look identical. */
+export function pricingSection(packages, { id = 'pkg-title', cv = false } = {}) {
+  return `<section class="sec lux${cv ? ' cv' : ''}" aria-labelledby="${id}">
+  <div class="lux-fx" aria-hidden="true"><span class="lux-beam lb-1"></span><span class="lux-beam lb-2"></span><span class="lux-sweep"></span><canvas data-particles="lite"></canvas></div>
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'Website packages', title: 'Pick the one that fits <span class="accent">where you are now</span>', lead: 'Tell us what you need and the right package comes to the front. Not sure? Book a free call and we will tell you honestly.', id, center: true })}
+    ${pricingFlow(packages)}
+    <p class="note reveal" style="margin-inline:auto;margin-top:2.6rem;text-align:left">These are one-time prices for designing and building your website. Domain, hosting and ongoing care are listed on the pricing page.</p>
+    <p class="center-cta reveal" style="margin-top:1.6rem">${btn('See all packages and extras', '/pricing/', { kind: 'ghost' })}</p>
+  </div>
+</section>`;
+}

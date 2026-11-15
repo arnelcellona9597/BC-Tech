@@ -14,9 +14,11 @@ export const site = {
   // TODO(client): add real phone/Viber/WhatsApp number, e.g. '+63 9XX XXX XXXX'
   phone: '',
   // TODO(client): add the Facebook page URL (and other profiles). Used for schema "sameAs" and the footer.
-  social: [],
+  // Leave a link empty until the page exists. The icon shows as a plain (non-clickable) badge until a link is added.
+  social: { facebook: '', messenger: '', linkedin: '', youtube: '', whatsapp: '', googleBusiness: '' },
   themeColor: '#0B0B0C',
   hours: 'Monday to Friday, 9:00 AM to 5:00 PM (Philippine Time)',
+  openHours: { days: [1, 2, 3, 4, 5], start: 9, end: 17, timezone: 'Asia/Manila' },
   // Booking rules. Keep in sync with public/api/config.example.php ("booking").
   booking: {
     days: [1, 2, 3, 4, 5], // Mon-Fri (0 = Sunday)
@@ -29,9 +31,9 @@ export const site = {
 };
 
 export const nav = [
-  { key: 'home', label: 'Home', href: '/' },
-  { key: 'services', label: 'Services', href: '/services/' },
-  { key: 'pricing', label: 'Pricing', href: '/pricing/' },
-  { key: 'work', label: 'Our Work', href: '/work/' },
-  { key: 'about', label: 'About', href: '/about/' },
+  { key: 'home', label: 'Home', href: '/', desc: 'Where your customers start' },
+  { key: 'services', label: 'Services', href: '/services/', desc: 'What we build for you' },
+  { key: 'pricing', label: 'Pricing', href: '/pricing/', desc: 'Clear prices in pesos' },
+  { key: 'work', label: 'Our Work', href: '/work/', desc: 'Real results, real clients' },
+  { key: 'about', label: 'About', href: '/about/', desc: 'The team behind BC Tech' },
 ];

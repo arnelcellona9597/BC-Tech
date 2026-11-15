@@ -27,8 +27,8 @@
   .tilt{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;transition:transform .5s var(--ease),border-color .3s,box-shadow .4s}
   .tilt.is-moving{transition:transform .08s linear,border-color .3s,box-shadow .4s}
   .tilt:hover .card-sheen{opacity:1}
-  .tilt .card-icon{transform:translateZ(34px)}
-  .tilt:hover .card-icon{transform:translateZ(46px) scale(1.06)}
+  .tilt .card-icon{transform:none}
+  .tilt:hover .card-icon{transform:scale(1.06)}
   .tilt h3{transform:translateZ(18px)}
   .cursor-glow{position:fixed;left:0;top:0;z-index:1;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(200,16,46,.2),transparent);opacity:0;transform:translate3d(var(--cx,-999px),var(--cy,-999px),0);transition:opacity .4s;will-change:transform}
   .cursor-glow.on{opacity:1}

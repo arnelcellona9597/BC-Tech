@@ -1,5 +1,6 @@
 import { site, nav } from '../data/site.mjs';
-import { faqs } from '../data/content.mjs';
+import { faqs, services } from '../data/content.mjs';
+import { socialIcons, messengerHref } from './social.mjs';
 import { mark, icon, esc } from './components.mjs';
 import { jsonLd } from './schema.mjs';
 
@@ -41,6 +42,7 @@ function head({ meta, css, assets }) {
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="${assets.fonts.cinzel}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${assets.fonts.playfair}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${assets.fonts.montserrat}" as="font" type="font/woff2" crossorigin>
 ${meta.usesPeso ? `<link rel="preload" href="${assets.fonts.peso}" as="font" type="font/woff2" crossorigin>` : ''}
 ${meta.preloadImg || ''}
@@ -63,35 +65,66 @@ ${nav.map((n) => `        <li><a href="${n.href}"${cur(n.key)}>${n.label}</a></l
         <li class="nav-cta"><a class="btn btn-primary btn-sm" href="/contact/#book"><span>Book a free call</span></a></li>
       </ul>
     </nav>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">${icon('menu', 'ic ic-open')}${icon('close', 'ic ic-close')}</button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span></button>
   </div>
 </header>
+<div class="menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" inert>
+  <span class="menu-orb menu-orb-a" aria-hidden="true"></span><span class="menu-orb menu-orb-b" aria-hidden="true"></span>
+  <span class="menu-mark" aria-hidden="true">${mark('menu-mark-svg')}</span>
+  <div class="menu-in">
+    <p class="menu-eyebrow">Menu</p>
+    <ul class="menu-links">
+${nav.map((n, i) => `      <li style="--i:${i}"><a href="${n.href}"${cur(n.key)}><b>0${i + 1}</b><span><strong>${n.label}</strong><small>${n.desc}</small></span>${icon('arrow', 'ic menu-arrow')}</a></li>`).join('\n')}
+    </ul>
+    <div class="menu-foot" style="--i:${nav.length}">
+      <a class="btn btn-primary" href="/contact/#book"><span>Book a free call</span>${icon('arrow', 'ic ic-arrow')}</a>
+      <a class="menu-mail" href="mailto:${site.email}">${site.email}</a>
+      <p class="menu-time"><span class="live-dot" aria-hidden="true"></span><span data-davao-clock>${site.city}</span></p>
+      ${socialIcons('social-menu')}
+    </div>
+  </div>
+</div>
 <main id="main">`;
 }
 
 function footer(meta) {
+  const oh = site.openHours;
   return `</main>
 <footer class="site-footer">
+  <span class="foot-line" aria-hidden="true"></span>
+  <span class="foot-glow" aria-hidden="true"></span>
   <div class="wrap">
+    <div class="foot-cta">
+      <div>
+        <p class="eyebrow">Ready when you are</p>
+        <p class="foot-big">Let us build something that <span class="accent">brings you customers.</span></p>
+      </div>
+      <a class="btn btn-primary" href="/contact/#book"><span>Book a free call</span>${icon('arrow', 'ic ic-arrow')}</a>
+    </div>
     <div class="foot-top">
       <div class="foot-brand">
         <a class="brand" href="/" aria-label="BC TECH home page">${mark('brand-mark')}<span class="brand-text">BC <i></i>TECH</span></a>
         <p class="foot-tag">${site.tagline}</p>
         <p class="foot-small">Web design and web development, based in ${site.city}, ${site.countryName}.</p>
+        ${socialIcons('social-foot')}
       </div>
       <nav aria-label="Footer">
         <h2 class="foot-h">Explore</h2>
         <ul>${nav.map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join('')}<li><a href="/contact/">Contact</a></li></ul>
       </nav>
+      <nav aria-label="Our services">
+        <h2 class="foot-h">What we do</h2>
+        <ul>${services.map((x) => `<li><a href="/services/#${x.id}">${esc(x.title)}</a></li>`).join('')}</ul>
+      </nav>
       <div>
         <h2 class="foot-h">Talk to us</h2>
         <ul class="foot-contact">
-          <li>${icon('mail', 'ic')}<a href="mailto:${site.email}">${site.email}</a></li>
-          ${site.phone ? `<li>${icon('phone', 'ic')}<a href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a></li>` : ''}
-          <li>${icon('pin', 'ic')}<span>${site.city}, ${site.countryName}</span></li>
-          <li>${icon('clock', 'ic')}<span>${site.hours}</span></li>
+          <li><span class="foot-ic">${icon('mail', 'ic')}</span><a href="mailto:${site.email}">${site.email}</a></li>
+          ${site.phone ? `<li><span class="foot-ic">${icon('phone', 'ic')}</span><a href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a></li>` : ''}
+          <li><span class="foot-ic">${icon('pin', 'ic')}</span><span>${site.city}, ${site.countryName}</span></li>
+          <li><span class="foot-ic">${icon('clock', 'ic')}</span><span>${site.hours}</span></li>
         </ul>
-        <a class="btn btn-primary btn-sm" href="/contact/#book"><span>Book a free call</span>${icon('arrow', 'ic ic-arrow')}</a>
+        <p class="open-pill" data-open data-days="${oh.days.join(',')}" data-start="${oh.start}" data-end="${oh.end}" data-tz="${oh.timezone}"><span class="live-dot" aria-hidden="true"></span><span data-open-text>${site.city} time</span></p>
       </div>
     </div>
     <div class="foot-bottom">
@@ -99,12 +132,19 @@ function footer(meta) {
       <p><a href="/privacy/">Privacy</a></p>
     </div>
   </div>
+  <p class="foot-mark" aria-hidden="true">BC TECH</p>
+  <button class="to-top" type="button" aria-label="Back to top"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="tt-track" cx="24" cy="24" r="21"/><circle class="tt-bar" cx="24" cy="24" r="21"/></svg>${icon('arrow', 'ic tt-arrow')}</button>
 </footer>
+<a class="chat" href="${messengerHref()}"${site.social.messenger ? ' target="_blank" rel="noopener noreferrer"' : ''} aria-label="Chat with us${site.social.messenger ? ' on Messenger (opens in a new tab)' : ''}">
+  <span class="chat-pulse" aria-hidden="true"></span>
+  <span class="chat-hi" aria-hidden="true"><span data-chat-text>Hi! Need a quote?</span></span>
+  <span class="chat-btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3C6.9 3 3 6.8 3 11.5c0 2.5 1.1 4.7 3 6.2V21l3.2-1.8c.9.3 1.8.4 2.8.4 5.1 0 9-3.8 9-8.1S17.1 3 12 3Z" fill="currentColor"/></svg><span class="chat-dots"><i></i><i></i><i></i></span><span class="chat-on" data-chat-on></span></span>
+</a>
 ${meta.key === 'contact' || meta.key === 'notfound' ? '' : `<aside class="float-wrap" aria-label="Quick action"><a class="float-cta" href="/contact/#book">${icon('calendar', 'ic')}<span>Book a free call</span></a></aside>`}`;
 }
 
 export function renderPage({ meta, body, css, assets }) {
-  const scripts = ['main', ...(meta.scripts || [])].map((s) => `<script src="${assets.js[s]}" defer></script>`).join('\n');
+  const scripts = ['main', 'shell', ...(meta.scripts || [])].map((s) => `<script src="${assets.js[s]}" defer></script>`).join('\n');
   return `${head({ meta, css, assets })}
 ${header(meta)}
 ${body}

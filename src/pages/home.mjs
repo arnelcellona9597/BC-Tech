@@ -1,4 +1,4 @@
-import { mark, icon, btn, slider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingCard, picture, preloadImage, peso, esc } from '../lib/components.mjs';
+import { mark, icon, btn, slider, heroSlider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingSection, picture, preloadImage, peso, esc } from '../lib/components.mjs';
 import { statCard, marketChart, exampleChart } from '../lib/charts.mjs';
 import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd, industries, market } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
@@ -14,15 +14,9 @@ export const meta = {
   ogHeadline: 'Built to Bring You Business.',
   priority: '1.0',
   usesPeso: true,
-  scripts: ['forms', 'charts'],
+  scripts: ['forms', 'charts', 'pricing', 'particles', 'slider-full'],
   preloadImg: preloadImage('home-hero', '(min-width:1100px) 100vw, calc(100vw - 2.5rem)'),
 };
-
-const industryCard = (it) => `<article class="ind tilt">
-  ${picture(it.img, { alt: it.alt, sizes: '(min-width:1100px) 380px, (min-width:700px) 46vw, 86vw', pos: it.pos })}
-  <div class="ind-cap"><h3>${esc(it.name)}</h3><p>${esc(it.line)}</p></div>
-  <span class="card-sheen" aria-hidden="true"></span>
-</article>`;
 
 const svcCard = (s) =>
   featureCard({
@@ -33,7 +27,6 @@ const svcCard = (s) =>
   }).replace('</article>', `<a class="link" href="/services/#${s.id}">What is included ${icon('arrow')}</a></article>`);
 
 export function body() {
-  const teaser = packages.filter((p) => ['cms-small', 'store-small', 'promax'].includes(p.id));
   return `
 <section class="hero has-form" aria-labelledby="hero-title">
   <div class="hero-bg" aria-hidden="true">
@@ -42,6 +35,7 @@ export function body() {
     <div class="glow glow-b"></div>
   </div>
   <div class="hero-visual">${picture('home-hero', { alt: 'Laptop and phone showing an elegant website, lit with red light', sizes: '(min-width:1100px) 100vw, calc(100vw - 2.5rem)', eager: true, cls: 'hero-pic' })}</div>
+  <canvas class="hero-fx" data-particles="full" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-in">
       <p class="eyebrow">Web design &amp; development · ${site.city}</p>
@@ -112,10 +106,11 @@ export function body() {
   </div>
 </section>
 
-<section class="sec deep cv" aria-labelledby="industries-title">
+<section class="sec deep cv hs-sec" aria-labelledby="industries-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Who we help', title: 'Websites for <span class="accent">every kind of business</span>', lead: 'Whatever you sell, the goal is the same: more people finding you, trusting you and getting in touch.', id: 'industries-title' })}
-    <div class="stagger">${slider('industries', 'Kinds of business we build websites for', industries.map(industryCard), { cols: 3, always: true })}</div>  </div>
+  </div>
+  <div class="reveal">${heroSlider('industries', 'Kinds of business we build websites for', industries)}</div>
 </section>
 
 <section class="sec light cv" aria-labelledby="why-title">
@@ -172,13 +167,7 @@ export function body() {
   </div>
 </section>
 
-<section class="sec lux cv" aria-labelledby="price-title">
-  <div class="wrap">
-    ${sectionHead({ eyebrow: 'Clear prices', title: 'Know the cost <span class="accent">before you call</span>', lead: 'Starting prices in pesos. Your exact quote is confirmed on a free call.', id: 'price-title' })}
-    <div class="stagger pc-grid">${slider('home-price', 'Starting prices', teaser.map(pricingCard), { cols: 3 })}</div>
-    <p class="reveal" style="margin-top:2.4rem">${btn('See all packages and extras', '/pricing/')}</p>
-  </div>
-</section>
+${pricingSection(packages, { id: 'price-title', cv: true })}
 
 <section class="sec deep cv" aria-labelledby="faq-title">
   <div class="wrap">
