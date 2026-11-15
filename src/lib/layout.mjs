@@ -43,6 +43,7 @@ function head({ meta, css, assets }) {
 <link rel="preload" href="${assets.fonts.cinzel}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${assets.fonts.montserrat}" as="font" type="font/woff2" crossorigin>
 ${meta.usesPeso ? `<link rel="preload" href="${assets.fonts.peso}" as="font" type="font/woff2" crossorigin>` : ''}
+${meta.preloadImg || ''}
 <style>${css}</style>
 ${jsonLd(meta)}
 </head>`;
@@ -95,7 +96,7 @@ function footer(meta) {
     </div>
     <div class="foot-bottom">
       <p>&copy; ${new Date(site.built).getFullYear()} ${site.legalName}. All rights reserved.</p>
-      <p><a href="/privacy/">Privacy</a></p>
+      <p>Some images on this site are AI-generated illustrations. <a href="/privacy/">Privacy</a></p>
     </div>
   </div>
 </footer>

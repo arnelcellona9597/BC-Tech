@@ -1,4 +1,4 @@
-import { icon, mark, esc } from '../lib/components.mjs';
+import { icon, picture, esc } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
 
 export const meta = {
@@ -18,7 +18,8 @@ export function body() {
   const b = site.booking;
   return `
 <section class="page-head" aria-labelledby="page-title">
-  <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div><div class="hero-mark-wrap">${mark('hero-mark')}</div></div>
+  <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div></div>
+  <div class="head-visual">${picture('contact-head', { alt: 'AI-generated illustration of a friendly professional on a video call at a desk', sizes: '(min-width:960px) 52vw, 100vw', eager: true })}</div>
   <div class="wrap">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">Contact</li></ol>
     <p class="eyebrow">Let's talk</p>

@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "serve": "node scripts/serve.mjs",
-    "start": "npm run build && npm run serve"
+    "start": "npm run build && npm run serve",
+    "images": "node scripts/images.mjs"
   },
   "repository": {
     "type": "git",
