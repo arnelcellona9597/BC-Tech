@@ -95,3 +95,9 @@ git push -u origin feature/short-name   # then open a pull request on GitHub
 ```
 
 Commits use the project email `arnelcellona9597@gmail.com`.
+
+## Confirmation emails
+
+Visitors who send any form (hero, popup, home, contact page) or request a call get a designed confirmation email. The templates live in `src/static/api/lib/email_templates.php` and use the contact details under `site` in `config.php`. The logo is loaded from `/assets/img/email/logo-white.png` on your live domain, so it appears once the site is deployed.
+
+Preview the emails without sending anything: `php scripts/email-preview.php`, then open the files in `docs/email-preview/`.

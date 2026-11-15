@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/lib/bootstrap.php';
 require __DIR__ . '/lib/mailer.php';
+require __DIR__ . '/lib/email_templates.php';
 
 require_post();
 check_origin();
@@ -67,15 +68,8 @@ $ok = deliver_mail(
 mark_submission($ref, $ok ? 'emailed' : 'email_failed');
 
 if ($ok && !empty($cfg['mail']['autoreply'])) {
-    $first = explode(' ', $f['name'])[0];
-    $reply = ['Your reference' => $ref, 'Requested time' => $nice, 'What happens next' => 'We will confirm this time with you by email shortly.'];
-    $title = 'Thanks, ' . $first . '! We got your call request.';
-    send_mail(
-        $f['email'],
-        'We got your call request | ' . $cfg['site']['name'],
-        email_html($title, $reply, $cfg['site']['name'] . ' · ' . $cfg['site']['url']),
-        email_text($title, $reply, $cfg['site']['name'] . ' - ' . $cfg['site']['url'])
-    );
+    $c = confirmation_booking($f + ['ref' => $ref, 'purpose' => $purpose, 'notes' => $notes], $cfg, $when);
+    send_mail($f['email'], $c['subject'], $c['html'], $c['text']);
 }
 
 respond(true, 'Request received (reference ' . $ref . '). We will confirm ' . $when->format('l, M j') . ' at ' . $when->format('g:i A') . ' by email.');
