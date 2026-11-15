@@ -60,6 +60,34 @@ function send_mail(string $to, string $subject, string $html, string $text, ?str
     }
 }
 
+/** Backup route: the web server's own mail() function (used only if SMTP fails). */
+function native_mail(string $to, string $subject, string $html, string $text, ?string $replyTo = null, string $bcc = ''): bool
+{
+    $cfg = config()['mail'];
+    $clean = fn (string $v): string => trim(preg_replace('/[\r\n]+/', ' ', $v) ?? '');
+    $boundary = 'bc' . bin2hex(random_bytes(8));
+    $headers = [
+        'MIME-Version: 1.0',
+        'From: ' . $clean($cfg['from_name']) . ' <' . $clean($cfg['from_email']) . '>',
+        'Content-Type: multipart/alternative; boundary="' . $boundary . '"',
+    ];
+    if ($replyTo !== null && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) $headers[] = 'Reply-To: ' . $clean($replyTo);
+    if ($bcc !== '' && filter_var($bcc, FILTER_VALIDATE_EMAIL)) $headers[] = 'Bcc: ' . $clean($bcc);
+    $body = "--{$boundary}\r\nContent-Type: text/plain; charset=UTF-8\r\n\r\n{$text}\r\n"
+          . "--{$boundary}\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n{$html}\r\n--{$boundary}--";
+    return @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, implode("\r\n", $headers));
+}
+
+/** Send through the main route, then try the backup route if that fails. */
+function deliver_mail(string $to, string $subject, string $html, string $text, ?string $replyTo = null, ?string $replyName = null, string $bcc = ''): bool
+{
+    if (send_mail($to, $subject, $html, $text, $replyTo, $replyName, $bcc)) return true;
+    if ((config()['mail']['driver'] ?? 'log') === 'smtp') {
+        return native_mail($to, $subject, $html, $text, $replyTo, $bcc);
+    }
+    return false;
+}
+
 /** Branded HTML wrapper used for the emails we send. */
 function email_html(string $heading, array $rows, string $footer = ''): string
 {

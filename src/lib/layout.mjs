@@ -96,7 +96,7 @@ function footer(meta) {
     </div>
     <div class="foot-bottom">
       <p>&copy; ${new Date(site.built).getFullYear()} ${site.legalName}. All rights reserved.</p>
-      <p>Some images on this site are AI-generated illustrations. <a href="/privacy/">Privacy</a></p>
+      <p><a href="/privacy/">Privacy</a></p>
     </div>
   </div>
 </footer>

@@ -120,6 +120,50 @@ function e(string $v): string
     return htmlspecialchars($v, ENT_QUOTES, 'UTF-8');
 }
 
+/** Folder for the saved copies of messages (blocked from the web by .htaccess). */
+function storage_dir(): string
+{
+    $dir = API_ROOT . '/storage';
+    if (!is_dir($dir)) {
+        @mkdir($dir, 0750, true);
+        @file_put_contents($dir . '/.htaccess', "Require all denied\n");
+    }
+    return $dir;
+}
+
+/** A short reference the visitor sees and we get in the email, e.g. BC-241115-7K3QX. */
+function new_reference(): string
+{
+    return 'BC-' . date('ymd') . '-' . strtoupper(substr(bin2hex(random_bytes(4)), 0, 5));
+}
+
+/**
+ * Keep a copy of every message on the server BEFORE trying to send the email,
+ * so nothing is lost even if the mail server is down. One JSON object per line.
+ */
+function save_submission(string $ref, string $type, array $data): void
+{
+    $line = json_encode([
+        'ref' => $ref,
+        'type' => $type,
+        'time' => date('c'),
+        'ip' => hash('sha256', client_ip()),
+        'data' => $data,
+        'status' => 'received',
+    ], JSON_UNESCAPED_UNICODE) . "\n";
+    @file_put_contents(storage_dir() . '/inquiries.jsonl', $line, FILE_APPEND | LOCK_EX);
+}
+
+/** Record whether the email went out ("emailed" or "email_failed"). */
+function mark_submission(string $ref, string $status): void
+{
+    $line = json_encode(['ref' => $ref, 'time' => date('c'), 'status' => $status]) . "\n";
+    @file_put_contents(storage_dir() . '/inquiries.jsonl', $line, FILE_APPEND | LOCK_EX);
+    if ($status !== 'emailed') {
+        error_log("BC Tech: message {$ref} was saved but the email could not be sent ({$status}).");
+    }
+}
+
 /** Validate the fields every form shares. Returns [fields, errors]. */
 function read_contact_fields(): array
 {

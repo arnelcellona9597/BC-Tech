@@ -1,4 +1,4 @@
-import { mark, icon, btn, slider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, picture, preloadImage, peso, esc } from '../lib/components.mjs';
+import { mark, icon, btn, slider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingCard, picture, preloadImage, peso, esc } from '../lib/components.mjs';
 import { statCard, marketChart, exampleChart } from '../lib/charts.mjs';
 import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd, industries, market } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
@@ -15,7 +15,7 @@ export const meta = {
   priority: '1.0',
   usesPeso: true,
   scripts: ['forms', 'charts'],
-  preloadImg: preloadImage('home-hero', '(min-width:960px) 58vw, calc(100vw - 2.5rem)'),
+  preloadImg: preloadImage('home-hero', '(min-width:1100px) 100vw, calc(100vw - 2.5rem)'),
 };
 
 const industryCard = (it) => `<article class="ind tilt">
@@ -35,13 +35,13 @@ const svcCard = (s) =>
 export function body() {
   const teaser = packages.filter((p) => ['cms-small', 'store-small', 'promax'].includes(p.id));
   return `
-<section class="hero" aria-labelledby="hero-title">
+<section class="hero has-form" aria-labelledby="hero-title">
   <div class="hero-bg" aria-hidden="true">
     <div class="hero-lines"></div>
     <div class="glow glow-a"></div>
     <div class="glow glow-b"></div>
   </div>
-  <div class="hero-visual">${picture('home-hero', { alt: 'AI-generated illustration of a laptop and a phone showing an elegant website, lit with red light', sizes: '(min-width:960px) 58vw, calc(100vw - 2.5rem)', eager: true, cls: 'hero-pic' })}</div>
+  <div class="hero-visual">${picture('home-hero', { alt: 'Laptop and phone showing an elegant website, lit with red light', sizes: '(min-width:1100px) 100vw, calc(100vw - 2.5rem)', eager: true, cls: 'hero-pic' })}</div>
   <div class="wrap">
     <div class="hero-in">
       <p class="eyebrow">Web design &amp; development · ${site.city}</p>
@@ -57,6 +57,7 @@ export function body() {
         <li class="chip">${icon('code')}Any platform you prefer</li>
       </ul>
     </div>
+    ${heroForm(packages)}
   </div>
 </section>
 
@@ -114,9 +115,7 @@ export function body() {
 <section class="sec deep cv" aria-labelledby="industries-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Who we help', title: 'Websites for <span class="accent">every kind of business</span>', lead: 'Whatever you sell, the goal is the same: more people finding you, trusting you and getting in touch.', id: 'industries-title' })}
-    <div class="stagger">${slider('industries', 'Kinds of business we build websites for', industries.map(industryCard), { cols: 3, always: true })}</div>
-    <p class="img-note reveal">Images are AI-generated illustrations, not photos of our clients.</p>
-  </div>
+    <div class="stagger">${slider('industries', 'Kinds of business we build websites for', industries.map(industryCard), { cols: 3, always: true })}</div>  </div>
 </section>
 
 <section class="sec light cv" aria-labelledby="why-title">
@@ -173,18 +172,11 @@ export function body() {
   </div>
 </section>
 
-<section class="sec light cv" aria-labelledby="price-title">
+<section class="sec lux cv" aria-labelledby="price-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Clear prices', title: 'Know the cost <span class="accent">before you call</span>', lead: 'Starting prices in pesos. Your exact quote is confirmed on a free call.', id: 'price-title' })}
-    <div class="stagger">${slider('home-price', 'Starting prices', teaser.map((p) => `<article class="price-card tilt${p.open ? ' featured' : ''}">
-      <p class="price-sub">${esc(p.sub)}</p>
-      <h3 class="price-name">${esc(p.name)}</h3>
-      <div class="price-from"><small>${p.open ? 'Custom quote from' : 'Starting from'}</small><span class="price-amount">${peso(p.from)}</span></div>
-      <p class="price-for">${esc(p.forWho)}</p>
-      <a class="btn btn-ghost" href="/pricing/#${p.id}"><span>See what is included</span></a>
-      <span class="card-sheen" aria-hidden="true"></span>
-    </article>`), { cols: 3 })}</div>
-    <p class="reveal" style="margin-top:2.2rem">${btn('See all prices and extras', '/pricing/')}</p>
+    <div class="stagger pc-grid">${slider('home-price', 'Starting prices', teaser.map(pricingCard), { cols: 3 })}</div>
+    <p class="reveal" style="margin-top:2.4rem">${btn('See all packages and extras', '/pricing/')}</p>
   </div>
 </section>
 

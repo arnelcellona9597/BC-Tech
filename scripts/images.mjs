@@ -21,6 +21,9 @@ const plan = {
   'ind-builder': [480, 800, 1200],
   'services-head': [480, 800, 1200],
   'contact-head': [480, 800, 1200],
+  'pricing-head': [480, 800, 1200],
+  'about-head': [480, 800, 1200],
+  'work-head': [480, 800, 1200],
 };
 
 const manifest = {};

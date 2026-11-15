@@ -156,6 +156,7 @@ export const serviceJumps = [
 export const packages = [
   {
     id: 'cms-small',
+    chip: 'A simple website',
     name: 'Starter Website',
     sub: 'CMS, 1 to 6 pages',
     from: 25000,
@@ -173,6 +174,7 @@ export const packages = [
   },
   {
     id: 'cms-growing',
+    chip: 'A bigger website',
     name: 'Business Website',
     sub: 'CMS, 7 to 25 pages',
     from: 45000,
@@ -190,6 +192,7 @@ export const packages = [
   },
   {
     id: 'store-small',
+    chip: 'A small online store',
     name: 'Online Store',
     sub: 'E-commerce, up to 50 products',
     from: 70000,
@@ -207,6 +210,7 @@ export const packages = [
   },
   {
     id: 'store-large',
+    chip: 'A big online store',
     name: 'Online Store Plus',
     sub: 'E-commerce, 51 products and above',
     from: 130000,
@@ -224,6 +228,7 @@ export const packages = [
   },
   {
     id: 'promax',
+    chip: 'Something custom',
     name: 'Pro Max',
     sub: 'Integrations, custom builds and more',
     from: 250000,
@@ -303,13 +308,13 @@ export const faqs = {
   ],
 };
 
-// Kinds of business for the image slider on the home page (all images are AI-generated illustrations)
+// Kinds of business for the image slider on the home page. Images show workplaces only (no people).
 export const industries = [
-  { id: 'cafe', img: 'ind-cafe', pos: '40% 30%', name: 'Cafes & restaurants', line: 'Show your menu, take reservations and get found by hungry customers.', alt: 'AI-generated illustration of a cafe owner smiling at an order notification on her phone' },
-  { id: 'shop', img: 'ind-shop', pos: '35% 30%', name: 'Shops & boutiques', line: 'Show your products and let customers message or order in a tap.', alt: 'AI-generated illustration of a boutique owner holding a tablet in his clothing shop' },
-  { id: 'clinic', img: 'ind-clinic', pos: '35% 30%', name: 'Clinics & salons', line: 'Let clients book an appointment online, at any hour.', alt: 'AI-generated illustration of a receptionist using a tablet booking calendar at a clinic desk' },
-  { id: 'hotel', img: 'ind-hotel', pos: '30% 35%', name: 'Hotels & travel', line: 'Show your rooms and take booking requests with confidence.', alt: 'AI-generated illustration of a hotel host and a guest showing a booking on her phone' },
-  { id: 'builder', img: 'ind-builder', pos: '40% 40%', name: 'Builders & manufacturers', line: 'Show your work and make asking for a quote effortless.', alt: 'AI-generated illustration of two contractors reviewing plans next to a laptop with a quote form' },
+  { id: 'cafe', img: 'ind-cafe', pos: '62% 55%', name: 'Cafes & restaurants', line: 'Show your menu, take reservations and get found by hungry customers.', alt: 'Modern coffee shop counter with an espresso machine and a tablet' },
+  { id: 'shop', img: 'ind-shop', pos: '30% 50%', name: 'Shops & boutiques', line: 'Show your products and let customers message or order in a tap.', alt: 'Boutique with hanging clothes and a tablet showing products' },
+  { id: 'clinic', img: 'ind-clinic', pos: '25% 55%', name: 'Clinics & salons', line: 'Let clients book an appointment online, at any hour.', alt: 'Clinic reception desk with a tablet showing an appointment calendar' },
+  { id: 'hotel', img: 'ind-hotel', pos: '50% 60%', name: 'Hotels & travel', line: 'Show your rooms and take booking requests with confidence.', alt: 'Hotel lobby front desk with a phone showing a booking confirmation' },
+  { id: 'builder', img: 'ind-builder', pos: '22% 55%', name: 'Builders & manufacturers', line: 'Show your work and make asking for a quote effortless.', alt: 'Contractor office with building plans, a hard hat and a laptop' },
 ];
 
 // Published figures. Each one was checked against its source (see "source" and "note").

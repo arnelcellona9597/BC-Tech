@@ -1,4 +1,4 @@
-/* ===== AI images ===== */
+/* ===== Pictures ===== */
 .pic{display:block}
 .pic img{display:block;width:100%;height:auto;background:#0b0b0c}
 .hero .wrap,.page-head .wrap{position:relative;z-index:1}
@@ -28,7 +28,6 @@
 .ind-cap h3{font-size:1.25rem;margin-bottom:.4rem}
 .ind-cap p{color:rgba(255,255,255,.86);font-size:.93rem;line-height:1.5}
 .ind .card-sheen{z-index:3}
-.img-note{margin-top:1.2rem;font-size:.82rem;color:var(--muted);text-align:center}
 
 /* ===== Carousels that scroll on every screen size ===== */
 .slider.is-carousel{--gap:1.25rem}

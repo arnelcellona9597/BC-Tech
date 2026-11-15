@@ -160,7 +160,7 @@
     sl.appendChild(ui);
     const [prev, next] = $$('.slider-btn', ui);
     const dots = $('.slider-dots', ui);
-    if (always) track.setAttribute('tabindex', '0'); // set up front: sections below the fold are not measured until drawn
+    if (always || mq.matches) track.setAttribute('tabindex', '0'); // set up front: sections below the fold are not measured until drawn
     let pages = 1;
     const step = () => (slides[1].offsetLeft - slides[0].offsetLeft) || slides[0].clientWidth;
     const maxScroll = () => track.scrollWidth - track.clientWidth;
