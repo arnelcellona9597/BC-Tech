@@ -10,7 +10,7 @@ check_bots();
 rate_limit();
 
 [$f, $errors] = read_contact_fields();
-$source  = in_array($_POST['source'] ?? '', ['home', 'hero', 'contact'], true) ? $_POST['source'] : 'contact';
+$source  = in_array($_POST['source'] ?? '', ['home', 'hero', 'popup', 'contact'], true) ? $_POST['source'] : 'contact';
 $need    = clean_line($_POST['need'] ?? '', 80);
 $package = clean_line($_POST['package'] ?? '', 80);
 $message = clean($_POST['message'] ?? '', 3000);
@@ -24,7 +24,7 @@ if ($errors) {
 
 $cfg  = config();
 $site = $cfg['site']['name'];
-$from = ['home' => 'Home page form', 'hero' => 'Home page top form', 'contact' => 'Contact page form'][$source];
+$from = ['home' => 'Home page form', 'hero' => 'Home page top form', 'popup' => 'Marketing popup', 'contact' => 'Contact page form'][$source];
 
 // 1) Keep a copy first, so the message is never lost
 $ref = new_reference();

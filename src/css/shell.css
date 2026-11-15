@@ -202,3 +202,58 @@ a.soc:hover,a.soc:focus-visible{transform:translateY(-4px);background:var(--red)
 @media (max-width:959px){.concierge .book-grid{grid-template-columns:minmax(0,1fr)}.cc-info{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){.cc-orb,.cc-steps li.now,.cc-panel .btn-primary::after,.concierge .slot{animation:none}}
 .cc-msg .field.fl textarea{min-height:13rem}
+
+/* ===== Home booking section ===== */
+.book-home{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.bh-copy h2{margin-bottom:1rem}
+.bh-points{margin-top:1.6rem}
+.bh-note{display:flex;align-items:center;gap:.7rem;margin-top:1.6rem;color:var(--muted);font-size:.9rem}
+.bh-note .ic{color:var(--red-hi);flex:none}
+@media (max-width:959px){.book-home{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== Marketing popup ===== */
+.pop{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:1rem;visibility:hidden}
+.pop[hidden]{display:none}
+.pop.in{visibility:visible}
+.pop-bd{position:absolute;inset:0;background:radial-gradient(70% 70% at 50% 50%,rgba(60,0,12,.55),rgba(5,5,6,.88));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transition:opacity .5s}
+.pop.in .pop-bd{opacity:1}
+.pop-card{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);width:min(60rem,100%);max-height:calc(100dvh - 2rem);overflow:hidden auto;border-radius:28px;background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.02)),#0f0f12;border:1px solid rgba(255,255,255,.18);box-shadow:0 80px 140px -40px #000,0 0 120px -30px rgba(200,16,46,.7),inset 0 1px 0 rgba(255,255,255,.18);opacity:0;transform:translate3d(0,40px,0) scale(.94) rotateX(8deg);transform-origin:50% 100%;transition:opacity .6s var(--ease),transform .8s var(--ease)}
+.pop.in .pop-card{opacity:1;transform:none}
+.pop-ring{position:absolute;inset:-1px;z-index:3;padding:2px;border-radius:inherit;pointer-events:none;background:conic-gradient(from var(--ang),var(--red-hi),transparent 22%,transparent 66%,var(--red));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:spin-ang 8s linear infinite}
+.pop-x{position:absolute;top:1rem;right:1rem;z-index:5;display:grid;place-items:center;width:2.8rem;height:2.8rem;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(11,11,12,.6);color:#fff;cursor:pointer;transition:transform .5s var(--ease),background .3s}
+.pop-x:hover{transform:rotate(90deg);background:var(--red);border-color:var(--red)}
+.pop-media{position:relative;min-height:100%;overflow:hidden;background:#0b0b0c}
+.pop-media .pic,.pop-media img{position:absolute;inset:0;width:100%;height:100%}
+.pop-media img{object-fit:cover;object-position:60% 50%;filter:brightness(1.35) saturate(1.1);transform:scale(1.08);animation:hero-zoom 18s ease-in-out infinite alternate}
+.pop-media::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,11,12,.8),rgba(11,11,12,0) 55%),linear-gradient(90deg,transparent 70%,#0f0f12)}
+.pop-media canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.pop-chips{position:absolute;left:1.4rem;right:1.4rem;bottom:1.4rem;z-index:2;display:grid;gap:.55rem}
+.pop-chips li{display:flex;align-items:center;gap:.7rem;width:max-content;max-width:100%;padding:.55rem 1rem;border-radius:99px;border:1px solid rgba(255,255,255,.22);background:rgba(11,11,12,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-size:.85rem;font-weight:600;opacity:0;transform:translate3d(-18px,0,0);transition:opacity .6s,transform .7s var(--ease)}
+.pop-chips .ic{width:1rem;height:1rem;color:var(--red-hi)}
+.pop.in .pop-chips li{opacity:1;transform:none}
+.pop.in .pop-chips li:nth-child(1){transition-delay:.55s}.pop.in .pop-chips li:nth-child(2){transition-delay:.7s}.pop.in .pop-chips li:nth-child(3){transition-delay:.85s}
+.pop-body{position:relative;z-index:2;padding:clamp(1.6rem,3.2vw,2.8rem);display:flex;flex-direction:column;justify-content:center}
+.pop-body>*{opacity:0;transform:translate3d(0,20px,0);transition:opacity .6s,transform .7s var(--ease)}
+.pop.in .pop-body>*{opacity:1;transform:none}
+.pop.in .pop-body>:nth-child(1){transition-delay:.25s}.pop.in .pop-body>:nth-child(2){transition-delay:.35s}.pop.in .pop-body>:nth-child(3){transition-delay:.45s}.pop.in .pop-body>:nth-child(4){transition-delay:.55s}.pop.in .pop-body>:nth-child(5){transition-delay:.65s}.pop.in .pop-body>:nth-child(6){transition-delay:.72s}
+.pop-body h2{font-size:clamp(1.7rem,3vw,2.4rem);margin:.4rem 0 .8rem}
+.pop-lead{color:var(--muted);font-size:.97rem;margin-bottom:1.3rem}
+.pop-form{gap:.7rem}
+.pop-form .field input{min-height:2.9rem}
+.pop-form .btn{width:100%;position:relative;overflow:hidden}
+.pop-form .btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:btn-shine 4.5s ease-in-out infinite}
+.pop-form .form-status:empty{display:none}
+.pop-alt{margin-top:1rem;text-align:center;font-size:.9rem}
+.pop-alt a{color:#fff;text-decoration-color:var(--red-hi);text-underline-offset:4px}
+.pop-no{align-self:center;margin-top:.7rem;border:0;background:none;color:var(--muted);font:inherit;font-size:.82rem;cursor:pointer;padding:.5rem}
+.pop-no:hover{color:#fff}
+.nav-open .pop{display:none}
+@media (max-width:799px){
+  .pop{align-items:end;padding:0}
+  .pop-card{grid-template-columns:minmax(0,1fr);border-radius:26px 26px 0 0;max-height:94dvh;width:100%}
+  .pop-media{min-height:9.5rem;height:9.5rem}
+  .pop-chips{display:none}
+  .pop-media::after{background:linear-gradient(0deg,#0f0f12,rgba(11,11,12,.1))}
+  .pop-body{padding-top:.4rem}
+}
+@media (prefers-reduced-motion:reduce){.pop-card,.pop-bd,.pop-body>*,.pop-chips li{transition:opacity .2s;transform:none!important}.pop-ring,.pop-media img,.pop-form .btn::after{animation:none}}

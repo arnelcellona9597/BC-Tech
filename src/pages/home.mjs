@@ -1,4 +1,4 @@
-import { mark, icon, btn, slider, heroSlider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingSection, picture, preloadImage, peso, esc } from '../lib/components.mjs';
+import { mark, icon, btn, slider, heroSlider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingSection, bookingPanel, picture, preloadImage, peso, esc } from '../lib/components.mjs';
 import { statCard, marketChart, exampleChart } from '../lib/charts.mjs';
 import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd, industries, market } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
@@ -14,7 +14,7 @@ export const meta = {
   ogHeadline: 'Built to Bring You Business.',
   priority: '1.0',
   usesPeso: true,
-  scripts: ['forms', 'charts', 'pricing', 'particles', 'slider-full'],
+  scripts: ['forms', 'charts', 'booking', 'pricing', 'particles', 'slider-full'],
   preloadImg: preloadImage('home-hero', '(min-width:1100px) 100vw, calc(100vw - 2.5rem)'),
 };
 
@@ -42,7 +42,7 @@ export function body() {
       <h1 class="display" id="hero-title">A website that <span class="accent">brings you customers.</span></h1>
       <p class="lead">We design and build websites that help people find you, trust you and contact you, so your phone rings and your calendar fills up.</p>
       <div class="btn-row">
-        ${btn('Book a free call', '/contact/#book')}
+        ${btn('Book a free call', '#book')}
         ${btn('See our prices', '/pricing/', { kind: 'ghost' })}
       </div>
       <ul class="chips" aria-label="Why choose us">
@@ -59,6 +59,24 @@ export function body() {
   <div class="wrap">
     ${sectionHead({ eyebrow: 'What a good website does', title: 'From stranger to <span class="accent">customer</span>, even while you sleep', lead: 'Every page we build is planned around this path.', id: 'journey-title', center: true })}
     <div class="reveal">${journeyPath(journey)}</div>
+  </div>
+</section>
+
+<section class="sec concierge" id="book" aria-labelledby="bk-title">
+  <span class="cc-orb cc-orb-a" aria-hidden="true"></span><span class="cc-orb cc-orb-b" aria-hidden="true"></span>
+  <div class="wrap book-home">
+    <div class="bh-copy reveal">
+      <p class="eyebrow">Book a free call</p>
+      <h2 id="bk-title">Pick a time. <span class="accent">We will do the rest.</span></h2>
+      <p class="lead">Choose a day and a time that suits you. We will listen, give honest advice and tell you what it would cost. No pressure to buy.</p>
+      <ul class="ticks bh-points">
+        <li>${icon('check', 'ic ic-tick')}<span>Free, with no obligation</span></li>
+        <li>${icon('check', 'ic ic-tick')}<span>Plain talk, no tech words</span></li>
+        <li>${icon('check', 'ic ic-tick')}<span>A clear price in writing</span></li>
+      </ul>
+      <p class="bh-note">${icon('clock', 'ic')}<span>${esc(site.hours)}</span></p>
+    </div>
+    <div class="reveal" style="--d:.12s">${bookingPanel({ titleTag: 'h3' })}</div>
   </div>
 </section>
 
@@ -101,8 +119,18 @@ export function body() {
 </section>
 
 <section class="sec statement" aria-label="Our promise">
+  <div class="st-fx" aria-hidden="true">
+    <span class="st-beam"></span>
+    <span class="st-ring r1"></span><span class="st-ring r2"></span><span class="st-ring r3"></span>
+    <span class="st-mark">${mark('st-mark-svg')}</span>
+    <span class="st-big">CUSTOMERS</span>
+    <canvas data-particles="lite"></canvas>
+  </div>
   <div class="wrap">
+    <p class="eyebrow">Our promise</p>
     ${statement(['We do not build websites to look at.', { hi: 'We build them to bring you customers.' }])}
+    <span class="st-line" aria-hidden="true"></span>
+    <p class="st-sign">BC Tech <i aria-hidden="true"></i> ${site.tagline}</p>
   </div>
 </section>
 
@@ -113,7 +141,7 @@ export function body() {
   <div class="reveal">${heroSlider('industries', 'Kinds of business we build websites for', industries)}</div>
 </section>
 
-<section class="sec light cv" aria-labelledby="why-title">
+<section class="sec light cv why-lux" aria-labelledby="why-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Why BC Tech', title: 'Premium results, <span class="accent">plain talk</span>', lead: 'No confusing tech words. We explain what we do and why it helps your sales.', id: 'why-title', center: true })}
     <div class="stagger">${slider('home-why', 'Why choose BC Tech', why.map((w) => featureCard({ icon: w.icon, title: w.title, text: esc(w.text) })), { cols: 3, always: true })}</div>
