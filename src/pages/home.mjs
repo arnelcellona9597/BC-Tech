@@ -2,6 +2,7 @@ import { mark, icon, btn, slider, heroSlider, faqList, sectionHead, featureCard,
 import { statCard, marketChart, exampleChart } from '../lib/charts.mjs';
 import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd, industries, market } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
+import { guidesStrip } from '../lib/guides-strip.mjs';
 import { serviceUrl } from '../lib/service-url.mjs';
 
 export const meta = {
@@ -199,6 +200,8 @@ export function body() {
 </section>
 
 ${pricingSection(packages, { id: 'price-title', cv: true })}
+
+${guidesStrip({ deep: false })}
 
 <section class="sec deep cv" aria-labelledby="faq-title">
   <div class="wrap">

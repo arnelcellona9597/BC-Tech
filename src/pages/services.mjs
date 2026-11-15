@@ -2,6 +2,7 @@ import { icon, slider, faqList, sectionHead, featureCard, ctaBand, mark, picture
 import { compare } from '../lib/charts.mjs';
 import { services, stacks, faqs, serviceJumps } from '../data/content.mjs';
 import { serviceUrl } from '../lib/service-url.mjs';
+import { guidesStrip } from '../lib/guides-strip.mjs';
 
 export const meta = {
   key: 'services',
@@ -62,6 +63,8 @@ export function body() {
     </ul>
   </div>
 </section>
+
+${guidesStrip({ deep: false })}
 
 <section class="sec deep cv" aria-labelledby="faq-title">
   <div class="wrap">

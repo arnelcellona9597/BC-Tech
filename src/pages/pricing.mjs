@@ -1,6 +1,7 @@
 import { icon, slider, faqList, sectionHead, ctaBand, pricingSection, picture, esc } from '../lib/components.mjs';
 import { funnel, calculator } from '../lib/charts.mjs';
 import { packages, addons, faqs } from '../data/content.mjs';
+import { guidesStrip } from '../lib/guides-strip.mjs';
 
 export const meta = {
   key: 'pricing',
@@ -62,6 +63,8 @@ ${pricingSection(packages)}
     </div>
   </div>
 </section>
+
+${guidesStrip({ deep: true })}
 
 <section class="sec cv" aria-labelledby="faq-title">
   <div class="wrap">
