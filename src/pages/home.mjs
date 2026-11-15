@@ -1,5 +1,6 @@
-import { mark, icon, btn, slider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, peso, esc } from '../lib/components.mjs';
-import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd } from '../data/content.mjs';
+import { mark, icon, btn, slider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, picture, preloadImage, peso, esc } from '../lib/components.mjs';
+import { statCard, marketChart, exampleChart } from '../lib/charts.mjs';
+import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd, industries, market } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
 
 export const meta = {
@@ -13,8 +14,15 @@ export const meta = {
   ogHeadline: 'Built to Bring You Business.',
   priority: '1.0',
   usesPeso: true,
-  scripts: ['forms'],
+  scripts: ['forms', 'charts'],
+  preloadImg: preloadImage('home-hero', '(min-width:960px) 58vw, calc(100vw - 2.5rem)'),
 };
+
+const industryCard = (it) => `<article class="ind tilt">
+  ${picture(it.img, { alt: it.alt, sizes: '(min-width:1100px) 380px, (min-width:700px) 46vw, 86vw', pos: it.pos })}
+  <div class="ind-cap"><h3>${esc(it.name)}</h3><p>${esc(it.line)}</p></div>
+  <span class="card-sheen" aria-hidden="true"></span>
+</article>`;
 
 const svcCard = (s) =>
   featureCard({
@@ -32,8 +40,8 @@ export function body() {
     <div class="hero-lines"></div>
     <div class="glow glow-a"></div>
     <div class="glow glow-b"></div>
-    <div class="hero-mark-wrap">${mark('hero-mark')}</div>
   </div>
+  <div class="hero-visual">${picture('home-hero', { alt: 'AI-generated illustration of a laptop and a phone showing an elegant website, lit with red light', sizes: '(min-width:960px) 58vw, calc(100vw - 2.5rem)', eager: true, cls: 'hero-pic' })}</div>
   <div class="wrap">
     <div class="hero-in">
       <p class="eyebrow">Web design &amp; development · ${site.city}</p>
@@ -79,10 +87,20 @@ export function body() {
   </div>
 </section>
 
+<section class="sec light cv" aria-labelledby="market-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'The numbers', title: 'Your customers are <span class="accent">already online</span>', lead: 'Filipinos search, pay and book online every day. A good website is how they find you.', id: 'market-title' })}
+    <div class="market">
+      <div class="reveal">${marketChart(market)}</div>
+      <div class="stagger">${slider('market-stats', 'Key numbers about going online', market.stats.map(statCard), { cols: 1 })}</div>
+    </div>
+  </div>
+</section>
+
 <section class="sec deep cv" aria-labelledby="services-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'What we do', title: 'Everything you need to <span class="accent">get found and get customers</span>', lead: 'Pick one thing or the whole package. We build the website and the tools around it.', id: 'services-title' })}
-    <div class="stagger">${slider('home-services', 'Our services', services.map(svcCard), { cols: 3, cls: 'svc' })}</div>
+    <div class="stagger">${slider('home-services', 'Our services', services.map(svcCard), { cols: 3, always: true })}</div>
     <p class="center-cta reveal" style="margin-top:2.2rem">${btn('See every service', '/services/', { kind: 'ghost' })}</p>
   </div>
 </section>
@@ -93,10 +111,18 @@ export function body() {
   </div>
 </section>
 
+<section class="sec deep cv" aria-labelledby="industries-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'Who we help', title: 'Websites for <span class="accent">every kind of business</span>', lead: 'Whatever you sell, the goal is the same: more people finding you, trusting you and getting in touch.', id: 'industries-title' })}
+    <div class="stagger">${slider('industries', 'Kinds of business we build websites for', industries.map(industryCard), { cols: 3, always: true })}</div>
+    <p class="img-note reveal">Images are AI-generated illustrations, not photos of our clients.</p>
+  </div>
+</section>
+
 <section class="sec light cv" aria-labelledby="why-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Why BC Tech', title: 'Premium results, <span class="accent">plain talk</span>', lead: 'No confusing tech words. We explain what we do and why it helps your sales.', id: 'why-title', center: true })}
-    <div class="stagger">${slider('home-why', 'Why choose BC Tech', why.map((w) => featureCard({ icon: w.icon, title: w.title, text: esc(w.text) })), { cols: 5 })}</div>
+    <div class="stagger">${slider('home-why', 'Why choose BC Tech', why.map((w) => featureCard({ icon: w.icon, title: w.title, text: esc(w.text) })), { cols: 3, always: true })}</div>
   </div>
 </section>
 
@@ -132,6 +158,18 @@ export function body() {
       <p style="margin-top:1.8rem">${btn('Read the case study', '/work/')}</p>
     </div>
     <div class="reveal" style="--d:.12s">${browserMock({ url: 'lyfdfab.com', variant: 'a', label: 'Illustration of the LYFD website on a computer screen' })}</div>
+  </div>
+</section>
+
+<section class="sec deep cv" aria-labelledby="example-title">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="eyebrow">What could change</p>
+      <h2 id="example-title">A website can turn quiet months into <span class="accent">busy ones</span></h2>
+      <p class="lead" style="margin-top:1.1rem">Here is the idea in one picture: fewer lost customers, and more people getting in touch, month after month. Want to see what it could mean for your business? Try your own numbers.</p>
+      <p style="margin-top:1.8rem">${btn('Try the payback calculator', '/pricing/#calc')}</p>
+    </div>
+    <div class="reveal" style="--d:.12s">${exampleChart()}</div>
   </div>
 </section>
 
