@@ -7,3 +7,6 @@ public/api/storage/
 .env
 # Build cache
 .cache/
+
+# Full-size AI image originals (optimized copies live in src/static/assets/img/ai/)
+assets-src/
