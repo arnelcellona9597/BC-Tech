@@ -66,7 +66,20 @@ The case study currently shows drawn placeholder browser frames.
    ```
 3. Run `npm run build`.
 
-## 6. Git workflow
+## 6. Images, charts and carousels
+
+**AI images.** The 8 pictures (home hero, five business scenes, services and contact headers) were generated with Figma AI in the Figma file "BC Tech website images" (Webee Dev's team) and are labeled as AI-generated illustrations in the alt text and the footer. They contain no text, logos or visible watermarks. The generator may add invisible provenance metadata, which is normal.
+- Full-size originals live in `assets-src/` on your computer only (not in git). If that folder is lost, re-download them from the Figma file.
+- To replace or add an image: put a PNG in `assets-src/` (for example `ind-cafe.png`), list its widths in `scripts/images.mjs`, then run `npm run images` followed by `npm run build`. That writes small AVIF and WebP versions to `src/static/assets/img/ai/` and the sizes to `src/data/images.json`.
+- Keep the LYFD case study on screenshots of the real site, not AI images.
+
+**Numbers on the charts.** They are published figures, each with a visible source link, and live in `src/data/content.mjs` (`market`). They come from the Google, Temasek and Bain "e-Conomy SEA 2025" Philippines report (digital economy US$26B in 2023, US$31B in 2024, about US$36B in 2025; e-commerce US$17B, US$20B, about US$24B; 57% of retail payments digital in 2024) and a 2020 YouGov survey for Visa reported by The Philippine Star (75%). If you change a number, check it against the source first.
+- The home page "example" line chart uses invented numbers and says so inside the chart. Do not remove that label.
+- The calculator on the Pricing page only uses what the visitor types plus the package starting prices from `content.mjs`.
+
+**Carousels.** `slider(..., { always: true })` makes a section a scroll-snap carousel on every screen size (arrows, dots, mouse drag, keyboard). Without `always`, a section is a grid on desktop and a swipe slider on phones.
+
+## 7. Git workflow
 
 Work happens on branches, never straight on `main`:
 
