@@ -55,9 +55,10 @@
 /* ===== Statement: words light up while you scroll ===== */
 .statement{padding-block:clamp(5rem,12vw,10rem);background:radial-gradient(60% 80% at 15% 50%,rgba(200,16,46,.16),transparent 70%),var(--ink)}
 .statement-text{max-width:20ch;font-family:var(--display);font-weight:700;font-size:clamp(2rem,5.4vw,4.4rem);line-height:1.15;letter-spacing:0;text-wrap:balance}
-.statement-text .w{color:#fff;transition:color .45s}
+.statement-text .w{display:inline-block;color:#fff;transition:color .5s,opacity .6s,transform .7s var(--ease)}
 @media (scripting:enabled){
-  .statement-text .w{color:rgba(255,255,255,.52)}
+  .statement-text .w{color:rgba(255,255,255,.4);opacity:.55;transform:translate3d(0,.22em,0)}
+  .statement-text .w.on{opacity:1;transform:none}
   .statement-text .w.on{color:#fff}
   .statement-text .w.hi.on{color:var(--red-hi)}
 }

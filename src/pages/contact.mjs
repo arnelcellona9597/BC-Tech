@@ -1,4 +1,4 @@
-import { icon, picture, esc } from '../lib/components.mjs';
+import { icon, picture, esc, bookingPanel } from '../lib/components.mjs';
 import { socialIcons } from '../lib/social.mjs';
 import { site } from '../data/site.mjs';
 
@@ -16,7 +16,6 @@ export const meta = {
 };
 
 export function body() {
-  const b = site.booking;
   return `
 <section class="page-head" aria-labelledby="page-title">
   <div class="hero-bg" aria-hidden="true"><div class="hero-lines"></div><div class="glow glow-a"></div></div>
@@ -33,54 +32,7 @@ export function body() {
   <span class="cc-orb cc-orb-a" aria-hidden="true"></span><span class="cc-orb cc-orb-b" aria-hidden="true"></span>
   <div class="wrap">
   <div class="book-grid">
-    <div class="panel cc-panel" id="booking" data-days="${b.days.join(',')}" data-slots="${b.slots.join(',')}" data-window="${b.windowDays}" data-lead="${b.leadHours}">
-      <h2 id="book-title">Choose a day and time</h2>
-      <p>Our hours: ${esc(site.hours)}. We will confirm your time by email.</p>
-      <ol class="b-steps cc-steps" aria-label="Booking steps"><li class="now">1 · Day</li><li>2 · Time</li><li>3 · Your details</li></ol>
-      <noscript><p class="note">Booking needs JavaScript. Please use the message form below, or email <a href="mailto:${site.email}">${site.email}</a>.</p></noscript>
-      <div class="b-cols">
-        <div role="group" aria-labelledby="cal-title">
-          <div class="cal-head">
-            <h3 class="cal-title" id="cal-title" aria-live="polite">&nbsp;</h3>
-            <div class="cal-nav">
-              <button type="button" id="cal-prev" aria-label="Previous month">${icon('left')}</button>
-              <button type="button" id="cal-next" aria-label="Next month">${icon('right')}</button>
-            </div>
-          </div>
-          <div class="cal-grid" aria-hidden="true">${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => `<span class="cal-dow">${d}</span>`).join('')}</div>
-          <div class="cal-grid" id="cal-grid"></div>
-        </div>
-        <div>
-          <h3 class="sub-h">Available times</h3>
-          <p class="slots-empty" id="slot-help">Choose a day to see the times we are free.</p>
-          <div class="slots" id="slots" role="group" aria-label="Available times"></div>
-        </div>
-      </div>
-      <div id="book-details" hidden>
-        <p class="b-summary" id="book-summary">${icon('calendar')}<span></span></p>
-        <form class="form js-form" id="book-form" action="/api/booking.php" method="post" data-booking novalidate>
-          <input type="hidden" name="_t" value="">
-          <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-          <div class="row2">
-            <div class="field fl"><label for="b-name">Your name</label><input placeholder=" " id="b-name" name="name" type="text" autocomplete="name" required></div>
-            <div class="field fl"><label for="b-email">Email</label><input placeholder=" " id="b-email" name="email" type="email" autocomplete="email" required></div>
-          </div>
-          <div class="row2">
-            <div class="field fl"><label for="b-phone">Phone, Viber or WhatsApp (optional)</label><input placeholder=" " id="b-phone" name="phone" type="tel" autocomplete="tel"></div>
-            <div class="field"><label for="b-purpose">What is the call about?</label>
-              <select id="b-purpose" name="purpose">
-                <option>A new website</option><option>An online store</option><option>Fix or redesign my website</option>
-                <option>Connect my website to my systems</option><option>Logo and branding</option><option>Something else</option>
-              </select></div>
-          </div>
-          <div class="field fl"><label for="b-notes">Anything we should know? (optional)</label><textarea placeholder=" " id="b-notes" name="notes" rows="3"></textarea></div>
-          <button class="btn btn-primary" type="submit"><span>Request this time</span>${icon('arrow', 'ic ic-arrow')}</button>
-          <p class="form-note">We will confirm your time by email. We only use your details to reply to you. <a href="/privacy/">Privacy</a></p>
-          <p class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
-        </form>
-      </div>
-    </div>
-
+    ${bookingPanel()}
     <div class="panel cc-panel cc-msg" id="message">
       <h2 id="msg-title">Send us a message</h2>
       <p>Tell us a little about your business and what you need. We will reply by email.</p>

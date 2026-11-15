@@ -1,7 +1,7 @@
 import { site, nav } from '../data/site.mjs';
 import { faqs, services } from '../data/content.mjs';
 import { socialIcons, messengerHref } from './social.mjs';
-import { mark, icon, esc } from './components.mjs';
+import { mark, icon, esc, picture } from './components.mjs';
 import { jsonLd } from './schema.mjs';
 
 const abs = (p) => site.url + p;
@@ -152,12 +152,48 @@ function footer(meta) {
 ${meta.key === 'contact' || meta.key === 'notfound' ? '' : `<aside class="float-wrap" aria-label="Quick action"><a class="float-cta" href="/contact/#book">${icon('calendar', 'ic')}<span>Book a free call</span></a></aside>`}`;
 }
 
+
+function promo(meta) {
+  if (['contact', 'notfound', 'privacy'].includes(meta.key)) return '';
+  return `<div class="pop" id="promo" role="dialog" aria-modal="true" aria-labelledby="pop-title" hidden>
+  <div class="pop-bd" data-pop-close></div>
+  <div class="pop-card">
+    <span class="pop-ring" aria-hidden="true"></span>
+    <button type="button" class="pop-x" data-pop-close aria-label="Close">${icon('close')}</button>
+    <div class="pop-media">
+      ${picture('pricing-head', { alt: 'Glowing red bar chart rising on a dark glass floor', sizes: '(min-width:800px) 440px, 100vw' })}
+      <canvas data-particles="lite" aria-hidden="true"></canvas>
+      <ul class="pop-chips" aria-hidden="true"><li>${icon('check', 'ic')}Free call</li><li>${icon('check', 'ic')}No pressure</li><li>${icon('check', 'ic')}Clear price in writing</li></ul>
+    </div>
+    <div class="pop-body">
+      <p class="eyebrow">Free for your business</p>
+      <h2 id="pop-title">See what a website could do for <span class="accent">your sales.</span></h2>
+      <p class="pop-lead">Tell us where to reach you. We will call you for a free chat, show you what would bring you more customers and give you a clear price. No tech talk.</p>
+      <form class="form js-form pop-form" action="/api/contact.php" method="post" novalidate>
+        <input type="hidden" name="source" value="popup">
+        <input type="hidden" name="_t" value="">
+        <input type="hidden" name="need" value="Free call (from popup)">
+        <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="field"><label for="pp-name">Your name</label><input id="pp-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="pp-email">Email</label><input id="pp-email" name="email" type="email" autocomplete="email" required></div>
+        <button class="btn btn-primary" type="submit"><span>Book my free call</span>${icon('arrow', 'ic ic-arrow')}</button>
+        <p class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
+      </form>
+      <p class="pop-alt"><a href="/#book" data-pop-close>Prefer to pick a time? See the calendar</a></p>
+      <button type="button" class="pop-no" data-pop-close>No thanks, maybe later</button>
+    </div>
+  </div>
+</div>`;
+}
+
 export function renderPage({ meta, body, css, assets }) {
-  const scripts = ['main', 'shell', ...(meta.scripts || [])].map((s) => `<script src="${assets.js[s]}" defer></script>`).join('\n');
+  const popJs = ['contact', 'notfound', 'privacy'].includes(meta.key) ? [] : ['popup', 'particles', 'forms'];
+  const scripts = [...new Set(['main', 'shell', ...popJs, ...(meta.scripts || [])])].map((s) => `<script src="${assets.js[s]}" defer></script>`).join('\n');
   return `${head({ meta, css, assets })}
 ${header(meta)}
 ${body}
 ${footer(meta)}
+${promo(meta)}
 ${scripts}
 </body>
 </html>
