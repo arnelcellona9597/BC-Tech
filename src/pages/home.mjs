@@ -95,9 +95,9 @@ ${marqueeStrip(['Built to bring you business'], { outline: true })}
   <div class="wrap">
     ${sectionHead({ eyebrow: 'How it works', title: 'From first call to <span class="accent">first customer</span>', lead: 'Four simple steps. You approve everything before we build it.', id: 'process-title' })}
     <div class="slider" data-slider data-cols="4" role="region" aria-roledescription="carousel" aria-label="How it works">
-      <ol class="slider-track steps stagger">
-        ${process.map((s, i) => `<li class="slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${process.length}"><div class="step reveal"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div></li>`).join('')}
-      </ol>
+      <div class="slider-track steps stagger">
+        ${process.map((s, i) => `<div class="slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${process.length}"><div class="step reveal"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div></div>`).join('')}
+      </div>
     </div>
   </div>
 </section>

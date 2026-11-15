@@ -31,7 +31,7 @@ export function body() {
   <div class="wrap book-grid">
     <div class="panel" id="booking" data-days="${b.days.join(',')}" data-slots="${b.slots.join(',')}" data-window="${b.windowDays}" data-lead="${b.leadHours}">
       <h2 id="book-title">Choose a day and time</h2>
-      <p>We take calls ${esc(site.hours.charAt(0).toLowerCase() + site.hours.slice(1))}. We will confirm your time by email.</p>
+      <p>Our hours: ${esc(site.hours)}. We will confirm your time by email.</p>
       <ol class="b-steps" aria-label="Booking steps"><li class="now">1 · Day</li><li>2 · Time</li><li>3 · Your details</li></ol>
       <noscript><p class="note">Booking needs JavaScript. Please use the message form below, or email <a href="mailto:${site.email}">${site.email}</a>.</p></noscript>
       <div class="b-cols">

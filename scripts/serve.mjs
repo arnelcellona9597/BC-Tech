@@ -1,5 +1,5 @@
 // Local preview server: clean URLs, Brotli/gzip, long caching for assets (like the real host),
-// and /api/*.php handled by PHP's built-in server. Run: npm run serve  (default http://localhost:8080)
+// and /api/*.php handled by PHP's built-in server. Run: npm run serve  (default http://localhost:4173)
 import http from 'node:http';
 import { spawn } from 'node:child_process';
 import { createReadStream, existsSync, statSync } from 'node:fs';
@@ -9,7 +9,7 @@ import { join, extname, resolve, dirname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'public');
-const PORT = Number(process.env.PORT || 8080);
+const PORT = Number(process.env.PORT || 4173);
 const PHP_PORT = PORT + 1;
 
 const types = {

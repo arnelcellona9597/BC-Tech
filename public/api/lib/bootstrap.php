@@ -20,7 +20,8 @@ function wants_json(): bool
     return stripos($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json') !== false;
 }
 
-function respond(bool $ok, string $message, int $code = 200): never
+/** Sends the reply and stops the script. */
+function respond(bool $ok, string $message, int $code = 200): void
 {
     http_response_code($code);
     header('X-Content-Type-Options: nosniff');
@@ -95,7 +96,7 @@ function check_bots(): void
     $t = $_POST['_t'] ?? '';
     if ($t !== '' && ctype_digit((string) $t)) {
         $age = (int) (microtime(true) - ((int) $t) / 1000);
-        if ($age < (int) config()['limits']['min_seconds'] || $age > 86400) {
+        if ($age < (int) config()['limits']['min_seconds']) {
             respond(false, 'Please take a moment to fill in the form, then send it again.', 400);
         }
     }

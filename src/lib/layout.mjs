@@ -55,7 +55,7 @@ function header(meta) {
 <div class="progress" aria-hidden="true"><i></i></div>
 <header class="site-header" id="top">
   <div class="wrap bar">
-    <a class="brand" href="/" aria-label="${site.name} home">${mark('brand-mark')}<span class="brand-text">BC<i></i>TECH</span></a>
+    <a class="brand" href="/" aria-label="BC TECH home page">${mark('brand-mark')}<span class="brand-text">BC <i></i>TECH</span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
       <ul>
 ${nav.map((n) => `        <li><a href="${n.href}"${cur(n.key)}>${n.label}</a></li>`).join('\n')}
@@ -74,7 +74,7 @@ function footer(meta) {
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <a class="brand" href="/" aria-label="${site.name} home">${mark('brand-mark')}<span class="brand-text">BC<i></i>TECH</span></a>
+        <a class="brand" href="/" aria-label="BC TECH home page">${mark('brand-mark')}<span class="brand-text">BC <i></i>TECH</span></a>
         <p class="foot-tag">${site.tagline}</p>
         <p class="foot-small">Web design and web development, based in ${site.city}, ${site.countryName}.</p>
       </div>
@@ -99,7 +99,7 @@ function footer(meta) {
     </div>
   </div>
 </footer>
-${meta.key === 'contact' || meta.key === 'notfound' ? '' : `<a class="float-cta" href="/contact/#book">${icon('calendar', 'ic')}<span>Book a free call</span></a>`}`;
+${meta.key === 'contact' || meta.key === 'notfound' ? '' : `<aside class="float-wrap" aria-label="Quick action"><a class="float-cta" href="/contact/#book">${icon('calendar', 'ic')}<span>Book a free call</span></a></aside>`}`;
 }
 
 export function renderPage({ meta, body, css, assets }) {
