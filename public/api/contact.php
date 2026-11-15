@@ -10,10 +10,11 @@ check_bots();
 rate_limit();
 
 [$f, $errors] = read_contact_fields();
-$source  = in_array($_POST['source'] ?? '', ['home', 'contact'], true) ? $_POST['source'] : 'contact';
+$source  = in_array($_POST['source'] ?? '', ['home', 'hero', 'contact'], true) ? $_POST['source'] : 'contact';
 $need    = clean_line($_POST['need'] ?? '', 80);
+$package = clean_line($_POST['package'] ?? '', 80);
 $message = clean($_POST['message'] ?? '', 3000);
-// The short form on the home page has no message box; the contact page form does.
+// Only the full contact page form needs a message. The short forms have an optional one.
 if ($source === 'contact' && mb_strlen($message) < 5) {
     $errors[] = 'Please tell us a little about what you need.';
 }
@@ -23,17 +24,26 @@ if ($errors) {
 
 $cfg  = config();
 $site = $cfg['site']['name'];
+$from = ['home' => 'Home page form', 'hero' => 'Home page top form', 'contact' => 'Contact page form'][$source];
+
+// 1) Keep a copy first, so the message is never lost
+$ref = new_reference();
+save_submission($ref, 'inquiry', $f + ['need' => $need, 'package' => $package, 'message' => $message, 'source' => $source]);
+
+// 2) Email it to the team (SMTP, then the server's own mailer as a backup)
 $rows = array_filter([
-    'Name'    => $f['name'],
-    'Email'   => $f['email'],
-    'Phone'   => $f['phone'],
-    'Needs'   => $need,
-    'Message' => $message,
-    'Sent from' => $source === 'home' ? 'Home page form' : 'Contact page form',
+    'Reference' => $ref,
+    'Name'      => $f['name'],
+    'Email'     => $f['email'],
+    'Phone'     => $f['phone'],
+    'Needs'     => $need,
+    'Package'   => $package,
+    'Message'   => $message,
+    'Sent from' => $from,
 ], fn ($v) => $v !== '');
 
-$subject = 'New website inquiry: ' . ($need !== '' ? $need : 'general') . ' from ' . $f['name'];
-$ok = send_mail(
+$subject = '[' . $ref . '] New website inquiry: ' . ($need !== '' ? $need : 'general') . ' from ' . $f['name'];
+$ok = deliver_mail(
     $cfg['mail']['to'],
     $subject,
     email_html('New inquiry from the website', $rows, 'Reply to this email to answer ' . $f['name'] . ' directly.'),
@@ -42,20 +52,20 @@ $ok = send_mail(
     $f['name'],
     (string) ($cfg['mail']['bcc'] ?? '')
 );
-if (!$ok) {
-    respond(false, 'Sorry, we could not send your message just now. Please email us at ' . $cfg['mail']['to'] . '.', 500);
-}
+mark_submission($ref, $ok ? 'emailed' : 'email_failed');
 
-if (!empty($cfg['mail']['autoreply'])) {
+// 3) Confirmation to the visitor
+if ($ok && !empty($cfg['mail']['autoreply'])) {
     $first = explode(' ', $f['name'])[0];
-    $reply = ['What happens next' => 'Thank you for contacting ' . $site . '. We got your message and will get back to you soon.'];
+    $reply = ['Your reference' => $ref, 'What happens next' => 'Thank you for contacting ' . $site . '. We got your message and will get back to you soon.'];
     $title = 'Thanks, ' . $first . '!';
     send_mail(
         $f['email'],
-        'We got your message | ' . $site,
+        'We got your message (' . $ref . ') | ' . $site,
         email_html($title, $reply, $site . ' · ' . $cfg['site']['url']),
         email_text($title, $reply, $site . ' - ' . $cfg['site']['url'])
     );
 }
 
-respond(true, 'Thank you! We got your message and will reply soon.');
+// The copy is saved either way, so the message has been received.
+respond(true, 'Thank you! We received your message. Your reference is ' . $ref . '. We will reply by email soon.');
