@@ -1,4 +1,4 @@
-import { icon, picture, esc, bookingPanel } from '../lib/components.mjs';
+import { icon, picture, esc, bookingPanel, conciergeFx } from '../lib/components.mjs';
 import { socialIcons } from '../lib/social.mjs';
 import { site } from '../data/site.mjs';
 
@@ -11,7 +11,7 @@ export const meta = {
   description: 'Book a free call or send us a message. Tell us about your business and we will show you how a website can bring you more customers.',
   ogImage: '/assets/img/og/contact.png',
   ogHeadline: 'Book a free call.',
-  scripts: ['forms', 'booking'],
+  scripts: ['forms', 'booking', 'particles'],
   priority: '0.9',
 };
 
@@ -30,6 +30,7 @@ export function body() {
 
 <section class="sec concierge" id="book" aria-labelledby="book-title">
   <span class="cc-orb cc-orb-a" aria-hidden="true"></span><span class="cc-orb cc-orb-b" aria-hidden="true"></span>
+  ${conciergeFx()}
   <div class="wrap">
   <div class="book-grid">
     ${bookingPanel()}

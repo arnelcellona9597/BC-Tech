@@ -1,4 +1,4 @@
-import { mark, icon, btn, slider, heroSlider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingSection, bookingPanel, picture, preloadImage, peso, esc } from '../lib/components.mjs';
+import { mark, icon, btn, slider, heroSlider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingSection, bookingPanel, conciergeFx, picture, preloadImage, peso, esc } from '../lib/components.mjs';
 import { statCard, marketChart, exampleChart } from '../lib/charts.mjs';
 import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd, industries, market } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
@@ -64,6 +64,7 @@ export function body() {
 
 <section class="sec concierge" id="book" aria-labelledby="bk-title">
   <span class="cc-orb cc-orb-a" aria-hidden="true"></span><span class="cc-orb cc-orb-b" aria-hidden="true"></span>
+  ${conciergeFx()}
   <div class="wrap book-home">
     <div class="bh-copy reveal">
       <p class="eyebrow">Book a free call</p>

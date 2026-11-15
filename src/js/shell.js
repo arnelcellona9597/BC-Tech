@@ -91,4 +91,30 @@
     chat.addEventListener('focus', function () { chat.classList.add('say'); });
     chat.addEventListener('blur', function () { chat.classList.remove('say'); });
   }
+
+  /* ---- Concierge sections: spotlight, parallax for 3D objects, gentle panel tilt ---- */
+  d.querySelectorAll('.concierge').forEach(function (sec) {
+    if (reduce || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    var panels = [].slice.call(sec.querySelectorAll('.cc-panel')), fx = sec.querySelector('.cc-fx'), raf = 0, ev = null;
+    sec.querySelectorAll('.cc-3d').forEach(function (el) { el.style.setProperty('--dp', el.dataset.depth || 30); });
+    function frame() {
+      raf = 0; if (!ev) return;
+      var r = sec.getBoundingClientRect();
+      var x = (ev.clientX - r.left) / r.width, y = (ev.clientY - r.top) / r.height;
+      sec.style.setProperty('--px', ((x - .5) * 2).toFixed(3));
+      sec.style.setProperty('--py', ((y - .5) * 2).toFixed(3));
+      if (fx) { fx.style.setProperty('--sx', (ev.clientX - r.left) + 'px'); fx.style.setProperty('--sy', (ev.clientY - r.top) + 'px'); }
+      panels.forEach(function (p) {
+        var b = p.getBoundingClientRect(), inside = ev.clientX > b.left && ev.clientX < b.right && ev.clientY > b.top && ev.clientY < b.bottom;
+        if (inside) {
+          var px = (ev.clientX - b.left) / b.width - .5, py = (ev.clientY - b.top) / b.height - .5;
+          p.classList.add('is-moving');
+          p.style.setProperty('--ry', (px * 3.2).toFixed(2) + 'deg'); p.style.setProperty('--rx', (-py * 2.6).toFixed(2) + 'deg');
+          p.style.setProperty('--gx', (px + .5) * 100 + '%'); p.style.setProperty('--gy', (py + .5) * 100 + '%'); p.style.setProperty('--go', 1);
+        } else { p.classList.remove('is-moving'); p.style.setProperty('--rx', '0deg'); p.style.setProperty('--ry', '0deg'); p.style.setProperty('--go', 0); }
+      });
+    }
+    sec.addEventListener('pointermove', function (e) { ev = e; if (!raf) raf = requestAnimationFrame(frame); }, { passive: true });
+    sec.addEventListener('pointerleave', function () { ev = { clientX: -9999, clientY: -9999 }; if (!raf) raf = requestAnimationFrame(frame); });
+  });
 })();
