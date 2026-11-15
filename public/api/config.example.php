@@ -40,6 +40,6 @@ return [
     ],
     'limits' => [
         'per_ip_per_hour' => 8,                        // max form submissions per visitor per hour
-        'min_seconds'     => 3,                        // forms sent faster than this are treated as bots
+        'min_seconds'     => 2,                        // forms sent faster than this are treated as bots
     ],
 ];
