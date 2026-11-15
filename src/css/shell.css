@@ -160,7 +160,7 @@ a.soc:hover,a.soc:focus-visible{transform:translateY(-4px);background:var(--red)
 @media (prefers-reduced-motion:reduce){.foot-line,.chat-dots i,.is-open .live-dot::after,.chat-orb,.co-halo,.co-ring,.co-orbit,.chat.is-open .chat-on{animation:none}.co-orbit{display:none}}
 
 /* ===== Contact: dark concierge layout ===== */
-.concierge{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(80% 45% at 50% 22%,rgba(200,16,46,.2),transparent 70%),var(--ink);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+.concierge{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(80% 45% at 50% 22%,rgba(200,16,46,.2),transparent 70%),var(--ink);-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 3.2rem,#000 calc(100% - 3.2rem),transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 3.2rem,#000 calc(100% - 3.2rem),transparent 100%)}
 .cc-orb{position:absolute;z-index:-1;border-radius:50%;filter:blur(70px);pointer-events:none;background:rgba(200,16,46,.35);will-change:transform}
 .cc-orb-a{width:34rem;height:34rem;left:-12rem;top:10%;animation:drift-a 16s ease-in-out infinite alternate}
 .cc-orb-b{width:28rem;height:28rem;right:-10rem;bottom:0;opacity:.6;animation:drift-b 18s ease-in-out infinite alternate}
@@ -276,3 +276,43 @@ a.soc:hover,a.soc:focus-visible{transform:translateY(-4px);background:var(--red)
   .pop-card{overflow-y:auto;overscroll-behavior:contain}
   .pop-body{max-height:none;overflow:visible}
 }
+
+/* ===== Concierge 3D stage: glass shapes, particles, floor grid, spotlight ===== */
+.cc-fx{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;perspective:900px}
+.cc-fx canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.85}
+.cc-spot{position:absolute;inset:0;background:radial-gradient(420px circle at var(--sx,50%) var(--sy,40%),rgba(255,90,110,.16),transparent 70%);transition:background-position .2s}
+.cc-floor{position:absolute;left:-25%;right:-25%;bottom:-4%;height:46%;background:linear-gradient(rgba(255,90,110,.22) 1px,transparent 1px) 0 0/100% 54px,linear-gradient(90deg,rgba(255,90,110,.18) 1px,transparent 1px) 0 0/70px 100%;transform:perspective(520px) rotateX(64deg);transform-origin:50% 100%;-webkit-mask-image:linear-gradient(transparent,#000 70%);mask-image:linear-gradient(transparent,#000 70%);animation:cc-floor 6s linear infinite;opacity:.55}
+@keyframes cc-floor{to{background-position:0 54px,0 0}}
+.cc-beam{position:absolute;top:-20%;width:14rem;height:140%;background:linear-gradient(180deg,rgba(255,90,110,.2),transparent 75%);filter:blur(22px);transform-origin:50% 0;opacity:.7}
+.cb-1{left:12%;animation:cc-sway 9s ease-in-out infinite alternate}
+.cb-2{right:10%;animation:cc-sway 11s ease-in-out infinite alternate-reverse}
+@keyframes cc-sway{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+/* floating 3D objects (depth set by --d, pointer parallax by --px/--py from shell.js) */
+.cc-3d{position:absolute;transform-style:preserve-3d;transform:translate3d(calc(var(--px,0)*var(--dp,30)*-1px),calc(var(--py,0)*var(--dp,30)*-1px),0)}
+.cc-3d{--dp:30}
+.c3-ring{left:3%;top:9%;width:15rem;height:15rem;--dp:26;animation:cc-float 9s ease-in-out infinite alternate}
+.c3-ring b{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(255,90,110,.55);box-shadow:0 0 30px rgba(200,16,46,.55),inset 0 0 30px rgba(200,16,46,.35);animation:cc-spin 18s linear infinite}
+.c3-ring b:nth-child(2){inset:1.6rem;border-color:rgba(255,255,255,.4);animation-duration:26s;animation-direction:reverse}
+@keyframes cc-spin{from{transform:perspective(700px) rotateX(62deg) rotateZ(0)}to{transform:perspective(700px) rotateX(62deg) rotateZ(360deg)}}
+.c3-cube{right:4%;top:14%;width:4.4rem;height:4.4rem;--dp:40;animation:cc-float 11s ease-in-out infinite alternate-reverse}
+.cube{position:absolute;inset:0;transform-style:preserve-3d;transform:perspective(700px);animation:cc-cube 20s linear infinite}
+.cube i{position:absolute;inset:0;border:1px solid rgba(255,255,255,.4);background:linear-gradient(145deg,rgba(255,90,110,.32),rgba(200,16,46,.08) 60%,rgba(255,255,255,.12));box-shadow:inset 0 0 22px rgba(255,90,110,.35)}
+@keyframes cc-cube{from{transform:perspective(700px) rotateX(-24deg) rotateY(0)}to{transform:perspective(700px) rotateX(-24deg) rotateY(360deg)}}
+.c3-orb{left:7%;bottom:12%;width:5.2rem;height:5.2rem;border-radius:50%;--dp:60;background:radial-gradient(circle at 32% 26%,#ffa3af 0,#f0364f 30%,#8c0b21 75%);box-shadow:inset 0 -12px 20px rgba(60,0,10,.6),inset 0 8px 12px rgba(255,255,255,.4),0 30px 50px -14px rgba(200,16,46,.8);animation:cc-float 7s ease-in-out infinite alternate}
+.cc-disc{display:grid;place-items:center;width:3.6rem;height:3.6rem;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.04));box-shadow:0 20px 40px -14px rgba(0,0,0,.9),0 0 36px -8px rgba(200,16,46,.7),inset 0 1px 0 rgba(255,255,255,.4);color:#fff}
+.cc-disc .ic{width:1.5rem;height:1.5rem;color:var(--red-hi)}
+.cc-disc.d1{right:3%;bottom:30%;animation:cc-float 8s ease-in-out infinite alternate}
+.cc-disc.d2{left:2%;top:46%;animation:cc-float 10s ease-in-out infinite alternate-reverse;width:3rem;height:3rem}
+.cc-disc.d3{right:9%;bottom:8%;animation:cc-float 9s ease-in-out infinite alternate}
+.cc-disc.d4{left:11%;top:6%;animation:cc-float 12s ease-in-out infinite alternate-reverse;width:2.8rem;height:2.8rem}
+@keyframes cc-float{from{translate:0 0}to{translate:0 -22px}}
+/* panels: pointer tilt + moving gloss */
+.concierge .cc-panel{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s var(--ease),box-shadow .5s;will-change:transform}
+.concierge .cc-panel.is-moving{transition:transform .08s linear,box-shadow .5s}
+.concierge .cc-panel::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(380px circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.1),transparent 60%);opacity:var(--go,0);transition:opacity .4s}
+@media (max-width:1099px){.c3-ring,.c3-cube,.cc-disc.d2,.cc-disc.d4{display:none}.cc-disc{opacity:.7}}
+@media (max-width:700px){.c3-orb,.cc-disc,.cc-beam{display:none}.cc-floor{opacity:.4}}
+@media (prefers-reduced-motion:reduce){.cc-floor,.cc-beam,.c3-ring,.c3-ring b,.cube,.c3-cube,.c3-orb,.cc-disc{animation:none!important}.concierge .cc-panel{transform:none!important}}
+/* Home booking layout has copy on the left: keep the big ring clear of it */
+.concierge:has(.book-home) .c3-ring{left:auto;right:-3rem;top:auto;bottom:2%}
+.concierge:has(.book-home) .cc-disc.d3{right:auto;left:42%;bottom:4%}

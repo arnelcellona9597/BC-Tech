@@ -336,3 +336,21 @@ export function bookingPanel({ titleTag = 'h2' } = {}) {
       </div>
     </div>`;
 }
+
+/** Decorative 3D stage behind the booking and contact panels: particles, glass shapes, floor grid, beams. */
+export function conciergeFx() {
+  const face = (t) => `<i style="transform:${t}"></i>`;
+  return `<div class="cc-fx" aria-hidden="true">
+  <span class="cc-spot"></span>
+  <span class="cc-floor"></span>
+  <span class="cc-beam cb-1"></span><span class="cc-beam cb-2"></span>
+  <canvas data-particles="full"></canvas>
+  <span class="cc-3d c3-ring" data-depth="26"><b></b><b></b></span>
+  <span class="cc-3d c3-cube" data-depth="40"><span class="cube">${face('rotateY(0deg) translateZ(2.2rem)')}${face('rotateY(90deg) translateZ(2.2rem)')}${face('rotateY(180deg) translateZ(2.2rem)')}${face('rotateY(-90deg) translateZ(2.2rem)')}${face('rotateX(90deg) translateZ(2.2rem)')}${face('rotateX(-90deg) translateZ(2.2rem)')}</span></span>
+  <span class="cc-3d c3-orb" data-depth="60"></span>
+  <span class="cc-3d cc-disc d1" data-depth="48">${icon('calendar')}</span>
+  <span class="cc-3d cc-disc d2" data-depth="34">${icon('clock')}</span>
+  <span class="cc-3d cc-disc d3" data-depth="54">${icon('check')}</span>
+  <span class="cc-3d cc-disc d4" data-depth="30">${icon('chat')}</span>
+</div>`;
+}
