@@ -136,9 +136,18 @@ function footer(meta) {
   <button class="to-top" type="button" aria-label="Back to top"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="tt-track" cx="24" cy="24" r="21"/><circle class="tt-bar" cx="24" cy="24" r="21"/></svg>${icon('arrow', 'ic tt-arrow')}</button>
 </footer>
 <aside class="chat-wrap" aria-label="Chat with us"><a class="chat" href="${messengerHref()}"${site.social.messenger ? ' target="_blank" rel="noopener noreferrer"' : ''} aria-label="Chat with us${site.social.messenger ? ' on Messenger (opens in a new tab)' : ''}">
-  <span class="chat-pulse" aria-hidden="true"></span>
-  <span class="chat-hi" aria-hidden="true"><span data-chat-text>Hi! Need a quote?</span></span>
-  <span class="chat-btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3C6.9 3 3 6.8 3 11.5c0 2.5 1.1 4.7 3 6.2V21l3.2-1.8c.9.3 1.8.4 2.8.4 5.1 0 9-3.8 9-8.1S17.1 3 12 3Z" fill="currentColor"/></svg><span class="chat-dots"><i></i><i></i><i></i></span><span class="chat-on" data-chat-on></span></span>
+  <span class="chat-card" aria-hidden="true">
+    <span class="cc-av">${mark('cc-av-mark')}<i></i></span>
+    <span class="cc-body"><b>BC Tech <em>Live chat</em></b><span class="cc-msg-t" data-chat-text>Hi! Need a quote?</span></span>
+  </span>
+  <span class="chat-orb" aria-hidden="true">
+    <span class="co-halo"></span><span class="co-ring"></span><span class="co-orbit"><i></i></span>
+    <span class="co-sphere"><span class="co-gloss"></span>
+      <svg class="co-ico" viewBox="0 0 24 24"><path d="M12 3C6.9 3 3 6.8 3 11.5c0 2.5 1.1 4.7 3 6.2V21l3.2-1.8c.9.3 1.8.4 2.8.4 5.1 0 9-3.8 9-8.1S17.1 3 12 3Z" fill="currentColor"/></svg>
+      <span class="chat-dots"><i></i><i></i><i></i></span>
+    </span>
+    <span class="chat-on"></span>
+  </span>
 </a></aside>
 ${meta.key === 'contact' || meta.key === 'notfound' ? '' : `<aside class="float-wrap" aria-label="Quick action"><a class="float-cta" href="/contact/#book">${icon('calendar', 'ic')}<span>Book a free call</span></a></aside>`}`;
 }

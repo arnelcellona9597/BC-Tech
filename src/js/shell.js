@@ -81,6 +81,11 @@
     var show = function () { chat.classList.add('say'); setTimeout(function () { chat.classList.remove('say'); }, 5200); };
     var next = function () { li = (li + 1) % lines.length; setTimeout(function () { txt.textContent = lines[li]; show(); }, 400); };
     if (!reduce) { setTimeout(function () { show(); setInterval(next, 14000); }, 4500); }
+    var sph = chat.querySelector('.co-sphere');
+    if (sph && !reduce) {
+      chat.addEventListener('pointermove', function (e) { var r = sph.getBoundingClientRect(); var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; sph.style.setProperty('--ry', (x * 34).toFixed(1) + 'deg'); sph.style.setProperty('--rx', (-y * 34).toFixed(1) + 'deg'); });
+      chat.addEventListener('pointerleave', function () { sph.style.setProperty('--rx', '0deg'); sph.style.setProperty('--ry', '0deg'); });
+    }
     chat.addEventListener('mouseenter', function () { chat.classList.add('say'); });
     chat.addEventListener('mouseleave', function () { chat.classList.remove('say'); });
     chat.addEventListener('focus', function () { chat.classList.add('say'); });

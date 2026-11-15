@@ -120,6 +120,8 @@
     addEventListener('pointermove', (e) => {
       if (e.pointerType !== 'mouse') return;
       gx = e.clientX; gy = e.clientY;
+      /* no red haze over white sections: it made red text hard to read */
+      glow.classList.toggle('off', !!(e.target.closest && e.target.closest('.sec.light, .cta, input, select, textarea, .faq')));
       if (heroEl && gy < innerHeight) { heroEl.style.setProperty('--mx', ((gx / innerWidth - .5) * 2).toFixed(3)); heroEl.style.setProperty('--my', ((gy / innerHeight - .5) * 2).toFixed(3)); }
       if (!gr) gr = requestAnimationFrame(() => {
         glow.style.setProperty('--cx', `${gx}px`);
