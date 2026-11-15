@@ -52,6 +52,7 @@ ${jsonLd(meta)}
 }
 
 function header(meta) {
+  const menuNav = nav.filter((n) => n.key !== 'home');
   const cur = (k) => (meta.key === k ? ' aria-current="page"' : '');
   return `<body class="page-${meta.key}">
 <a class="skip" href="#main">Skip to content</a>
@@ -74,9 +75,9 @@ ${nav.filter((n) => n.key !== 'home').map((n) => `        <li><a href="${n.href}
   <div class="menu-in">
     <p class="menu-eyebrow">Menu</p>
     <ul class="menu-links">
-${nav.map((n, i) => `      <li style="--i:${i}"><a href="${n.href}"${cur(n.key)}><b>0${i + 1}</b><span><strong>${n.label}</strong><small>${n.desc}</small></span>${icon('arrow', 'ic menu-arrow')}</a></li>`).join('\n')}
+${menuNav.map((n, i) => `      <li style="--i:${i}"><a href="${n.href}"${cur(n.key)}><b>0${i + 1}</b><span><strong>${n.label}</strong><small>${n.desc}</small></span>${icon('arrow', 'ic menu-arrow')}</a></li>`).join('\n')}
     </ul>
-    <div class="menu-foot" style="--i:${nav.length}">
+    <div class="menu-foot" style="--i:${menuNav.length}">
       <a class="btn btn-primary" href="/contact/#book"><span>Book a free call</span>${icon('arrow', 'ic ic-arrow')}</a>
       <a class="menu-mail" href="mailto:${site.email}">${site.email}</a>
       <a class="menu-mail" href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a>
@@ -111,7 +112,7 @@ function footer(meta) {
       </div>
       <nav aria-label="Footer">
         <h2 class="foot-h">Explore</h2>
-        <ul>${nav.map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join('')}<li><a href="/contact/">Contact</a></li></ul>
+        <ul>${nav.filter((n) => n.key !== 'home').map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join('')}<li><a href="/contact/">Contact</a></li></ul>
       </nav>
       <nav aria-label="Our services">
         <h2 class="foot-h">What we do</h2>
