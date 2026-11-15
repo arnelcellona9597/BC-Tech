@@ -24,6 +24,26 @@
     matchMedia('(min-width: 960px)').addEventListener('change', (e) => { if (e.matches) setNav(false); });
   }
 
+  /* ---- "Stranger to customer" path: draws itself once when it scrolls into view ---- */
+  $$('[data-path]').forEach((el) => {
+    if (reduce || !('IntersectionObserver' in window)) { el.classList.add('go'); return; }
+    const io = new IntersectionObserver((es) => {
+      if (es[0].isIntersecting) { el.classList.add('go'); io.disconnect(); }
+    }, { threshold: 0.45 });
+    io.observe(el);
+  });
+
+  /* ---- Statement: words light up as you scroll past ---- */
+  const lits = $$('[data-lit]').map((el) => ({ el, words: $$('.w', el) }));
+  const scrub = () => {
+    lits.forEach(({ el, words }) => {
+      const top = el.getBoundingClientRect().top;
+      const p = reduce ? 1 : Math.min(1, Math.max(0, (innerHeight * 0.9 - top) / (innerHeight * 0.5)));
+      const n = Math.round(p * words.length);
+      words.forEach((w, i) => w.classList.toggle('on', i < n));
+    });
+  };
+
   /* ---- Header state, progress bar, floating call button, parallax ---- */
   const header = $('.site-header');
   const bar = $('.progress');
@@ -37,6 +57,7 @@
       const y = window.scrollY;
       const max = root.scrollHeight - innerHeight;
       header && header.classList.toggle('is-scrolled', y > 24);
+      if (lits.length) scrub();
       bar && bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
       if (float) float.classList.toggle('show', y > 520 && !float.dataset.hide);
       if (parallax && !reduce && y < innerHeight * 1.2) parallax.style.setProperty('--py', `${(y * 0.14).toFixed(1)}px`);

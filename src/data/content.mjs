@@ -120,14 +120,24 @@ export const process = [
 
 export const stacks = ['WordPress', 'WooCommerce', 'Shopify', 'Laravel', 'React', 'Next.js', 'Vue', 'Node.js', 'PHP', 'and more'];
 
-export const marquee = [
-  'Websites',
-  'Online stores',
-  'Booking pages',
-  'Logos & branding',
-  'Found on Google',
-  'Connect your systems',
-  'Easy to edit',
+// What a good website does for a business, in the order a customer experiences it
+export const journey = [
+  { icon: 'search', title: 'Searches on Google', text: 'Someone looks for what you sell.' },
+  { icon: 'globe', title: 'Finds your website', text: 'Your page opens fast on their phone.' },
+  { icon: 'shield', title: 'Trusts what they see', text: 'Clear words, real work and fair prices answer their doubts.' },
+  { icon: 'calendar', title: 'Books or asks for a quote', text: 'One tap to book a call or send a message.' },
+  { icon: 'check', title: 'Becomes your customer', text: 'And you never had to chase anyone.' },
+];
+
+// Jump links on the Services page
+export const serviceJumps = [
+  ['systems', 'Websites & Systems'],
+  ['brand', 'Brand & Look'],
+  ['words', 'Words That Sell'],
+  ['preview', 'Previews'],
+  ['tools', 'Customer Tools'],
+  ['marketing', 'Marketing'],
+  ['seo', 'Found on Google'],
 ];
 
 // Prices come from the "BC Tech - Pricing" Google Doc (PHP, estimates).

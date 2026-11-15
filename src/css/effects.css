@@ -2,7 +2,6 @@
 @keyframes drift-a{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-6%,8%,0) scale(1.12)}}
 @keyframes drift-b{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(10%,-10%,0) scale(1.18)}}
 @keyframes float{from{transform:translate3d(0,0,0) rotate(0deg)}to{transform:translate3d(0,-22px,0) rotate(2deg)}}
-@keyframes marq{to{transform:translate3d(-50%,0,0)}}
 @keyframes reveal-fallback{to{opacity:1;transform:none}}
 @keyframes rise{from{transform:translate3d(0,26px,0)}to{transform:none}}
 
@@ -36,6 +35,7 @@
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
   .reveal{opacity:1!important;transform:none!important}
   .tilt{transform:none!important}
-  .marquee-in{animation:none}
+  .path::after{transform:none!important;transition:none}
+  .path .node-dot{transition:none}
   .hero-mark-wrap{transform:none!important}
 }

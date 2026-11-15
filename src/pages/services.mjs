@@ -1,5 +1,5 @@
-import { icon, slider, faqList, sectionHead, featureCard, ctaBand, marqueeStrip, mark, esc } from '../lib/components.mjs';
-import { services, stacks, faqs, marquee } from '../data/content.mjs';
+import { icon, slider, faqList, sectionHead, featureCard, ctaBand, mark, esc } from '../lib/components.mjs';
+import { services, stacks, faqs, serviceJumps } from '../data/content.mjs';
 
 export const meta = {
   key: 'services',
@@ -25,7 +25,9 @@ export function body() {
   </div>
 </section>
 
-${marqueeStrip(marquee)}
+<nav class="jump" aria-label="Jump to a service">
+  <div class="wrap"><ul>${serviceJumps.map(([id, label]) => `<li><a href="#${id}">${esc(label)}</a></li>`).join('')}</ul></div>
+</nav>
 
 <section class="sec cv" aria-labelledby="svc-title">
   <div class="wrap">

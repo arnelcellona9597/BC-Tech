@@ -53,11 +53,26 @@ export function featureCard({ icon: ic, title, text, items, tag = 'article', id 
   </${tag}>`;
 }
 
-/** Looping words strip (decorative; duplicated content is aria-hidden). */
-export function marqueeStrip(words, { outline = false } = {}) {
-  // The outlined variant is pure decoration, so its words are drawn with CSS (not real text)
-  const row = words.map((w) => (outline ? `<span data-w="${esc(w)}"></span>` : `<span>${esc(w)}</span>`) + '<i aria-hidden="true"></i>').join('');
-  return `<div class="marquee${outline ? ' marquee-outline' : ''}" aria-hidden="true"><div class="marquee-in">${row}${row}</div></div>`;
+/**
+ * "Stranger to customer" path: five steps joined by a red line that draws itself
+ * when the section scrolls into view (see main.js). Real ordered list for screen readers.
+ */
+export function journeyPath(steps) {
+  return `<ol class="path" data-path>
+${steps.map((s, i) => `    <li class="node${i === steps.length - 1 ? ' goal' : ''}" style="--i:${i}">
+      <span class="node-dot">${icon(s.icon)}</span>
+      <div><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div>
+    </li>`).join('\n')}
+  </ol>`;
+}
+
+/**
+ * Large statement whose words light up as you scroll past it.
+ * `parts` is an array of strings; wrap a phrase as { hi: 'text' } to color it red once lit.
+ */
+export function statement(parts) {
+  const words = parts.flatMap((p) => (typeof p === 'string' ? p : p.hi).split(' ').filter(Boolean).map((w) => ({ w, hi: typeof p !== 'string' })));
+  return `<p class="statement-text" data-lit>${words.map((x) => `<span class="w${x.hi ? ' hi' : ''}">${esc(x.w)}</span>`).join(' ')}</p>`;
 }
 
 /** A drawn browser window used for the case study placeholder (swap for a screenshot later). */
