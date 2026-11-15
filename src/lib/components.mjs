@@ -19,8 +19,8 @@ export function btn(label, href, { kind = 'primary', arrow = true, cls = '' } = 
  * Slider: a grid on desktop, a swipeable scroll-snap slider on mobile.
  * `items` are HTML strings. JS adds the arrows and dots (progressive enhancement).
  */
-export function slider(id, label, items, { cols = 3, cls = '', always = false } = {}) {
-  return `<div class="slider ${cls}${always ? ' is-carousel' : ''}" data-slider data-cols="${cols}" role="region" aria-roledescription="carousel" aria-label="${esc(label)}">
+export function slider(id, label, items, { cols = 3, cls = '', always = false, autoplay = false } = {}) {
+  return `<div class="slider ${cls}${always ? ' is-carousel' : ''}"${autoplay ? ' data-autoplay' : ''} data-slider data-cols="${cols}" role="region" aria-roledescription="carousel" aria-label="${esc(label)}">
   <div class="slider-track" id="${id}">
 ${items.map((it, i) => `    <div class="slide${always ? ' reveal' : ''}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${items.length}">${it}</div>`).join('\n')}
   </div>

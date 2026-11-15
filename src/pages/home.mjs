@@ -142,10 +142,11 @@ export function body() {
 </section>
 
 <section class="sec light cv why-lux" aria-labelledby="why-title">
+  <span class="why-blob wb-1" aria-hidden="true"></span><span class="why-blob wb-2" aria-hidden="true"></span>
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Why BC Tech', title: 'Premium results, <span class="accent">plain talk</span>', lead: 'No confusing tech words. We explain what we do and why it helps your sales.', id: 'why-title', center: true })}
-    <div class="stagger">${slider('home-why', 'Why choose BC Tech', why.map((w) => featureCard({ icon: w.icon, title: w.title, text: esc(w.text) })), { cols: 3, always: true })}</div>
   </div>
+  <div class="stagger">${slider('home-why', 'Why choose BC Tech', why.map((w) => featureCard({ icon: w.icon, title: w.title, text: esc(w.text) })), { cols: 3, always: true, autoplay: true, cls: 'why-full' })}</div>
 </section>
 
 <section class="sec deep cv" aria-labelledby="process-title">

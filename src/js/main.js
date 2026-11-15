@@ -182,6 +182,20 @@
     if ('ResizeObserver' in window) new ResizeObserver(build).observe(track); else { addEventListener('resize', build); build(); }
     // Sections below the fold are not measured until they are drawn, so measure again when they come into view
     if ('IntersectionObserver' in window) new IntersectionObserver((es) => { if (es[0].isIntersecting) build(); }).observe(sl);
+    // Gentle autoplay (only where asked): pauses on hover, focus, touch, drag, when off-screen or the tab is hidden
+    if (sl.hasAttribute('data-autoplay') && !reduce && 'IntersectionObserver' in window) {
+      let vis = false, hov = false, foc = false, hold = 0;
+      new IntersectionObserver((es) => { vis = es[0].isIntersecting; }, { threshold: 0.3 }).observe(sl);
+      sl.addEventListener('mouseenter', () => { hov = true; });
+      sl.addEventListener('mouseleave', () => { hov = false; });
+      sl.addEventListener('focusin', () => { foc = true; });
+      sl.addEventListener('focusout', () => { foc = false; });
+      sl.addEventListener('touchstart', () => { hold = Date.now() + 9000; }, { passive: true });
+      setInterval(() => {
+        if (!vis || hov || foc || d.hidden || Date.now() < hold || track.classList.contains('dragging') || maxScroll() < 4) return;
+        if (page() >= pages - 1 || track.scrollLeft >= maxScroll() - 2) go(0); else go(page() + 1);
+      }, 5200);
+    }
     mq.addEventListener('change', build);
 
     // Mouse drag (touch already scrolls natively)
