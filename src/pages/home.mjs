@@ -1,0 +1,158 @@
+import { mark, icon, btn, slider, faqList, sectionHead, featureCard, marqueeStrip, browserMock, leadForm, peso, esc } from '../lib/components.mjs';
+import { services, problems, promises, why, process, marquee, packages, faqs, lyfd } from '../data/content.mjs';
+import { site } from '../data/site.mjs';
+
+export const meta = {
+  key: 'home',
+  path: '/',
+  file: 'index.html',
+  title: 'BC Tech | Web Design & Development in Davao City',
+  description: 'Websites and online stores that bring you customers. BC Tech is a Davao City web design and development team. See our prices and book a free call.',
+  ogImage: '/assets/img/og/home.png',
+  ogAlt: 'BC Tech. Built to Bring You Business.',
+  ogHeadline: 'Built to Bring You Business.',
+  priority: '1.0',
+  usesPeso: true,
+  scripts: ['forms'],
+};
+
+const svcCard = (s) =>
+  featureCard({
+    icon: s.icon,
+    title: s.title,
+    text: s.blurb,
+    tag: 'article',
+  }).replace('</article>', `<a class="link" href="/services/#${s.id}">What is included ${icon('arrow')}</a></article>`);
+
+export function body() {
+  const teaser = packages.filter((p) => ['cms-small', 'store-small', 'promax'].includes(p.id));
+  return `
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-lines"></div>
+    <div class="glow glow-a"></div>
+    <div class="glow glow-b"></div>
+    <div class="hero-mark-wrap">${mark('hero-mark')}</div>
+  </div>
+  <div class="wrap">
+    <div class="hero-in">
+      <p class="eyebrow">Web design &amp; development · ${site.city}</p>
+      <h1 class="display" id="hero-title">A website that <span class="accent">brings you customers.</span></h1>
+      <p class="lead">We design and build websites that help people find you, trust you and contact you, so your phone rings and your calendar fills up.</p>
+      <div class="btn-row">
+        ${btn('Book a free call', '/contact/#book')}
+        ${btn('See our prices', '/pricing/', { kind: 'ghost' })}
+      </div>
+      <ul class="chips" aria-label="Why choose us">
+        <li class="chip">${icon('pin')}Based in ${site.city}</li>
+        <li class="chip">${icon('shield')}7+ years of experience each</li>
+        <li class="chip">${icon('code')}Any platform you prefer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+${marqueeStrip(marquee)}
+
+<section class="sec deep cv" aria-labelledby="problem-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'Sound familiar?', title: 'Most business websites look nice and <span class="accent">do nothing.</span>', lead: 'A website should work like your best salesperson: always on, always polite, always pointing customers to the next step.', id: 'problem-title' })}
+    <div class="reveal">${slider('before-after', 'Without a plan and with BC Tech', [
+      `<div class="pair-col bad">
+        <h3>Without a plan</h3>
+        <ul class="pair-list">
+          ${problems.map((p) => `<li><span class="card-icon">${icon(p.icon)}</span><div><strong>${esc(p.title)}</strong><span>${esc(p.text)}</span></div></li>`).join('')}
+        </ul>
+      </div>`,
+      `<div class="pair-col good">
+        <h3>With BC Tech</h3>
+        <ul class="pair-list">
+          ${promises.map((p) => `<li><span class="card-icon">${icon(p.icon)}</span><div><strong>${esc(p.title)}</strong><span>${esc(p.text)}</span></div></li>`).join('')}
+        </ul>
+      </div>`,
+    ], { cols: 2 })}</div>
+  </div>
+</section>
+
+<section class="sec cv" aria-labelledby="services-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'What we do', title: 'Everything you need to <span class="accent">get found and get customers</span>', lead: 'Pick one thing or the whole package. We build the website and the tools around it.', id: 'services-title' })}
+    <div class="stagger">${slider('home-services', 'Our services', services.map(svcCard), { cols: 3, cls: 'svc' })}</div>
+    <p class="center-cta reveal" style="margin-top:2.2rem">${btn('See every service', '/services/', { kind: 'ghost' })}</p>
+  </div>
+</section>
+
+${marqueeStrip(['Built to bring you business'], { outline: true })}
+
+<section class="sec light cv" aria-labelledby="why-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'Why BC Tech', title: 'Premium results, <span class="accent">plain talk</span>', lead: 'No confusing tech words. We explain what we do and why it helps your sales.', id: 'why-title', center: true })}
+    <div class="stagger">${slider('home-why', 'Why choose BC Tech', why.map((w) => featureCard({ icon: w.icon, title: w.title, text: esc(w.text) })), { cols: 5 })}</div>
+  </div>
+</section>
+
+<section class="sec deep cv" aria-labelledby="process-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'How it works', title: 'From first call to <span class="accent">first customer</span>', lead: 'Four simple steps. You approve everything before we build it.', id: 'process-title' })}
+    <div class="slider" data-slider data-cols="4" role="region" aria-roledescription="carousel" aria-label="How it works">
+      <ol class="slider-track steps stagger">
+        ${process.map((s, i) => `<li class="slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${process.length}"><div class="step reveal"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div></li>`).join('')}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec cv" aria-labelledby="case-title">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="eyebrow">Our first client</p>
+      <h2 id="case-title">${esc(lyfd.short)}: a stainless steel maker that now takes <span class="accent">quotes and bookings online</span></h2>
+      <p class="lead" style="margin-top:1.1rem">${lyfd.place} restaurants, hotels and homeowners can now see the work, ask for a quote and book a visit from their phone.</p>
+      <ul class="chips">
+        <li class="chip">${icon('pen')}Quote form</li>
+        <li class="chip">${icon('calendar')}Book-a-visit calendar</li>
+        <li class="chip">${icon('layout')}Product pages</li>
+        <li class="chip">${icon('chat')}Messenger chat</li>
+      </ul>
+      <p style="margin-top:1.8rem">${btn('Read the case study', '/work/')}</p>
+    </div>
+    <div class="reveal" style="--d:.12s">${browserMock({ url: 'lyfdfab.com', variant: 'a', label: 'Illustration of the LYFD website on a computer screen' })}</div>
+  </div>
+</section>
+
+<section class="sec light cv" aria-labelledby="price-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'Clear prices', title: 'Know the cost <span class="accent">before you call</span>', lead: 'Starting prices in pesos. Your exact quote is confirmed on a free call.', id: 'price-title' })}
+    <div class="stagger">${slider('home-price', 'Starting prices', teaser.map((p) => `<article class="price-card tilt${p.open ? ' featured' : ''}">
+      <p class="price-sub">${esc(p.sub)}</p>
+      <h3 class="price-name">${esc(p.name)}</h3>
+      <div class="price-from"><small>${p.open ? 'Custom quote from' : 'Starting from'}</small><span class="price-amount">${peso(p.from)}</span></div>
+      <p class="price-for">${esc(p.forWho)}</p>
+      <a class="btn btn-ghost" href="/pricing/#${p.id}"><span>See what is included</span></a>
+      <span class="card-sheen" aria-hidden="true"></span>
+    </article>`), { cols: 3 })}</div>
+    <p class="reveal" style="margin-top:2.2rem">${btn('See all prices and extras', '/pricing/')}</p>
+  </div>
+</section>
+
+<section class="sec deep cv" aria-labelledby="faq-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'Questions', title: 'Quick answers', id: 'faq-title', center: true })}
+    <div class="reveal">${faqList(faqs.home)}</div>
+  </div>
+</section>
+
+<section class="cta" aria-labelledby="cta-title">
+  <div class="wrap cta-in">
+    <div class="reveal">
+      <p class="eyebrow">Ready when you are</p>
+      <h2 id="cta-title">Ready for a website that works as hard as you do?</h2>
+      <p class="lead">Tell us what you need. We will call you for a free chat, no pressure and no tech talk.</p>
+      <p>${btn('Pick a time to talk', '/contact/#book', { kind: 'ghost' })}</p>
+    </div>
+    <div class="cta-card reveal" style="--d:.12s">
+      ${leadForm({ source: 'home' })}
+    </div>
+  </div>
+</section>`;
+}

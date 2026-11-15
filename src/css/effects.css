@@ -1,0 +1,41 @@
+/* ===== Motion. Everything animates transform/opacity only. ===== */
+@keyframes drift-a{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-6%,8%,0) scale(1.12)}}
+@keyframes drift-b{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(10%,-10%,0) scale(1.18)}}
+@keyframes float{from{transform:translate3d(0,0,0) rotate(0deg)}to{transform:translate3d(0,-22px,0) rotate(2deg)}}
+@keyframes marq{to{transform:translate3d(-50%,0,0)}}
+@keyframes reveal-fallback{to{opacity:1;transform:none}}
+@keyframes rise{from{transform:translate3d(0,26px,0)}to{transform:none}}
+
+/* Hero extras animate transform only so the headline (LCP) is never hidden */
+.hero .btn-row,.hero .chips{animation:rise .9s var(--ease) .15s both}
+
+/* Scroll reveal: only hidden when JavaScript can run; a CSS timer reveals everything if it fails */
+@media (scripting:enabled){
+  .reveal{opacity:0;transform:translate3d(0,30px,0);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s);animation:reveal-fallback 0s 4s forwards}
+  .reveal.in{opacity:1;transform:none}
+}
+.stagger>.reveal:nth-child(2),.stagger .slide:nth-child(2) .reveal{--d:.08s}
+.stagger>.reveal:nth-child(3),.stagger .slide:nth-child(3) .reveal{--d:.16s}
+.stagger>.reveal:nth-child(4),.stagger .slide:nth-child(4) .reveal{--d:.24s}
+.stagger>.reveal:nth-child(5),.stagger .slide:nth-child(5) .reveal{--d:.32s}
+
+/* 3D tilt on hover (desktop pointers only) */
+@media (hover:hover) and (pointer:fine){
+  .tilt{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;transition:transform .5s var(--ease),border-color .3s,box-shadow .4s}
+  .tilt.is-moving{transition:transform .08s linear,border-color .3s,box-shadow .4s}
+  .tilt:hover .card-sheen{opacity:1}
+  .tilt .card-icon{transform:translateZ(34px)}
+  .tilt:hover .card-icon{transform:translateZ(46px) scale(1.06)}
+  .tilt h3{transform:translateZ(18px)}
+  .cursor-glow{position:fixed;left:0;top:0;z-index:1;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(200,16,46,.2),transparent);opacity:0;transform:translate3d(var(--cx,-999px),var(--cy,-999px),0);transition:opacity .4s;will-change:transform}
+  .cursor-glow.on{opacity:1}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .tilt{transform:none!important}
+  .marquee-in{animation:none}
+  .hero-mark-wrap{transform:none!important}
+}
