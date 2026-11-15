@@ -45,6 +45,10 @@ Do these in order:
 
 `config.php` is never committed to git, so the password stays off GitHub. If emails land in spam, ask Z.com to enable SPF and DKIM for the domain.
 
+**Nothing gets lost.** Every form (the inquiry form on the home page, the contact message form, and the free-call booking) gives the visitor a reference such as `BC-261115-7K3QX`, shown on screen and put in the email subject. Before any email is sent, a copy is saved on the server in `public_html/api/storage/inquiries.jsonl` (one line per message; blocked from the web). The email goes out through SMTP first, then through the server's own mailer if SMTP fails. If both fail, the visitor is still told the message was received (it was saved) and the line is marked `email_failed`.
+- After you set up SMTP, send one test inquiry and make sure it reaches `info@` and the Gmail copy.
+- If you ever see `email_failed` in that file, fix the SMTP details and reply to those people. Download or clear the file occasionally, because it holds visitors' details (the Privacy page mentions this).
+
 ## 4. Before launch checklist
 
 - [ ] Real phone / Viber / WhatsApp number in `src/data/site.mjs` (`phone`)
@@ -68,10 +72,10 @@ The case study currently shows drawn placeholder browser frames.
 
 ## 6. Images, charts and carousels
 
-**AI images.** The 8 pictures (home hero, five business scenes, services and contact headers) were generated with Figma AI in the Figma file "BC Tech website images" (Webee Dev's team) and are labeled as AI-generated illustrations in the alt text and the footer. They contain no text, logos or visible watermarks. The generator may add invisible provenance metadata, which is normal.
+**Pictures.** The 11 pictures (home hero, five business workplaces, and the Services, Contact, Pricing, About and Work headers) were created in the Figma file "BC Tech website images" (Webee Dev's team). They show devices, workplaces and graphs only, with no people, text, logos or watermarks. Keep it that way, and make sure no two pages use the same picture.
 - Full-size originals live in `assets-src/` on your computer only (not in git). If that folder is lost, re-download them from the Figma file.
 - To replace or add an image: put a PNG in `assets-src/` (for example `ind-cafe.png`), list its widths in `scripts/images.mjs`, then run `npm run images` followed by `npm run build`. That writes small AVIF and WebP versions to `src/static/assets/img/ai/` and the sizes to `src/data/images.json`.
-- Keep the LYFD case study on screenshots of the real site, not AI images.
+- Keep the LYFD case study on screenshots of the real site, not on stand-in pictures.
 
 **Numbers on the charts.** They are published figures, each with a visible source link, and live in `src/data/content.mjs` (`market`). They come from the Google, Temasek and Bain "e-Conomy SEA 2025" Philippines report (digital economy US$26B in 2023, US$31B in 2024, about US$36B in 2025; e-commerce US$17B, US$20B, about US$24B; 57% of retail payments digital in 2024) and a 2020 YouGov survey for Visa reported by The Philippine Star (75%). If you change a number, check it against the source first.
 - The home page "example" line chart uses invented numbers and says so inside the chart. Do not remove that label.
