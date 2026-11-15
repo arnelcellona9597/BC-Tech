@@ -1,5 +1,5 @@
-import { mark, icon, btn, slider, faqList, sectionHead, featureCard, marqueeStrip, browserMock, leadForm, peso, esc } from '../lib/components.mjs';
-import { services, problems, promises, why, process, marquee, packages, faqs, lyfd } from '../data/content.mjs';
+import { mark, icon, btn, slider, faqList, sectionHead, featureCard, journeyPath, statement, browserMock, leadForm, peso, esc } from '../lib/components.mjs';
+import { services, problems, promises, why, process, journey, packages, faqs, lyfd } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
 
 export const meta = {
@@ -52,9 +52,14 @@ export function body() {
   </div>
 </section>
 
-${marqueeStrip(marquee)}
+<section class="sec deep journey" aria-labelledby="journey-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'What a good website does', title: 'From stranger to <span class="accent">customer</span>, even while you sleep', lead: 'Every page we build is planned around this path.', id: 'journey-title', center: true })}
+    <div class="reveal">${journeyPath(journey)}</div>
+  </div>
+</section>
 
-<section class="sec deep cv" aria-labelledby="problem-title">
+<section class="sec cv" aria-labelledby="problem-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Sound familiar?', title: 'Most business websites look nice and <span class="accent">do nothing.</span>', lead: 'A website should work like your best salesperson: always on, always polite, always pointing customers to the next step.', id: 'problem-title' })}
     <div class="reveal">${slider('before-after', 'Without a plan and with BC Tech', [
@@ -74,7 +79,7 @@ ${marqueeStrip(marquee)}
   </div>
 </section>
 
-<section class="sec cv" aria-labelledby="services-title">
+<section class="sec deep cv" aria-labelledby="services-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'What we do', title: 'Everything you need to <span class="accent">get found and get customers</span>', lead: 'Pick one thing or the whole package. We build the website and the tools around it.', id: 'services-title' })}
     <div class="stagger">${slider('home-services', 'Our services', services.map(svcCard), { cols: 3, cls: 'svc' })}</div>
@@ -82,7 +87,11 @@ ${marqueeStrip(marquee)}
   </div>
 </section>
 
-${marqueeStrip(['Built to bring you business'], { outline: true })}
+<section class="sec statement" aria-label="Our promise">
+  <div class="wrap">
+    ${statement(['We do not build websites to look at.', { hi: 'We build them to bring you customers.' }])}
+  </div>
+</section>
 
 <section class="sec light cv" aria-labelledby="why-title">
   <div class="wrap">
