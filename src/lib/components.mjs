@@ -253,13 +253,13 @@ export const contactEmail = () => `<a href="mailto:${site.email}">${site.email}<
 /** Full-width autoplay slider with rotating transition effects. Works without JavaScript (first slide shows). */
 export function heroSlider(id, label, items) {
   const fx = ['fade', 'wipe', 'slide'];
-  const slides = items.map((it, i) => `<li class="hs-slide${i === 0 ? ' is-active' : ''}" id="${id}-${i}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${items.length}">
+  const slides = items.map((it, i) => `<div class="hs-slide${i === 0 ? ' is-active' : ''}" id="${id}-${i}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${items.length}">
     <div class="hs-media">${picture(it.img, { alt: it.alt, sizes: '100vw', eager: i === 0 })}</div>
     <div class="hs-cap wrap"><p class="hs-count" aria-hidden="true"><b>0${i + 1}</b> / 0${items.length}</p><h3>${esc(it.name)}</h3><p>${esc(it.line)}</p></div>
-  </li>`).join('');
+  </div>`).join('');
   const dots = items.map((it, i) => `<button type="button" class="hs-dot${i === 0 ? ' is-active' : ''}" aria-label="Show ${esc(it.name)}" aria-controls="${id}-${i}"></button>`).join('');
   return `<div class="hs" id="${id}" role="region" aria-roledescription="carousel" aria-label="${esc(label)}" data-fx="${fx.join(',')}">
-  <ul class="hs-track">${slides}</ul>
+  <div class="hs-track">${slides}</div>
   <div class="hs-ui wrap">
     <div class="hs-dots">${dots}</div>
     <div class="hs-btns">
@@ -280,7 +280,7 @@ export function pricingSection(packages, { id = 'pkg-title', cv = false } = {}) 
     ${sectionHead({ eyebrow: 'Website packages', title: 'Pick the one that fits <span class="accent">where you are now</span>', lead: 'Tell us what you need and the right package comes to the front. Not sure? Book a free call and we will tell you honestly.', id, center: true })}
     ${pricingFlow(packages)}
     <p class="note reveal" style="margin-inline:auto;margin-top:2.6rem;text-align:left">These are one-time prices for designing and building your website. Domain, hosting and ongoing care are listed on the pricing page.</p>
-    <p class="center-cta reveal" style="margin-top:1.6rem">${btn('See all packages and extras', '/pricing/', { kind: 'ghost' })}</p>
+    <p class="center-cta reveal" style="margin-top:1.6rem;text-align:center">${btn('See all packages and extras', '/pricing/', { kind: 'ghost' })}</p>
   </div>
 </section>`;
 }

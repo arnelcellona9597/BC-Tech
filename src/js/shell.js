@@ -6,7 +6,7 @@
   /* ---- Mobile menu ---- */
   var toggle = d.querySelector('.nav-toggle'), menu = d.getElementById('mobile-menu');
   if (toggle && menu) {
-    var behind = d.querySelectorAll('main,.site-footer,.chat,.float-wrap,.skip');
+    var behind = d.querySelectorAll('main,.site-footer,.chat-wrap,.float-wrap,.skip');
     var isOpen = false, openedAt = 0;
     var setMenu = function (open) {
       if (open === isOpen) return;
