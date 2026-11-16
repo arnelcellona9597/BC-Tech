@@ -135,3 +135,29 @@
     });
   }, { passive: true });
 })();
+
+/* Theme color mode: light (default) or dark, remembered in this browser */
+(function () {
+  var h = document.documentElement, btns = document.querySelectorAll('[data-theme-toggle]');
+  if (!btns.length) return;
+  function paint() {
+    var dark = h.getAttribute('data-theme') === 'dark';
+    btns.forEach(function (b) { b.setAttribute('aria-pressed', dark ? 'true' : 'false'); });
+  }
+  function set(t) {
+    h.setAttribute('data-theme', t);
+    try { localStorage.setItem('davaobyte_theme', t); } catch (e) {}
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', t === 'dark' ? '#0B0B0C' : '#FFFFFF');
+    paint();
+    document.dispatchEvent(new CustomEvent('themechange', { detail: t }));
+  }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      h.classList.add('theme-anim');
+      set(h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      setTimeout(function () { h.classList.remove('theme-anim'); }, 450);
+    });
+  });
+  paint();
+})();
