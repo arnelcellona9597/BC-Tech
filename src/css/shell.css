@@ -190,6 +190,10 @@ a.soc:hover,a.soc:focus-visible{transform:translateY(-4px);background:var(--red)
 .concierge .field.fl label{position:absolute;left:.95rem;top:.95rem;margin:0;font-size:.95rem;font-weight:500;color:var(--muted);pointer-events:none;transform-origin:0 0;transition:transform .25s var(--ease),color .25s}
 .concierge .field.fl input,.concierge .field.fl textarea{padding-top:1.35rem;padding-bottom:.4rem;background:rgba(var(--fg-rgb),.04);border-color:rgba(var(--fg-rgb),.16);transition:border-color .3s,box-shadow .3s,background .3s}
 .concierge .field.fl textarea{min-height:7.5rem}
+/* The select sits in the same boxed style as the other fields: label tucked at the top, value below, same height */
+.concierge .field.fl-s label{transform:translate3d(0,-.62rem,0) scale(.78);color:var(--muted);z-index:1}
+.concierge .field.fl-s select{padding-top:1.35rem;padding-bottom:.4rem;background-color:rgba(var(--fg-rgb),.04);border-color:rgba(var(--fg-rgb),.16);transition:border-color .3s,box-shadow .3s,background-color .3s}
+.concierge .field.fl-s:focus-within label{color:var(--red-hi)}
 .concierge .field.fl:focus-within label,.concierge .field.fl:has(input:not(:placeholder-shown),textarea:not(:placeholder-shown)) label{transform:translate3d(0,-.62rem,0) scale(.78);color:var(--red-hi)}
 .concierge .field input:focus,.concierge .field textarea:focus,.concierge .field select:focus{border-color:var(--red-hi);box-shadow:0 0 0 3px rgba(255,90,110,.2);background:rgba(var(--fg-rgb),.07)}
 .cc-panel .btn-primary{position:relative;overflow:hidden}
