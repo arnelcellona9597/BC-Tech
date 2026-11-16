@@ -69,7 +69,7 @@ ${nav.filter((n) => n.key !== 'home').map((n) => `        <li><a href="${n.href}
         <li class="nav-cta"><a class="btn btn-primary btn-sm" href="/contact/#book"><span>Book a free call</span></a></li>
       </ul>
     </nav>
-    <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false" title="Switch between light and dark mode" data-theme-toggle><span class="tt-sun" aria-hidden="true">${icon('sun', 'ic')}</span><span class="tt-moon" aria-hidden="true">${icon('moon', 'ic')}</span></button>
+    <span class="ts-wrap"><button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false" title="Switch between light and dark mode" data-theme-toggle><span class="ts-track" aria-hidden="true"><span class="ts-bg ts-bg-light"></span><span class="ts-bg ts-bg-dark"></span><span class="ts-stars"><i></i><i></i><i></i><i></i><i></i></span><span class="ts-knob"><span class="ts-rays"></span><span class="ts-orb ts-sun"></span><span class="ts-orb ts-moon"><b></b><b></b><b></b></span></span></span></button><span class="ts-hint" aria-hidden="true" data-theme-hint hidden>Try dark mode</span></span>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span></button>
     </div>
   </div>

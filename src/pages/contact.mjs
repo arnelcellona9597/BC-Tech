@@ -47,7 +47,7 @@ export function body() {
         </div>
         <div class="row2">
           <div class="field fl"><label for="m-phone">Phone (optional)</label><input placeholder=" " id="m-phone" name="phone" type="tel" autocomplete="tel"></div>
-          <div class="field"><label for="m-need">What do you need?</label>
+          <div class="field fl fl-s"><label for="m-need">What do you need?</label>
             <select id="m-need" name="need">
               <option>A new website</option><option>An online store</option><option>Fix or redesign my website</option>
               <option>API, ERP or automation</option><option>Logo and branding</option><option>Something else</option>
