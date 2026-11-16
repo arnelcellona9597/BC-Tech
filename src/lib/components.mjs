@@ -354,3 +354,51 @@ export function conciergeFx() {
   <span class="cc-3d cc-disc d4" data-depth="30">${icon('chat')}</span>
 </div>`;
 }
+
+
+/**
+ * Home hero 3D scene: a laptop and a phone built from CSS, tilted in perspective, with floating notification cards.
+ * Purely decorative (aria-hidden). The Davao Byte site is "shown" on the screens with tiny HTML mock-ups.
+ */
+export function heroScene() {
+  const nav = `<div class="ls-nav"><span class="ls-logo">${mark('ls-mark')}<b>DAVAO BYTE</b></span><i></i><i></i><i></i><u></u></div>`;
+  const card = '<div class="ls-card"><i></i><b></b><b></b></div>';
+  return `<div class="hs3d" aria-hidden="true">
+  <div class="hs3d-rig"><div class="hs3d-float">
+    <span class="hs3d-shadow"></span>
+    <div class="hl">
+      <div class="hl-lid"><div class="hl-screen">
+        ${nav}
+        <div class="ls-hero"><span class="ls-eb"></span><span class="ls-h"></span><span class="ls-h r"></span><span class="ls-line"></span><span class="ls-line s"></span><div class="ls-btns"><u></u><s></s></div></div>
+        <div class="ls-cards">${card}${card}${card}</div>
+        <span class="ls-glare"></span>
+      </div></div>
+      <div class="hl-deck"><span class="hl-keys"></span><span class="hl-pad"></span></div>
+    </div>
+    <div class="ph"><div class="ph-screen">
+      <span class="ph-notch"></span>
+      <div class="ph-bar">${mark('ls-mark')}<i></i></div>
+      <span class="ls-h p"></span><span class="ls-h r p"></span><span class="ls-line"></span><span class="ls-line s"></span>
+      <u class="ph-btn"></u>
+      <div class="ph-chat"><span></span><span class="me"></span></div>
+    </div></div>
+  </div></div>
+  <div class="hs3d-chips">
+    <span class="hc hc1">${icon('mail', 'ic')}<b>New inquiry</b></span>
+    <span class="hc hc2">${icon('calendar', 'ic')}<b>Booking confirmed</b></span>
+    <span class="hc hc3">${icon('check', 'ic')}<b>Quote requested</b></span>
+  </div>
+</div>`;
+}
+
+
+/** The monogram built from stacked layers, so it has real depth when it turns (home "promise" section, decorative). */
+export function stMark3d() {
+  const inner = markSvg.replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '').replace(/ class="mark-slash"/g, '').replace(/fill="#C8102E"/g, 'fill="currentColor"');
+  const n = 14;
+  const layers = Array.from({ length: n }, (_, i) => `<span class="st3d-l" style="--i:${n - i}"><svg viewBox="0 0 200 200"><use href="#st3d-sym"/></svg></span>`).join('');
+  return `<span class="st3d" aria-hidden="true">
+    <svg class="st3d-defs" width="0" height="0" focusable="false"><symbol id="st3d-sym" viewBox="0 0 200 200">${inner}</symbol></svg>
+    <span class="st3d-rig">${layers}<span class="st3d-front">${mark('st3d-mark')}</span></span>
+  </span>`;
+}

@@ -1,7 +1,8 @@
-import { mark, icon, btn, slider, heroSlider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingSection, bookingPanel, conciergeFx, picture, preloadImage, peso, esc } from '../lib/components.mjs';
+import { mark, icon, btn, slider, heroSlider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingSection, bookingPanel, conciergeFx, heroScene, stMark3d, picture, preloadImage, peso, esc } from '../lib/components.mjs';
 import { statCard, marketChart, exampleChart } from '../lib/charts.mjs';
 import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd, industries, market } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
+import { phMap } from '../data/ph-map.mjs';
 import { guidesStrip } from '../lib/guides-strip.mjs';
 import { serviceUrl } from '../lib/service-url.mjs';
 
@@ -16,8 +17,7 @@ export const meta = {
   ogHeadline: 'Web design and development in Davao City.',
   priority: '1.0',
   usesPeso: true,
-  scripts: ['forms', 'charts', 'booking', 'pricing', 'particles', 'slider-full'],
-  preloadImg: preloadImage('home-hero', '(min-width:1100px) 100vw, calc(100vw - 2.5rem)'),
+  scripts: ['forms', 'charts', 'booking', 'pricing', 'particles', 'slider-full', 'phmap'],
 };
 
 const svcCard = (s) =>
@@ -36,7 +36,7 @@ export function body() {
     <div class="glow glow-a"></div>
     <div class="glow glow-b"></div>
   </div>
-  <div class="hero-visual">${picture('home-hero', { alt: 'Laptop and phone showing an elegant website, lit with red light', sizes: '(min-width:1100px) 100vw, calc(100vw - 2.5rem)', eager: true, cls: 'hero-pic' })}</div>
+  ${heroScene()}
   <canvas class="hero-fx" data-particles="full" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-in">
@@ -125,7 +125,7 @@ export function body() {
   <div class="st-fx" aria-hidden="true">
     <span class="st-beam"></span>
     <span class="st-ring r1"></span><span class="st-ring r2"></span><span class="st-ring r3"></span>
-    <span class="st-mark">${mark('st-mark-svg')}</span>
+    ${stMark3d()}
     <span class="st-big">CUSTOMERS</span>
     <canvas data-particles="lite"></canvas>
   </div>
@@ -142,6 +142,22 @@ export function body() {
     ${sectionHead({ eyebrow: 'Who we help', title: 'Websites for <span class="accent">every kind of business</span>', lead: 'Whatever you sell, the goal is the same: more people finding you, trusting you and getting in touch.', id: 'industries-title' })}
   </div>
   <div class="reveal">${heroSlider('industries', 'Kinds of business we build websites for', industries)}</div>
+</section>
+
+<section class="sec cv phm" aria-labelledby="phm-title">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="eyebrow">Proudly from Davao</p>
+      <h2 id="phm-title">Built in Davao, <span class="accent">working across the Philippines</span></h2>
+      <p class="lead" style="margin-top:1.1rem">We are a Davao City team. We work with businesses anywhere in the country, by call, chat and email, with clear prices in pesos.</p>
+      <ul class="chips">
+        <li class="chip">${icon('pin')}Based in ${site.city}</li>
+        <li class="chip">${icon('phone')}Calls, chat and email</li>
+        <li class="chip">${icon('shield')}Prices in Philippine pesos</li>
+      </ul>
+    </div>
+    <div class="phm-map reveal" style="--d:.12s"><canvas data-phmap data-grid="${esc(JSON.stringify(phMap))}" style="aspect-ratio:${phMap.cols + 8}/${phMap.rows + 2}" role="img" aria-label="Map of the Philippines made of small squares, with Davao City highlighted in red and lines to Manila and Cebu"></canvas></div>
+  </div>
 </section>
 
 <section class="sec light cv why-lux" aria-labelledby="why-title">

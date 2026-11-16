@@ -179,3 +179,14 @@
   });
   paint();
 })();
+
+/* Promise section: the 3D monogram leans toward the pointer */
+(function () {
+  var sec = document.querySelector('.statement'), rig = sec && sec.querySelector('.st3d');
+  if (!rig || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var raf = 0, ev;
+  sec.addEventListener('pointermove', function (e) {
+    ev = e; if (raf) return;
+    raf = requestAnimationFrame(function () { raf = 0; var r = sec.getBoundingClientRect(); sec.style.setProperty('--sx', (((ev.clientX - r.left) / r.width - .5) * 2).toFixed(3)); sec.style.setProperty('--sy', (((ev.clientY - r.top) / r.height - .5) * 2).toFixed(3)); });
+  }, { passive: true });
+})();
