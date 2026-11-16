@@ -223,3 +223,13 @@ html[data-theme=dark] .tt-hint{background:#fff;color:#0B0B0C}
   .brand-mark{width:1.9rem;height:1.9rem}
   .brand-text{font-size:.9rem;letter-spacing:.1em}
 }
+
+/* Marketing popup in light: neutral backdrop, crisp photo edge, no pink halo */
+html[data-theme=light] .pop-bd{background:rgba(11,11,12,.52)}
+html[data-theme=light] .pop-ring{display:none}
+html[data-theme=light] .pop-card{border:1px solid rgba(11,11,12,.08)!important;box-shadow:0 50px 100px -40px rgba(11,11,12,.55)!important}
+html[data-theme=light] .pop-media::after{background:linear-gradient(0deg,rgba(11,11,12,.78),rgba(11,11,12,0) 52%)}
+html[data-theme=light] .pop-media img{filter:brightness(1.15) saturate(1.05)}
+html[data-theme=light] .pop-x{background:#fff;color:var(--text);border-color:rgba(11,11,12,.14);box-shadow:0 8px 18px -8px rgba(11,11,12,.4)}
+html[data-theme=light] .pop-x:hover{background:var(--red);border-color:var(--red);color:#fff}
+@media (max-width:759px){html[data-theme=light] .pop-media::after{background:linear-gradient(0deg,rgba(11,11,12,.78),rgba(11,11,12,0) 60%)}}
