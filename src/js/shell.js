@@ -148,7 +148,7 @@
     h.setAttribute('data-theme', t);
     try { localStorage.setItem('davaobyte_theme', t); } catch (e) {}
     var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute('content', t === 'dark' ? '#0B0B0C' : '#F6F3EE');
+    if (m) m.setAttribute('content', t === 'dark' ? '#0B0B0C' : '#FFFFFF');
     paint();
     document.dispatchEvent(new CustomEvent('themechange', { detail: t }));
   }

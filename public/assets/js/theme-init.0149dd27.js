@@ -1,0 +1,1 @@
+(function(){try{var t=localStorage.getItem("davaobyte_theme"),e=document.documentElement;(t==="dark"||t==="light")&&e.setAttribute("data-theme",t);var a=document.querySelector('meta[name="theme-color"]');a&&a.setAttribute("content",e.getAttribute("data-theme")==="dark"?"#0B0B0C":"#FFFFFF")}catch{}})();

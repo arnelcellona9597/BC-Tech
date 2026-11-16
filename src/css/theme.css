@@ -15,10 +15,10 @@ html.theme-anim,html.theme-anim *,html.theme-anim *::before,html.theme-anim *::a
 /* ---- Light theme (default) ---- */
 html[data-theme=light]{
   color-scheme:light;
-  --fg-rgb:11,11,12;--page:#F6F3EE;--page-2:#EFEBE4;--page-3:#E8E3DA;--page-rgb:246,243,238;
-  --paper:#FBF9F6;--paper-2:#F1EDE6;
-  --bg:#F6F3EE;--text:#0B0B0C;--muted:#4A4A52;--line:rgba(11,11,12,.14);--accent:#C8102E;
-  --surface:linear-gradient(180deg,#fff,#FBF9F6);
+  --fg-rgb:11,11,12;--page:#FFFFFF;--page-2:#F6F6F7;--page-3:#EDEDEF;--page-rgb:255,255,255;
+  --paper:#FFFFFF;--paper-2:#F6F6F7;
+  --bg:#FFFFFF;--text:#0B0B0C;--muted:#53535B;--line:rgba(11,11,12,.11);--accent:#C8102E;
+  --surface:#fff;
   --red-hi:#C8102E;--red-bright:#B50E29;
 }
 
@@ -99,3 +99,39 @@ html[data-theme=light] .flow-item:not(.is-current) .pc::after{background:rgba(va
 
 /* Popup links */
 html[data-theme=light] .pop-alt a,html[data-theme=light] .pop-no:hover{color:var(--text)}
+
+/* ===== Clean, premium light: white surfaces, hairlines, neutral shadows. No red haze. ===== */
+html[data-theme=light] :is(.glow,.why-blob,.cc-orb,.cc-spot,.cc-beam,.co-halo,.menu-orb,.foot-glow,.nf-glow,.hero-orbit,.card-sheen,.st-beam,.lux-sweep){display:none!important}
+html[data-theme=light] .cta::before,html[data-theme=light] .flow-item.is-current::after,html[data-theme=light] .why-lux .card::after,html[data-theme=light] .stat::after,html[data-theme=light] .mc::before{display:none!important}
+/* section backgrounds: plain white and a very light neutral, nothing tinted */
+html[data-theme=light] :is(.statement,.concierge,.cta,.nf){background:var(--page-2)}
+html[data-theme=light] .lux{background:linear-gradient(180deg,#fff,#F6F6F7)}
+html[data-theme=light] .why-lux{background:#fff}
+html[data-theme=light] .menu{background:#fff}
+html[data-theme=light] .sec.light{background:#fff}
+html[data-theme=light] .sec.deep{background:#F6F6F7}
+/* cards: white, fine border, soft neutral shadow */
+html[data-theme=light] :is(.card,.price-card,.addon,.stat,.panel,.chart-card,.sv-steps li,.rel-grid a,.guide-card,.nf-list a,.g-toc,.sv-who li,.pc,.hero-form-card,.cta-card,.cc-panel,.eg,.pair-col,.stack-list li,.jump a,.chat-card,.pop-card){
+  background:#fff!important;border:1px solid rgba(11,11,12,.09)!important;box-shadow:0 1px 2px rgba(11,11,12,.04),0 14px 34px -18px rgba(11,11,12,.16)!important}
+html[data-theme=light] :is(.card,.price-card,.addon,.stat,.sv-steps li,.rel-grid a,.guide-card,.nf-list a,.pc):hover{border-color:rgba(11,11,12,.16)!important;box-shadow:0 1px 2px rgba(11,11,12,.05),0 22px 44px -18px rgba(11,11,12,.22)!important}
+html[data-theme=light] .pair-col.good{background:#fff!important;border-color:rgba(200,16,46,.28)!important}
+html[data-theme=light] .pc.is-custom{background:#fff!important;border-color:rgba(200,16,46,.3)!important}
+html[data-theme=light] .sec.deep :is(.card,.stat,.sv-steps li,.panel){background:#fff!important}
+html[data-theme=light] .hero-form-card{box-shadow:0 1px 2px rgba(11,11,12,.05),0 40px 80px -36px rgba(11,11,12,.3)!important}
+/* the statement block and the pricing stage keep crisp lines instead of glows */
+html[data-theme=light] .st-ring{border-color:rgba(11,11,12,.1)}
+/* buttons: quieter red glow */
+html[data-theme=light] .btn-primary{box-shadow:0 8px 22px -12px rgba(200,16,46,.55)}
+html[data-theme=light] .btn-primary:hover{box-shadow:0 14px 30px -12px rgba(200,16,46,.6)}
+/* photos: monochrome and soft, so the page stays clean white */
+html[data-theme=light] .hero.has-form .hero-visual img,html[data-theme=light] .head-visual img{filter:grayscale(1) contrast(1.05) brightness(1.1)}
+html[data-theme=light] .head-visual img{opacity:.3}
+html[data-theme=light] .hero.has-form .hero-visual::after{background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.94) 40%,rgba(255,255,255,.62) 74%,rgba(255,255,255,.78) 100%),linear-gradient(180deg,rgba(255,255,255,.7) 0,transparent 22%,transparent 72%,#fff 100%)}
+html[data-theme=light] .hero.has-form .hero-visual img{opacity:.55}
+html[data-theme=light] .cc-fx{display:none}
+html[data-theme=light] .mc-bar.ecom .mc-fill,html[data-theme=light] .mc-legend i.ecom,html[data-theme=light] .mc-bar.total .mc-fill{box-shadow:none;animation:none}
+html[data-theme=light] .sec.light .mc,html[data-theme=light] .mc::after{background:#fff}
+html[data-theme=light] .mc-fill::after{display:none}
+html[data-theme=light] :is(.pc-amount,.addon .amt,.mc-val,.statement-text){text-shadow:none}
+html[data-theme=light] :is(.lux-fx,.lux::before){display:none}
+html[data-theme=light] .st-mark,html[data-theme=light] .nf-ofront{filter:none}

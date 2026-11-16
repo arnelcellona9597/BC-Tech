@@ -17,7 +17,7 @@ export const site = {
   // Leave a link empty until the page exists. The icon shows as a plain (non-clickable) badge until a link is added.
   social: { facebook: '', messenger: '', linkedin: '', youtube: '', whatsapp: '', googleBusiness: '' },
   themeColor: '#0B0B0C', // dark theme color (manifest, browser bar)
-  themeColorLight: '#F6F3EE', // light theme color (default)
+  themeColorLight: '#FFFFFF', // light theme color (default)
   hours: 'Monday to Friday, 9:00 AM to 5:00 PM (Philippine Time)',
   openHours: { days: [1, 2, 3, 4, 5], start: 9, end: 17, timezone: 'Asia/Manila' },
   // Booking rules. Keep in sync with public/api/config.example.php ("booking").
