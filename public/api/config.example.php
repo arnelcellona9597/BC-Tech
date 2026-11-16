@@ -1,6 +1,6 @@
 <?php
 /**
- * BC Tech form settings.
+ * Davao Byte form settings.
  *
  * SETUP ON THE SERVER:
  *   1. Copy this file to  config.php  (same folder). config.php is never committed to git.
@@ -12,30 +12,30 @@
 return [
     'mail' => [
         'driver'     => 'log',                         // 'log' (testing) or 'smtp' (real emails)
-        'to'         => 'info@bctech.com',             // company inbox (forward it to Gmail in cPanel as well)
+        'to'         => 'info@davaobyte.com',             // company inbox (forward it to Gmail in cPanel as well)
         'bcc'        => 'arnelcellona9597@gmail.com',  // extra copy of every inquiry. Leave '' to turn off.
-        'from_email' => 'info@bctech.com',             // must be an address on your own domain (helps avoid spam folders)
-        'from_name'  => 'BC Tech Website',
+        'from_email' => 'info@davaobyte.com',             // must be an address on your own domain (helps avoid spam folders)
+        'from_name'  => 'Davao Byte Website',
         'autoreply'  => true,                          // send visitors a short "we got your message" email
         'smtp' => [
-            'host'   => 'mail.bctech.com',             // TODO: from your hosting provider
+            'host'   => 'mail.davaobyte.com',             // TODO: from your hosting provider
             'port'   => 587,                           // 587 with 'tls', or 465 with 'ssl'
             'secure' => 'tls',                         // 'tls' (STARTTLS) or 'ssl'
-            'user'   => 'info@bctech.com',
+            'user'   => 'info@davaobyte.com',
             'pass'   => 'CHANGE_ME',
         ],
     ],
     'site' => [
-        'name'          => 'BC Tech',
-        'url'           => 'https://bctech.com',
+        'name'          => 'Davao Byte',
+        'url'           => 'https://davaobyte.com',
         // Shown in the confirmation emails
         'phone'         => '+63 951 487 4304',
         'landline'      => '(082) 2929 822',
         'hours'         => 'Monday to Friday, 9:00 AM to 5:00 PM (Philippine Time)',
         'city'          => 'Davao City, Philippines',
-        'tagline'       => 'Built to Bring You Business.',
+        'tagline'       => 'Websites That Bring You Customers.',
         // Forms only accept submissions that come from these hosts
-        'allowed_hosts' => ['bctech.com', 'www.bctech.com', 'localhost', '127.0.0.1'],
+        'allowed_hosts' => ['davaobyte.com', 'www.davaobyte.com', 'localhost', '127.0.0.1'],
     ],
     'booking' => [
         'timezone'    => 'Asia/Manila',

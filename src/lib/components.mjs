@@ -97,12 +97,12 @@ export function chatThread(stages) {
   let n = 0;
   return `<div class="phone reveal" data-seq>
   <div class="phone-screen">
-    <div class="phone-bar" aria-hidden="true">${mark('')}<div><b>BC TECH</b><small>Your project chat</small></div></div>
+    <div class="phone-bar" aria-hidden="true">${mark('')}<div><b>DAVAO BYTE</b><small>Your project chat</small></div></div>
     <ol class="convo" aria-label="How a project goes, told as a conversation">
 ${stages.map((s) => `      <li class="stage">
         <h3 class="stage-tag">${esc(s.stage)}</h3>
         <ul class="msgs">
-${s.msgs.map((m) => `          <li class="msg ${m.who}" style="--n:${n++}"><span class="sr-only">${m.who === 'you' ? 'You: ' : 'BC Tech: '}</span>${esc(m.text)}</li>`).join('\n')}
+${s.msgs.map((m) => `          <li class="msg ${m.who}" style="--n:${n++}"><span class="sr-only">${m.who === 'you' ? 'You: ' : 'Davao Byte: '}</span>${esc(m.text)}</li>`).join('\n')}
         </ul>
       </li>`).join('\n')}
     </ol>

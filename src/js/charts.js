@@ -1,4 +1,4 @@
-/* BC Tech: count-up numbers and the website payback calculator. Loaded only on pages that use them. */
+/* Davao Byte: count-up numbers and the website payback calculator. Loaded only on pages that use them. */
 (() => {
   const d = document;
   const $$ = (s, c = d) => Array.from(c.querySelectorAll(s));
@@ -34,7 +34,7 @@
     if (!(monthly > 0) || !(price > 0)) return { monthly: 0, months: Infinity };
     return { monthly, months: price / monthly };
   }
-  window.BCCalc = { payback };
+  window.DBCalc = { payback };
 
   $$('[data-calc]').forEach((root) => {
     const pkg = root.querySelector('#calc-pkg');

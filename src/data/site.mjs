@@ -1,10 +1,10 @@
 // Site-wide constants. Change the domain here and rebuild; everything else follows.
 export const site = {
-  name: 'BC Tech',
-  legalName: 'BC Tech',
-  tagline: 'Built to Bring You Business.',
-  url: 'https://bctech.com',
-  email: 'info@bctech.com',
+  name: 'Davao Byte',
+  legalName: 'Davao Byte',
+  tagline: 'Websites That Bring You Customers.',
+  url: 'https://davaobyte.com',
+  email: 'info@davaobyte.com',
   locale: 'en_PH',
   lang: 'en-PH',
   city: 'Davao City',
@@ -35,5 +35,5 @@ export const nav = [
   { key: 'services', label: 'Services', href: '/services/', desc: 'What we build for you' },
   { key: 'pricing', label: 'Pricing', href: '/pricing/', desc: 'Clear prices in pesos' },
   { key: 'work', label: 'Our Work', href: '/work/', desc: 'Real results, real clients' },
-  { key: 'about', label: 'About', href: '/about/', desc: 'The team behind BC Tech' },
+  { key: 'about', label: 'About', href: '/about/', desc: 'The team behind Davao Byte' },
 ];

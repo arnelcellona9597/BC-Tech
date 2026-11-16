@@ -8,7 +8,7 @@ export const meta = {
   path: '/pricing/',
   file: 'pricing/index.html',
   crumb: 'Pricing',
-  title: 'Website Prices in the Philippines | BC Tech',
+  title: 'Website Prices in the Philippines | Davao Byte',
   description: 'Clear starting prices in pesos: websites from ₱25,000, online stores from ₱70,000, custom builds quoted free. Domain, hosting and care plans explained.',
   ogImage: '/assets/img/og/pricing.png',
   ogHeadline: 'Clear prices. No surprises.',

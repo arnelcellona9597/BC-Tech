@@ -12,7 +12,7 @@ const indexMeta = {
   path: '/guides/',
   file: 'guides/index.html',
   crumbs: [['Guides', '/guides/']],
-  title: 'Guides: Websites, Online Stores & Integrations | BC Tech',
+  title: 'Guides: Websites, Online Stores & Integrations | Davao Byte',
   description: 'Plain-language guides on website costs, online stores and ERP integration for business owners in the Philippines.',
   ogImage: '/assets/img/og/guides.png',
   ogHeadline: 'Plain-language guides for business owners.',
@@ -39,7 +39,7 @@ const indexBody = () => `
 </section>
 ${ctaBand({ title: 'Have a question the guides do not answer?', lead: 'Book a free call and ask us anything. We will give you honest advice.' })}`;
 
-const table = () => `<div class="g-table-wrap" tabindex="0" role="region" aria-label="Website package prices"><table class="g-table"><caption>BC Tech website packages and typical price ranges</caption><thead><tr><th scope="col">Package</th><th scope="col">Good for</th><th scope="col">Typical range</th></tr></thead><tbody>${packages.map((p) => `<tr><th scope="row">${esc(p.name)}<small>${esc(p.sub)}</small></th><td>${esc(p.forWho)}</td><td>${p.open ? `${peso(p.from)} and up` : `${peso(p.from)} to ${peso(p.to)}`}</td></tr>`).join('')}</tbody></table></div>`;
+const table = () => `<div class="g-table-wrap" tabindex="0" role="region" aria-label="Website package prices"><table class="g-table"><caption>Davao Byte website packages and typical price ranges</caption><thead><tr><th scope="col">Package</th><th scope="col">Good for</th><th scope="col">Typical range</th></tr></thead><tbody>${packages.map((p) => `<tr><th scope="row">${esc(p.name)}<small>${esc(p.sub)}</small></th><td>${esc(p.forWho)}</td><td>${p.open ? `${peso(p.from)} and up` : `${peso(p.from)} to ${peso(p.to)}`}</td></tr>`).join('')}</tbody></table></div>`;
 
 const block = (b) => {
   if (b.h2) return `<h2 id="${slugify(b.h2)}">${esc(b.h2)}</h2>`;

@@ -9,7 +9,7 @@ export const meta = {
   path: '/services/',
   file: 'services/index.html',
   crumb: 'Services',
-  title: 'Web Design, Online Stores & More | BC Tech Services',
+  title: 'Web Design, Online Stores & More | Davao Byte Services',
   description: 'Websites, online stores, branding, writing, booking tools, marketing and Google setup. Everything your business needs to get found and get customers.',
   ogImage: '/assets/img/og/services.png',
   ogHeadline: 'Everything you need to get found and get customers.',
@@ -45,7 +45,7 @@ export function body() {
     <div class="reveal">
       <p class="eyebrow">See the difference</p>
       <h2 id="cmp-title">Most websites make people think. <span class="accent">Ours make it easy to say yes.</span></h2>
-      <p class="lead" style="margin-top:1.1rem">Drag the handle to compare a typical, crowded website with a BC Tech website: one clear message, one clear button, and a layout that works on every phone.</p>
+      <p class="lead" style="margin-top:1.1rem">Drag the handle to compare a typical, crowded website with a Davao Byte website: one clear message, one clear button, and a layout that works on every phone.</p>
     </div>
     <div class="reveal" style="--d:.12s">${compare()}</div>
   </div>

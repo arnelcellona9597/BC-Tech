@@ -2,7 +2,7 @@
 (function () {
   var pop = document.getElementById('promo');
   if (!pop) return;
-  var KEY = 'bctech_promo', HOURS = 12, root = document.documentElement;
+  var KEY = 'davaobyte_promo', HOURS = 12, root = document.documentElement;
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
   function last() { try { return +localStorage.getItem(KEY) || 0; } catch (e) { return 0; } }
   function mark(extraHours) { try { localStorage.setItem(KEY, String(Date.now() + (extraHours || 0) * 36e5)); } catch (e) {} }

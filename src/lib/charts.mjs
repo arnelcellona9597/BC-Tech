@@ -108,7 +108,7 @@ export function calculator(packages) {
   </div>`;
 }
 
-/** Drag-to-compare: a typical website versus a BC Tech website, both drawn with CSS. */
+/** Drag-to-compare: a typical website versus a Davao Byte website, both drawn with CSS. */
 export function compare() {
   return `<div class="compare" data-compare style="--pos:50%">
     <div class="cmp-layer cmp-good" aria-hidden="true">
@@ -122,12 +122,12 @@ export function compare() {
       <div class="cmp-tiny"><s></s></div>
     </div>
     <span class="cmp-tag cmp-tag-bad">A typical website</span>
-    <span class="cmp-tag cmp-tag-good">A BC Tech website</span>
+    <span class="cmp-tag cmp-tag-good">A Davao Byte website</span>
     <span class="cmp-handle" aria-hidden="true"><i></i></span>
-    <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare a typical website with a BC Tech website">
+    <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare a typical website with a Davao Byte website">
   </div>
   <ul class="cmp-points">
     <li><b>Typical:</b> crowded pages, no clear next step, tiny buttons.</li>
-    <li><b>BC Tech:</b> one clear message, one clear button, easy on every phone.</li>
+    <li><b>Davao Byte:</b> one clear message, one clear button, easy on every phone.</li>
   </ul>`;
 }

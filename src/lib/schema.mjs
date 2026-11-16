@@ -26,7 +26,7 @@ function organization() {
     slogan: site.tagline,
     email: site.email,
     address,
-    description: 'BC Tech is a web design and web development company in Davao City, Philippines.',
+    description: 'Davao Byte is a web design and web development company in Davao City, Philippines.',
   };
   if (site.phone) o.telephone = site.phone;
   const links = Object.entries(site.social).filter(([k, v]) => v && k !== 'messenger' && k !== 'whatsapp').map(([, v]) => v);
@@ -99,7 +99,7 @@ export function jsonLd(meta) {
   if (meta.key === 'services') {
     graph.push({
       '@type': 'ItemList',
-      name: 'BC Tech services',
+      name: 'Davao Byte services',
       itemListElement: services.map((s, i) => ({
         '@type': 'ListItem',
         position: i + 1,
@@ -111,7 +111,7 @@ export function jsonLd(meta) {
   if (meta.key === 'pricing') {
     graph.push({
       '@type': 'OfferCatalog',
-      name: 'BC Tech website packages',
+      name: 'Davao Byte website packages',
       itemListElement: packages.map((p) => ({
         '@type': 'Offer',
         name: `${p.name} (${p.sub})`,

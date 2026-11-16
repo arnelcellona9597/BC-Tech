@@ -36,9 +36,9 @@ function respond(bool $ok, string $message, int $code = 200): void
     $m = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
     $t = $ok ? 'Thank you' : 'Something went wrong';
     echo "<!doctype html><html lang=\"en-PH\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta name=\"robots\" content=\"noindex\">"
-       . "<title>{$t} | BC Tech</title><body style=\"font-family:system-ui,sans-serif;background:#0B0B0C;color:#fff;display:grid;place-items:center;min-height:100vh;margin:0;padding:1.5rem;text-align:center\">"
+       . "<title>{$t} | Davao Byte</title><body style=\"font-family:system-ui,sans-serif;background:#0B0B0C;color:#fff;display:grid;place-items:center;min-height:100vh;margin:0;padding:1.5rem;text-align:center\">"
        . "<main><h1 style=\"font-weight:600\">{$t}</h1><p style=\"max-width:36ch;margin:1rem auto;line-height:1.6\">{$m}</p>"
-       . "<p><a href=\"/\" style=\"color:#FF5A6E\">Back to the BC Tech website</a></p></main></body></html>";
+       . "<p><a href=\"/\" style=\"color:#FF5A6E\">Back to the Davao Byte website</a></p></main></body></html>";
     exit;
 }
 
@@ -74,7 +74,7 @@ function client_ip(): string
 function rate_limit(): void
 {
     $max = (int) config()['limits']['per_ip_per_hour'];
-    $file = sys_get_temp_dir() . '/bctech_rl_' . hash('sha256', client_ip());
+    $file = sys_get_temp_dir() . '/davaobyte_rl_' . hash('sha256', client_ip());
     $now = time();
     $hits = [];
     if (is_file($file)) {
@@ -131,10 +131,10 @@ function storage_dir(): string
     return $dir;
 }
 
-/** A short reference the visitor sees and we get in the email, e.g. BC-241115-7K3QX. */
+/** A short reference the visitor sees and we get in the email, e.g. DB-241115-7K3QX. */
 function new_reference(): string
 {
-    return 'BC-' . date('ymd') . '-' . strtoupper(substr(bin2hex(random_bytes(4)), 0, 5));
+    return 'DB-' . date('ymd') . '-' . strtoupper(substr(bin2hex(random_bytes(4)), 0, 5));
 }
 
 /**
@@ -160,7 +160,7 @@ function mark_submission(string $ref, string $status): void
     $line = json_encode(['ref' => $ref, 'time' => date('c'), 'status' => $status]) . "\n";
     @file_put_contents(storage_dir() . '/inquiries.jsonl', $line, FILE_APPEND | LOCK_EX);
     if ($status !== 'emailed') {
-        error_log("BC Tech: message {$ref} was saved but the email could not be sent ({$status}).");
+        error_log("Davao Byte: message {$ref} was saved but the email could not be sent ({$status}).");
     }
 }
 

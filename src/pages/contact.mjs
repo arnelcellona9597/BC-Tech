@@ -7,7 +7,7 @@ export const meta = {
   path: '/contact/',
   file: 'contact/index.html',
   crumb: 'Contact',
-  title: 'Book a Free Call or Contact BC Tech | Davao City',
+  title: 'Book a Free Call or Contact Davao Byte | Davao City',
   description: 'Book a free call or send us a message. Tell us about your business and we will show you how a website can bring you more customers.',
   ogImage: '/assets/img/og/contact.png',
   ogHeadline: 'Book a free call.',

@@ -42,7 +42,7 @@ const markGroup = (ink, slash) =>
     .map((p, i) => p.replace(/fill="currentColor"/, `fill="${ink}"`).replace(/class="mark-slash" fill="#C8102E"/, `fill="${slash}"`))
     .join('');
 
-export async function ogImage({ headline, label = 'BC TECH', tagline = 'BUILT TO BRING YOU BUSINESS', domain }) {
+export async function ogImage({ headline, label = 'DAVAO BYTE', tagline = 'WEBSITES THAT BRING YOU CUSTOMERS', domain }) {
   const W = 1200, H = 630, padX = 84;
   const lines = wrap(cinzel, headline, 66, 1, 700).slice(0, 4);
   const lh = 78;
@@ -50,8 +50,8 @@ export async function ogImage({ headline, label = 'BC TECH', tagline = 'BUILT TO
   const top = Math.max(210, (H - blockH) / 2 + 20);
   const head = lines.map((l, i) => `<path fill="#fff" transform="translate(${padX} ${r2(top + i * lh + 52)})" d="${glyphRun(cinzel, l, 66, 1).d}"/>`).join('');
 
-  const brand = glyphRun(cinzel, 'BC', 30, 6);
-  const tech = glyphRun(cinzel, 'TECH', 30, 6);
+  const brand = glyphRun(cinzel, 'DAVAO', 30, 6);
+  const tech = glyphRun(cinzel, 'BYTE', 30, 6);
   const tag = glyphRun(mont, tagline, 17, 5.5);
   const dom = glyphRun(mont, domain.toUpperCase(), 16, 4);
 

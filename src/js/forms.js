@@ -1,11 +1,11 @@
-/* BC Tech: contact and lead forms (progressive enhancement over a normal POST). */
+/* Davao Byte: contact and lead forms (progressive enhancement over a normal POST). */
 (() => {
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
   const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
   const MSG = {
     required: 'Please fill this in.',
     email: 'Please enter a valid email, like name@example.com.',
-    fail: 'Sorry, that did not go through. Please try again or email us at info@bctech.com.',
+    fail: 'Sorry, that did not go through. Please try again or email us at info@davaobyte.com.',
   };
 
   const setError = (field, text) => {

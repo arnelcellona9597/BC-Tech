@@ -1,4 +1,4 @@
-/* BC Tech: the 3D package stage on the Pricing page (chips, arrows, dots, swipe, keyboard). */
+/* Davao Byte: the 3D package stage on the Pricing page (chips, arrows, dots, swipe, keyboard). */
 (() => {
   const d = document;
   const $$ = (s, c = d) => Array.from(c.querySelectorAll(s));

@@ -23,14 +23,14 @@ function mail_brand(array $cfg): array
 {
     $s = $cfg['site'] ?? [];
     return [
-        'name'     => $s['name'] ?? 'BC Tech',
-        'url'      => rtrim($s['url'] ?? 'https://bctech.com', '/'),
-        'email'    => $cfg['mail']['to'] ?? 'info@bctech.com',
+        'name'     => $s['name'] ?? 'Davao Byte',
+        'url'      => rtrim($s['url'] ?? 'https://davaobyte.com', '/'),
+        'email'    => $cfg['mail']['to'] ?? 'info@davaobyte.com',
         'phone'    => $s['phone'] ?? '+63 951 487 4304',
         'landline' => $s['landline'] ?? '(082) 2929 822',
         'hours'    => $s['hours'] ?? 'Monday to Friday, 9:00 AM to 5:00 PM (Philippine Time)',
         'city'     => $s['city'] ?? 'Davao City, Philippines',
-        'tagline'  => $s['tagline'] ?? 'Built to Bring You Business.',
+        'tagline'  => $s['tagline'] ?? 'Websites That Bring You Customers.',
     ];
 }
 

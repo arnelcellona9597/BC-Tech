@@ -9,11 +9,11 @@ export const meta = {
   key: 'home',
   path: '/',
   file: 'index.html',
-  title: 'BC Tech | Web Design & Development in Davao City',
-  description: 'Websites and online stores that bring you customers. BC Tech is a Davao City web design and development team. See our prices and book a free call.',
+  title: 'Davao Byte | Web Design & Development in Davao City',
+  description: 'Websites and online stores that bring you customers. Davao Byte is a Davao City web design and development team. See our prices and book a free call.',
   ogImage: '/assets/img/og/home.png',
-  ogAlt: 'BC Tech. Built to Bring You Business.',
-  ogHeadline: 'Built to Bring You Business.',
+  ogAlt: 'Davao Byte. Websites That Bring You Customers.',
+  ogHeadline: 'Web design and development in Davao City.',
   priority: '1.0',
   usesPeso: true,
   scripts: ['forms', 'charts', 'booking', 'pricing', 'particles', 'slider-full'],
@@ -86,7 +86,7 @@ export function body() {
 <section class="sec cv" aria-labelledby="problem-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Sound familiar?', title: 'Most business websites look nice and <span class="accent">do nothing.</span>', lead: 'A website should work like your best salesperson: always on, always polite, always pointing customers to the next step.', id: 'problem-title' })}
-    <div class="reveal">${slider('before-after', 'Without a plan and with BC Tech', [
+    <div class="reveal">${slider('before-after', 'Without a plan and with Davao Byte', [
       `<div class="pair-col bad">
         <h3>Without a plan</h3>
         <ul class="pair-list">
@@ -94,7 +94,7 @@ export function body() {
         </ul>
       </div>`,
       `<div class="pair-col good">
-        <h3>With BC Tech</h3>
+        <h3>With Davao Byte</h3>
         <ul class="pair-list">
           ${promises.map((p) => `<li><span class="card-icon">${icon(p.icon)}</span><div><strong>${esc(p.title)}</strong><span>${esc(p.text)}</span></div></li>`).join('')}
         </ul>
@@ -133,7 +133,7 @@ export function body() {
     <p class="eyebrow">Our promise</p>
     ${statement(['We do not build websites to look at.', { hi: 'We build them to bring you customers.' }])}
     <span class="st-line" aria-hidden="true"></span>
-    <p class="st-sign">BC Tech <i aria-hidden="true"></i> ${site.tagline}</p>
+    <p class="st-sign">Davao Byte <i aria-hidden="true"></i> ${site.tagline}</p>
   </div>
 </section>
 
@@ -147,9 +147,9 @@ export function body() {
 <section class="sec light cv why-lux" aria-labelledby="why-title">
   <span class="why-blob wb-1" aria-hidden="true"></span><span class="why-blob wb-2" aria-hidden="true"></span>
   <div class="wrap">
-    ${sectionHead({ eyebrow: 'Why BC Tech', title: 'Premium results, <span class="accent">plain talk</span>', lead: 'No confusing tech words. We explain what we do and why it helps your sales.', id: 'why-title', center: true })}
+    ${sectionHead({ eyebrow: 'Why Davao Byte', title: 'Premium results, <span class="accent">plain talk</span>', lead: 'No confusing tech words. We explain what we do and why it helps your sales.', id: 'why-title', center: true })}
   </div>
-  <div class="stagger">${slider('home-why', 'Why choose BC Tech', why.map((w) => featureCard({ icon: w.icon, title: w.title, text: esc(w.text) })), { cols: 3, always: true, autoplay: true, cls: 'why-full' })}</div>
+  <div class="stagger">${slider('home-why', 'Why choose Davao Byte', why.map((w) => featureCard({ icon: w.icon, title: w.title, text: esc(w.text) })), { cols: 3, always: true, autoplay: true, cls: 'why-full' })}</div>
 </section>
 
 <section class="sec deep cv" aria-labelledby="process-title">

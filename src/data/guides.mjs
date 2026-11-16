@@ -6,8 +6,8 @@ export const guides = [
   {
     slug: 'website-cost-philippines',
     title: 'How much does a website cost in the Philippines?',
-    seoTitle: 'How Much Does a Website Cost in the Philippines? | BC Tech',
-    description: 'What changes the price of a website, what else you pay for, and how to compare quotes. Includes BC Tech prices in pesos.',
+    seoTitle: 'How Much Does a Website Cost in the Philippines? | Davao Byte',
+    description: 'What changes the price of a website, what else you pay for, and how to compare quotes. Includes Davao Byte prices in pesos.',
     ogHeadline: 'How much does a website cost in the Philippines?',
     summary: 'What changes the price, what else you pay for each year, and how to compare quotes fairly.',
     mins: 6,
@@ -23,7 +23,7 @@ export const guides = [
         'Writing and photos: if we write the pages and prepare the pictures, that is extra work compared with you supplying them.',
         'Design: a fully custom design takes longer than adapting a ready-made layout.',
       ] },
-      { h2: 'BC Tech website prices in pesos' },
+      { h2: 'Davao Byte website prices in pesos' },
       { p: 'These are the typical ranges for our packages. Your exact price is confirmed in writing after a free call, because it depends on what you need.' },
       { packages: true },
       { h2: 'What else you pay for besides the build' },
@@ -64,7 +64,7 @@ export const guides = [
   {
     slug: 'shopify-vs-woocommerce',
     title: 'Shopify or WooCommerce for a small online store?',
-    seoTitle: 'Shopify vs WooCommerce for a Small Online Store | BC Tech',
+    seoTitle: 'Shopify vs WooCommerce for a Small Online Store | Davao Byte',
     description: 'A plain-language comparison of Shopify and WooCommerce for Philippine shops: setup, cost, control, payments and growth.',
     ogHeadline: 'Shopify or WooCommerce for your store?',
     summary: 'A plain comparison of the two most popular ways to build a small online store.',
@@ -113,7 +113,7 @@ export const guides = [
   {
     slug: 'what-is-erp-integration',
     title: 'What is an ERP integration, and does your business need one?',
-    seoTitle: 'What Is an ERP Integration? A Plain Guide | BC Tech',
+    seoTitle: 'What Is an ERP Integration? A Plain Guide | Davao Byte',
     description: 'ERP integration explained in plain words: what it is, signs you need it, what can connect, how it works and what to prepare.',
     ogHeadline: 'What is an ERP integration?',
     summary: 'ERP, API and automation explained simply, with the signs that your business is ready for it.',
