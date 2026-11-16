@@ -152,8 +152,26 @@
     paint();
     document.dispatchEvent(new CustomEvent('themechange', { detail: t }));
   }
+  var hint = document.querySelector('[data-theme-hint]');
+  function hideHint() {
+    if (!hint) return;
+    hint.classList.remove('in');
+    setTimeout(function () { hint.hidden = true; }, 500);
+    try { localStorage.setItem('davaobyte_theme_hint', '1'); } catch (e) {}
+  }
+  var seen = false;
+  try { seen = !!(localStorage.getItem('davaobyte_theme_hint') || localStorage.getItem('davaobyte_theme')); } catch (e) {}
+  if (hint && !seen) {
+    setTimeout(function () {
+      hint.textContent = h.getAttribute('data-theme') === 'dark' ? 'Try light mode' : 'Try dark mode';
+      hint.hidden = false;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { hint.classList.add('in'); }); });
+      setTimeout(hideHint, 7000);
+    }, 1600);
+  }
   btns.forEach(function (b) {
     b.addEventListener('click', function () {
+      hideHint();
       h.classList.add('theme-anim');
       set(h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
       setTimeout(function () { h.classList.remove('theme-anim'); }, 450);
