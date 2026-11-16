@@ -13,7 +13,7 @@ function head({ meta, css, assets }) {
   const t = esc(meta.title);
   const d = esc(meta.description);
   return `<!doctype html>
-<html lang="${site.lang}">
+<html lang="${site.lang}" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +21,9 @@ function head({ meta, css, assets }) {
 <meta name="description" content="${d}">
 ${meta.noindex ? '' : `<link rel="canonical" href="${url}">`}
 <meta name="robots" content="${meta.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}">
-<meta name="theme-color" content="${site.themeColor}">
-<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="${site.themeColorLight}">
+<meta name="color-scheme" content="light dark">
+<script src="${assets.js['theme-init']}"></script>
 <meta property="og:site_name" content="${site.name}">
 <meta property="og:locale" content="${site.locale}">
 <meta property="og:type" content="${meta.ogType || 'website'}">
@@ -61,13 +62,16 @@ function header(meta) {
 <header class="site-header" id="top">
   <div class="wrap bar">
     <a class="brand" href="/" aria-label="Davao Byte home page">${mark('brand-mark')}<span class="brand-text">DAVAO <i></i>BYTE</span></a>
+    <div class="bar-end">
     <nav class="nav" id="site-nav" aria-label="Main">
       <ul>
 ${nav.filter((n) => n.key !== 'home').map((n) => `        <li><a href="${n.href}"${cur(n.key)}>${n.label}</a></li>`).join('\n')}
         <li class="nav-cta"><a class="btn btn-primary btn-sm" href="/contact/#book"><span>Book a free call</span></a></li>
       </ul>
     </nav>
+    <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false" title="Switch between light and dark mode" data-theme-toggle><span class="tt-sun" aria-hidden="true">${icon('sun', 'ic')}</span><span class="tt-moon" aria-hidden="true">${icon('moon', 'ic')}</span></button>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span></button>
+    </div>
   </div>
 </header>
 <div class="menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" inert>

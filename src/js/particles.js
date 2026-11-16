@@ -25,7 +25,7 @@
     }
     function draw(t) {
       ctx.clearRect(0, 0, w, h);
-      var i, j, a, b, dx, dy, d;
+      var i, j, a, b, dx, dy, d, lt = document.documentElement.getAttribute('data-theme') !== 'dark';
       for (i = 0; i < pts.length; i++) {
         a = pts[i];
         if (!reduce) {
@@ -37,9 +37,14 @@
         }
         var tw = reduce ? 1 : .65 + .35 * Math.sin(t / 900 + a.p);
         ctx.beginPath();
-        ctx.fillStyle = a.red ? 'rgba(255,90,110,' + (a.a * tw).toFixed(3) + ')' : 'rgba(255,255,255,' + (a.a * .8 * tw).toFixed(3) + ')';
-        ctx.shadowColor = a.red ? 'rgba(255,60,90,.9)' : 'rgba(255,255,255,.7)';
-        ctx.shadowBlur = 8 + a.r * 3;
+        if (lt) {
+          ctx.fillStyle = a.red ? 'rgba(200,16,46,' + (a.a * .75 * tw).toFixed(3) + ')' : 'rgba(11,11,12,' + (a.a * .4 * tw).toFixed(3) + ')';
+          ctx.shadowColor = 'rgba(200,16,46,.25)'; ctx.shadowBlur = a.red ? 4 : 0;
+        } else {
+          ctx.fillStyle = a.red ? 'rgba(255,90,110,' + (a.a * tw).toFixed(3) + ')' : 'rgba(255,255,255,' + (a.a * .8 * tw).toFixed(3) + ')';
+          ctx.shadowColor = a.red ? 'rgba(255,60,90,.9)' : 'rgba(255,255,255,.7)';
+          ctx.shadowBlur = 8 + a.r * 3;
+        }
         ctx.arc(a.x, a.y, a.r, 0, 6.283);
         ctx.fill();
       }
@@ -49,7 +54,7 @@
         for (j = i + 1; j < pts.length; j++) {
           b = pts[j]; dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy;
           if (d < 9000) {
-            ctx.strokeStyle = 'rgba(255,90,110,' + ((1 - d / 9000) * .16).toFixed(3) + ')';
+            ctx.strokeStyle = (lt ? 'rgba(200,16,46,' : 'rgba(255,90,110,') + ((1 - d / 9000) * (lt ? .13 : .16)).toFixed(3) + ')';
             ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
           }
         }
@@ -58,6 +63,7 @@
     function loop(t) { if (!run) return; draw(t); raf = requestAnimationFrame(loop); }
     function go() { var want = visible && !document.hidden && !reduce; if (want && !run) { run = true; raf = requestAnimationFrame(loop); } else if (!want && run) { run = false; cancelAnimationFrame(raf); } }
     size(); draw(0);
+    document.addEventListener('themechange', function () { draw(0); });
     if (!reduce) {
       new IntersectionObserver(function (e) { visible = e[0].isIntersecting; go(); }).observe(host);
       document.addEventListener('visibilitychange', go);
