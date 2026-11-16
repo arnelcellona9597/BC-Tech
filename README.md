@@ -1,6 +1,6 @@
-# BC Tech website
+# Davao Byte website
 
-Marketing site for BC Tech (web design and development, Davao City, Philippines).
+Marketing site for Davao Byte (web design and development, Davao City, Philippines).
 
 - Static HTML, CSS and vanilla JavaScript, with no frameworks and no third-party scripts.
 - PHP is used only to send form emails over SMTP (contact form and the booking calendar).

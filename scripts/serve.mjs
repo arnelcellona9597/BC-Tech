@@ -69,4 +69,4 @@ http.createServer(async (req, res) => {
   }
   res.writeHead(status, { ...headers, 'Content-Length': statSync(file).size });
   createReadStream(file).pipe(res);
-}).listen(PORT, () => console.log(`BC Tech preview: http://localhost:${PORT}  (PHP on ${PHP_PORT})`));
+}).listen(PORT, () => console.log(`Davao Byte preview: http://localhost:${PORT}  (PHP on ${PHP_PORT})`));

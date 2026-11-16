@@ -5,7 +5,7 @@
 export const servicePages = {
   systems: {
     slug: 'websites-and-online-stores',
-    seoTitle: 'Website Website & Online Store Development in Davao City | BC Tech Online Store Development in Davao | BC Tech',
+    seoTitle: 'Website & Online Store Development in Davao | Davao Byte',
     metaDesc: 'Business websites you can edit yourself and online stores that take GCash, Maya and cards. Built in Davao City for customers across the Philippines.',
     ogHeadline: 'Websites and online stores that bring you customers.',
     h1: 'Websites and online stores <span class="accent">built to bring you customers</span>',
@@ -37,7 +37,7 @@ export const servicePages = {
   },
   integrations: {
     slug: 'api-erp-integration-and-automation',
-    seoTitle: 'REST API, ERP Integration & Automation | BC Tech',
+    seoTitle: 'REST API, ERP Integration & Automation | Davao Byte',
     metaDesc: 'Connect your website to your ERP, accounting, inventory or CRM with REST API integration, and automate the work your team repeats every day.',
     ogHeadline: 'Connect your website to the systems you already use.',
     h1: 'API, ERP integration and automation <span class="accent">so nothing is typed twice</span>',
@@ -69,7 +69,7 @@ export const servicePages = {
   },
   brand: {
     slug: 'branding-and-logo-design',
-    seoTitle: 'Branding & Logo Design in Davao City | BC Tech',
+    seoTitle: 'Branding & Logo Design in Davao City | Davao Byte',
     metaDesc: 'Logo, colors, tagline and ready-to-use templates that make your business look trustworthy online and in print. Based in Davao City.',
     ogHeadline: 'A look that makes people trust you.',
     h1: 'Branding and logo design <span class="accent">that earns trust</span>',
@@ -101,7 +101,7 @@ export const servicePages = {
   },
   words: {
     slug: 'website-copywriting',
-    seoTitle: 'Website Copywriting & Content Writing | BC Tech',
+    seoTitle: 'Website Copywriting & Content Writing | Davao Byte',
     metaDesc: 'Clear, friendly website writing that explains what you do and makes people contact you. Pages, product descriptions, blog posts and FAQs.',
     ogHeadline: 'Words that make people get in touch.',
     h1: 'Website copywriting <span class="accent">that helps people choose you</span>',
@@ -133,7 +133,7 @@ export const servicePages = {
   },
   preview: {
     slug: 'website-preview-and-prototype',
-    seoTitle: 'Website Preview & Prototype Before We Build | BC Tech',
+    seoTitle: 'Website Preview & Prototype Before We Build | Davao Byte',
     metaDesc: 'Approve how your website looks and works before any building starts, with clickable previews, landing page versions and screen concepts.',
     ogHeadline: 'See your website before we build it.',
     h1: 'See your website <span class="accent">before we build it</span>',
@@ -164,7 +164,7 @@ export const servicePages = {
   },
   tools: {
     slug: 'booking-and-customer-tools',
-    seoTitle: 'Booking Forms, Calculators & Website Tools | BC Tech',
+    seoTitle: 'Booking Forms, Calculators & Website Tools | Davao Byte',
     metaDesc: 'Quote calculators, booking and inquiry forms and product pickers that turn website visitors into inquiries, bookings and customers.',
     ogHeadline: 'Small tools that turn visitors into customers.',
     h1: 'Booking forms and website tools <span class="accent">that win customers</span>',
@@ -195,7 +195,7 @@ export const servicePages = {
   },
   marketing: {
     slug: 'digital-marketing-and-growth',
-    seoTitle: 'Digital Marketing, Email & Social Content | BC Tech',
+    seoTitle: 'Digital Marketing, Email & Social Content | Davao Byte',
     metaDesc: 'Email follow-ups, social media content, Facebook and Google Ads writing and market research to keep customers coming after your site is live.',
     ogHeadline: 'Keep your name in front of customers.',
     h1: 'Digital marketing and growth <span class="accent">after your site goes live</span>',
@@ -226,7 +226,7 @@ export const servicePages = {
   },
   seo: {
     slug: 'seo-and-google-setup',
-    seoTitle: 'SEO & Google Setup for Your Website | BC Tech',
+    seoTitle: 'SEO & Google Setup for Your Website | Davao Byte',
     metaDesc: 'On-page SEO, schema markup, fast loading and accessibility checks so Google and every visitor can understand and use your website.',
     ogHeadline: 'Make it easy for Google to find you.',
     h1: 'SEO and Google setup <span class="accent">so the right people find you</span>',

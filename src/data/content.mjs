@@ -1,5 +1,5 @@
 // All page copy that is reused across pages lives here (plain language, sales-first).
-// Keep claims honest: BC Tech is new, so no invented stats, awards or testimonials.
+// Keep claims honest: Davao Byte is new, so no invented stats, awards or testimonials.
 
 export const services = [
   {
@@ -116,13 +116,13 @@ export const promises = [
 
 export const why = [
   { icon: 'pin', title: 'A local team', text: 'We are based in Davao City. You talk to the people who actually build your website.' },
-  { icon: 'shield', title: '7+ years each', text: 'BC Tech is new, but every member of our team has at least 7 years in web design and development.' },
+  { icon: 'shield', title: '7+ years each', text: 'Davao Byte is new, but every member of our team has at least 7 years in web design and development.' },
   { icon: 'code', title: 'Any platform you prefer', text: 'WordPress, Shopify, Laravel, React, Next.js or something else? Tell us. We can handle it :)' },
   { icon: 'bolt', title: 'Fast on every phone', text: 'Your site loads quickly and looks right on phones, tablets and computers.' },
   { icon: 'cursor', title: 'Built to sell', text: 'We design every page around one question: will this get the customer to contact you?' },
 ];
 
-// How a project goes, told as a chat between the client ("you") and BC Tech ("us")
+// How a project goes, told as a chat between the client ("you") and Davao Byte ("us")
 export const conversation = [
   { stage: 'Talk', msgs: [
     { who: 'you', text: 'I want my website to bring me more customers.' },
@@ -164,7 +164,7 @@ export const serviceJumps = [
   ['seo', 'Found on Google'],
 ];
 
-// Prices come from the "BC Tech - Pricing" Google Doc (PHP, estimates).
+// Prices come from the "Davao Byte - Pricing" Google Doc (PHP, estimates).
 export const packages = [
   {
     id: 'cms-small',

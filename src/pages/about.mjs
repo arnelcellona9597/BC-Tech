@@ -7,8 +7,8 @@ export const meta = {
   path: '/about/',
   file: 'about/index.html',
   crumb: 'About',
-  title: 'About BC Tech | Web Design Team in Davao City',
-  description: 'Meet BC Tech: a Davao City web design and development team with 7+ years of experience each. We work with any platform you prefer.',
+  title: 'About Davao Byte | Web Design Team in Davao City',
+  description: 'Meet Davao Byte: a Davao City web design and development team with 7+ years of experience each. We work with any platform you prefer.',
   ogImage: '/assets/img/og/about.png',
   ogHeadline: 'A small team that cares about your sales.',
   priority: '0.7',
@@ -28,9 +28,9 @@ export function body() {
   <div class="head-visual">${picture('about-head', { alt: 'Modern studio at night with desks and monitors showing website layouts', sizes: '(min-width:960px) 52vw, 100vw', eager: true })}</div>
   <div class="wrap">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li aria-current="page">About</li></ol>
-    <p class="eyebrow">About BC Tech</p>
+    <p class="eyebrow">About Davao Byte</p>
     <h1 id="page-title">A small team that cares about <span class="accent">your sales</span></h1>
-    <p class="lead">BC Tech is a new company, but our team is not new. Each of us has more than 7 years of experience in web design and development, and we are based right here in ${site.city}.</p>
+    <p class="lead">Davao Byte is a new company, but our team is not new. Each of us has more than 7 years of experience in web design and development, and we are based right here in ${site.city}.</p>
   </div>
 </section>
 
@@ -38,7 +38,7 @@ export function body() {
   <div class="wrap split">
     <div class="reveal">
       <p class="eyebrow">Our story</p>
-      <h2 id="story-title">We started BC Tech to make websites that <span class="accent">pay for themselves</span></h2>
+      <h2 id="story-title">We started Davao Byte to make websites that <span class="accent">pay for themselves</span></h2>
     </div>
     <div class="prose reveal" style="--d:.1s">
       <p>After years of building websites for many kinds of businesses, we saw the same problem again and again: a good-looking website that did not bring in customers.</p>

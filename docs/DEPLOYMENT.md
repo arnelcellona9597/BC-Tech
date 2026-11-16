@@ -1,4 +1,4 @@
-# BC Tech website: setup, content and deployment
+# Davao Byte website: setup, content and deployment
 
 ## 1. Run it on your computer
 
@@ -27,7 +27,7 @@ After any change run `npm run build`. The ready-to-upload site is the `public/` 
 
 **Prices:** change them in `src/data/content.mjs` (`packages` and `addons`). The pricing page, home page and Google search data all update together.
 
-**Domain:** the sitemap, canonical links and social previews use `site.url` in `src/data/site.mjs` (currently `https://bctech.com`).
+**Domain:** the sitemap, canonical links and social previews use `site.url` in `src/data/site.mjs` (currently `https://davaobyte.com`).
 
 ## 3. Put it online (Z.com hosting, cPanel)
 
@@ -35,13 +35,13 @@ Do these in order:
 
 1. **Turn on SSL** (free certificate) for the domain in cPanel. The `.htaccess` file forces HTTPS, so SSL must work first.
 2. **Pick PHP 8.1 or newer** (cPanel > MultiPHP Manager) for the domain. PHP 7.4 also works.
-3. **Create the mailbox** `info@bctech.com` (cPanel > Email Accounts). Optional: add a forwarder to `arnelcellona9597@gmail.com` (cPanel > Forwarders). The website also sends a copy (BCC) to that Gmail address by itself.
+3. **Create the mailbox** `info@davaobyte.com` (cPanel > Email Accounts). Optional: add a forwarder to `arnelcellona9597@gmail.com` (cPanel > Forwarders). The website also sends a copy (BCC) to that Gmail address by itself.
 4. **Upload everything inside `public/`** to `public_html/` (File Manager or FTP). Turn on "Show hidden files" so `.htaccess` is included.
 5. **Turn on real emails.** In `public_html/api/`, copy `config.example.php` to `config.php`, then edit it:
    - `'driver' => 'smtp'`
-   - SMTP `host` (usually `mail.bctech.com`), `port` 587 with `'secure' => 'tls'` (or 465 with `'ssl'`)
-   - `user` = `info@bctech.com` and its password
-6. **Test:** send a message from the Contact page and book a call. Check that `info@bctech.com` and the Gmail address both receive them, and that the visitor gets the short confirmation email.
+   - SMTP `host` (usually `mail.davaobyte.com`), `port` 587 with `'secure' => 'tls'` (or 465 with `'ssl'`)
+   - `user` = `info@davaobyte.com` and its password
+6. **Test:** send a message from the Contact page and book a call. Check that `info@davaobyte.com` and the Gmail address both receive them, and that the visitor gets the short confirmation email.
 
 `config.php` is never committed to git, so the password stays off GitHub. If emails land in spam, ask Z.com to enable SPF and DKIM for the domain.
 
@@ -56,7 +56,7 @@ Do these in order:
 - [ ] Confirm the opening hours and booking time slots (`site.hours`, `site.booking` and the same values in `api/config.php`)
 - [ ] LYFD screenshots, results and a client quote (see below)
 - [ ] Have a lawyer review the Privacy page wording
-- [ ] Submit `https://bctech.com/sitemap.xml` in Google Search Console
+- [ ] Submit `https://davaobyte.com/sitemap.xml` in Google Search Console
 - [ ] Run Lighthouse on the live site (mobile and desktop). Local scores are 100 across the board; the live score also depends on the host.
 
 ## 5. Add the LYFD screenshots
@@ -72,7 +72,7 @@ The case study currently shows drawn placeholder browser frames.
 
 ## 6. Images, charts and carousels
 
-**Pictures.** The 11 pictures (home hero, five business workplaces, and the Services, Contact, Pricing, About and Work headers) were created in the Figma file "BC Tech website images" (Webee Dev's team). They show devices, workplaces and graphs only, with no people, text, logos or watermarks. Keep it that way, and make sure no two pages use the same picture.
+**Pictures.** The 11 pictures (home hero, five business workplaces, and the Services, Contact, Pricing, About and Work headers) were created in the Figma file "Davao Byte website images" (Webee Dev's team). They show devices, workplaces and graphs only, with no people, text, logos or watermarks. Keep it that way, and make sure no two pages use the same picture.
 - Full-size originals live in `assets-src/` on your computer only (not in git). If that folder is lost, re-download them from the Figma file.
 - To replace or add an image: put a PNG in `assets-src/` (for example `ind-cafe.png`), list its widths in `scripts/images.mjs`, then run `npm run images` followed by `npm run build`. That writes small AVIF and WebP versions to `src/static/assets/img/ai/` and the sizes to `src/data/images.json`.
 - Keep the LYFD case study on screenshots of the real site, not on stand-in pictures.

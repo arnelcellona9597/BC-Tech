@@ -55,7 +55,7 @@ function send_mail(string $to, string $subject, string $html, string $text, ?str
         $m->send();
         return true;
     } catch (MailException $e) {
-        error_log('BC Tech mail error: ' . $m->ErrorInfo);
+        error_log('Davao Byte mail error: ' . $m->ErrorInfo);
         return false;
     }
 }

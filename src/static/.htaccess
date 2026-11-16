@@ -1,4 +1,4 @@
-# BC Tech: Apache settings (Z.com / cPanel). Upload this file with the site.
+# Davao Byte: Apache settings (Z.com / cPanel). Upload this file with the site.
 # IMPORTANT: turn on the free SSL certificate in cPanel BEFORE uploading, because this file forces HTTPS.
 
 Options -Indexes

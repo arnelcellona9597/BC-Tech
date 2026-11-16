@@ -60,7 +60,7 @@ function header(meta) {
 <div class="progress" aria-hidden="true"><i></i></div>
 <header class="site-header" id="top">
   <div class="wrap bar">
-    <a class="brand" href="/" aria-label="BC TECH home page">${mark('brand-mark')}<span class="brand-text">BC <i></i>TECH</span></a>
+    <a class="brand" href="/" aria-label="Davao Byte home page">${mark('brand-mark')}<span class="brand-text">DAVAO <i></i>BYTE</span></a>
     <nav class="nav" id="site-nav" aria-label="Main">
       <ul>
 ${nav.filter((n) => n.key !== 'home').map((n) => `        <li><a href="${n.href}"${cur(n.key)}>${n.label}</a></li>`).join('\n')}
@@ -106,7 +106,7 @@ function footer(meta) {
     </div>
     <div class="foot-top">
       <div class="foot-brand">
-        <a class="brand" href="/" aria-label="BC TECH home page">${mark('brand-mark')}<span class="brand-text">BC <i></i>TECH</span></a>
+        <a class="brand" href="/" aria-label="Davao Byte home page">${mark('brand-mark')}<span class="brand-text">DAVAO <i></i>BYTE</span></a>
         <p class="foot-tag">${site.tagline}</p>
         <p class="foot-small">Web design and web development, based in ${site.city}, ${site.countryName}.</p>
         ${socialIcons('social-foot')}
@@ -136,13 +136,13 @@ function footer(meta) {
       <p><a href="/privacy/">Privacy</a></p>
     </div>
   </div>
-  <p class="foot-mark" aria-hidden="true">BC TECH</p>
+  <p class="foot-mark" aria-hidden="true">DAVAO BYTE</p>
   <button class="to-top" type="button" aria-label="Back to top"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="tt-track" cx="24" cy="24" r="21"/><circle class="tt-bar" cx="24" cy="24" r="21"/></svg>${icon('arrow', 'ic tt-arrow')}</button>
 </footer>
 <aside class="chat-wrap" aria-label="Chat with us"><a class="chat" href="${messengerHref()}"${site.social.messenger ? ' target="_blank" rel="noopener noreferrer"' : ''} aria-label="Chat with us${site.social.messenger ? ' on Messenger (opens in a new tab)' : ''}">
   <span class="chat-card" aria-hidden="true">
     <span class="cc-av">${mark('cc-av-mark')}<i></i></span>
-    <span class="cc-body"><b>BC Tech <em>Live chat</em></b><span class="cc-msg-t" data-chat-text>Hi! Need a quote?</span></span>
+    <span class="cc-body"><b>Davao Byte <em>Live chat</em></b><span class="cc-msg-t" data-chat-text>Hi! Need a quote?</span></span>
   </span>
   <span class="chat-orb" aria-hidden="true">
     <span class="co-halo"></span><span class="co-ring"></span><span class="co-orbit"><i></i></span>

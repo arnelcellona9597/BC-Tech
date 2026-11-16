@@ -11,7 +11,7 @@ import { ogImage } from './og.mjs';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'src');
 const OUT = join(ROOT, 'public');
-const BRAND = join(ROOT, 'brand', 'website');
+const BRAND = join(ROOT, 'brand', 'davao-byte', 'website');
 
 const out = (...p) => join(OUT, ...p);
 const write = (p, data) => { mkdirSync(dirname(p), { recursive: true }); writeFileSync(p, data); };
@@ -64,11 +64,10 @@ for (const { meta, body } of pages) {
   write(out(meta.file), squash(renderPage({ meta, body: body(), css, assets })));
 }
 
-// ---- social share images (home uses the approved brand card)
+// ---- social share images (one per page, generated from the headline)
 mkdirSync(out('assets', 'img', 'og'), { recursive: true });
-cpSync(join(BRAND, 'og-image-1200x630.png'), out('assets', 'img', 'og', 'home.png'));
 for (const { meta } of pages) {
-  if (meta.key === 'home' || meta.key === 'notfound') continue;
+  if (meta.key === 'notfound') continue;
   write(out(meta.ogImage), await ogImage({ headline: meta.ogHeadline, domain: new URL(site.url).host }));
 }
 

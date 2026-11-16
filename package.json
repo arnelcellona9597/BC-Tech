@@ -1,7 +1,7 @@
 {
-  "name": "bctech-website",
+  "name": "davaobyte-website",
   "version": "1.0.0",
-  "description": "BC Tech marketing website",
+  "description": "Davao Byte marketing website",
   "scripts": {
     "build": "node scripts/build.mjs",
     "serve": "node scripts/serve.mjs",

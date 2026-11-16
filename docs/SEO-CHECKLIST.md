@@ -1,4 +1,4 @@
-# SEO checklist for BC Tech
+# SEO checklist for Davao Byte
 
 Everything that can be done in the code is done and checked by the build. This list covers what needs **you** (accounts, real information, time).
 
@@ -22,13 +22,13 @@ Everything that can be done in the code is done and checked by the build. This l
 1. Add the site to **Google Search Console** and **Bing Webmaster Tools**; submit `https://<domain>/sitemap.xml`; request indexing of the home page.
 2. Run the live pages through Google's **Rich Results Test** and **PageSpeed Insights**.
 3. Check Search Console after about 28 days for real-visitor speed data and any indexing problems.
-4. Add the **"Website by BC Tech"** link to the LYFD website footer, and list BC Tech in business directories (Clutch, GoodFirms, DesignRush, Davao business listings).
+4. Add the **"Website by Davao Byte"** link to the LYFD website footer, and list Davao Byte in business directories (Clutch, GoodFirms, DesignRush, Davao business listings).
 5. Replace the LYFD placeholder screens with real screenshots and real results.
 
 ## When client reviews arrive
-- Ask clients to review BC Tech on **Google Business Profile** first (this is where star ratings can appear in search).
+- Ask clients to review Davao Byte on **Google Business Profile** first (this is where star ratings can appear in search).
 - Add a testimonials section on the site using real names, businesses and photos with permission.
-- Do **not** add review or rating markup for BC Tech's own reviews of itself. Google ignores it and can penalize it.
+- Do **not** add review or rating markup for Davao Byte's own reviews of itself. Google ignores it and can penalize it.
 
 ## Ongoing
 - Publish a new guide every month or two (add it to `src/data/guides.mjs`; the page, sitemap and links are generated).

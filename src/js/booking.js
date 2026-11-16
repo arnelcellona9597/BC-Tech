@@ -1,4 +1,4 @@
-/* BC Tech: "Book a free call" calendar. Request-based: we email the request, then confirm by email. */
+/* Davao Byte: "Book a free call" calendar. Request-based: we email the request, then confirm by email. */
 (() => {
   const root = document.getElementById('booking');
   if (!root || !window.BCForms) return;

@@ -1,4 +1,4 @@
-/* BC Tech: navigation, scroll effects, tilt, sliders. No dependencies. */
+/* Davao Byte: navigation, scroll effects, tilt, sliders. No dependencies. */
 (() => {
   const d = document;
   const root = d.documentElement;
