@@ -233,3 +233,21 @@ html[data-theme=light] .pop-media img{filter:brightness(1.15) saturate(1.05)}
 html[data-theme=light] .pop-x{background:#fff;color:var(--text);border-color:rgba(11,11,12,.14);box-shadow:0 8px 18px -8px rgba(11,11,12,.4)}
 html[data-theme=light] .pop-x:hover{background:var(--red);border-color:var(--red);color:#fff}
 @media (max-width:759px){html[data-theme=light] .pop-media::after{background:linear-gradient(0deg,rgba(11,11,12,.78),rgba(11,11,12,0) 60%)}}
+
+/* Hero 3D scene in light: devices stay dark but sit softly behind a white veil; no red glows */
+html[data-theme=light] .hs3d::after{background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.97) 38%,rgba(255,255,255,.55) 68%,rgba(255,255,255,.72) 100%),linear-gradient(180deg,rgba(255,255,255,.7) 0,transparent 20%,transparent 74%,#fff 100%)}
+html[data-theme=light] .hl-lid{box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 3em 6em -2em rgba(11,11,12,.45)}
+html[data-theme=light] .ph{box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),0 2em 4em -1.5em rgba(11,11,12,.5)}
+html[data-theme=light] .hs3d-shadow{background:radial-gradient(closest-side,rgba(11,11,12,.28),transparent)}
+html[data-theme=light] .hc{background:#fff;color:var(--text);border-color:rgba(11,11,12,.12);box-shadow:0 1.2em 2.4em -1em rgba(11,11,12,.3)}
+html[data-theme=light] .hc .ic{color:var(--red)}
+
+/* 3D monogram in light: graphite layers, ink face */
+html[data-theme=light] .st3d-l{color:color-mix(in srgb,#ececef calc(var(--i)*4%),#8d8d96)}
+html[data-theme=light] .st3d-front{color:var(--text)}
+html[data-theme=light] .st3d-front .mark-slash{fill:var(--red)}
+html[data-theme=light] .st3d-front svg{filter:drop-shadow(0 .6rem 1rem rgba(11,11,12,.25))}
+
+/* Chat bubble text in light */
+html[data-theme=light] .chat-card{color:var(--text)}
+html[data-theme=light] .chat-card :is(b,.cc-msg-t){color:var(--text)}
