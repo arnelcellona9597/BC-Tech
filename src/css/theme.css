@@ -136,3 +136,6 @@ html[data-theme=light] :is(.pc-amount,.addon .amt,.mc-val,.statement-text){text-
 html[data-theme=light] :is(.lux-fx,.lux::before){display:none}
 html[data-theme=light] .st-mark,html[data-theme=light] .nf-ofront{filter:none}
 @media (max-width:1099px){html[data-theme=light] .hero.has-form .hero-visual img{opacity:.2}}
+
+/* Light mode: no gradients that follow the mouse */
+html[data-theme=light] .cursor-glow,html[data-theme=light] .concierge .cc-panel::after,html[data-theme=light] .card-sheen,html[data-theme=light] .cc-spot{display:none!important}
