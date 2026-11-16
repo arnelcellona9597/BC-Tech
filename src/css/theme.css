@@ -139,3 +139,22 @@ html[data-theme=light] .st-mark,html[data-theme=light] .nf-ofront{filter:none}
 
 /* Light mode: no gradients that follow the mouse */
 html[data-theme=light] .cursor-glow,html[data-theme=light] .concierge .cc-panel::after,html[data-theme=light] .card-sheen,html[data-theme=light] .cc-spot{display:none!important}
+
+/* Mobile menu in light: calm white panel, hairline rows, quiet watermark */
+@media (max-width:959px){
+  html[data-theme=light] .menu{background:linear-gradient(180deg,#fff 0,#F6F6F7 100%)}
+  html[data-theme=light] .menu-mark{color:rgba(11,11,12,.04)}
+  html[data-theme=light] .menu-mark .mark-slash{fill:rgba(200,16,46,.16)}
+  html[data-theme=light] .menu-eyebrow{color:var(--red)}
+  html[data-theme=light] .menu-links a{border-bottom-color:rgba(11,11,12,.09)}
+  html[data-theme=light] .menu-links b{color:var(--red)}
+  html[data-theme=light] .menu-links a[aria-current=page] strong,html[data-theme=light] .menu-links a[aria-current=true] strong{color:var(--red)}
+  html[data-theme=light] .menu-arrow{box-sizing:border-box;width:2.2rem;height:2.2rem;padding:.55rem;border:1px solid rgba(11,11,12,.12);border-radius:50%;background:#fff;color:var(--text);opacity:1;box-shadow:0 6px 14px -8px rgba(11,11,12,.25)}
+  html[data-theme=light] .menu-links a[aria-current=page] .menu-arrow,html[data-theme=light] .menu-links a[aria-current=true] .menu-arrow{background:var(--red);border-color:var(--red);color:#fff}
+  html[data-theme=light] .menu-mail,html[data-theme=light] .menu-time{padding:.8rem 1rem;border:1px solid rgba(11,11,12,.09);border-radius:14px;background:#fff;color:var(--text);box-shadow:0 8px 18px -14px rgba(11,11,12,.25)}
+  html[data-theme=light] .menu-time{color:var(--muted)}
+  html[data-theme=light] .menu-foot{gap:.7rem}
+  html[data-theme=light] .menu-foot .btn{box-shadow:0 10px 22px -12px rgba(200,16,46,.55)}
+  html[data-theme=light].nav-open .nav-toggle{background:#fff;border-color:rgba(11,11,12,.18);color:var(--text)}
+  html[data-theme=light].nav-open .theme-toggle{background:#fff}
+}
