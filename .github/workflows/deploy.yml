@@ -1,6 +1,6 @@
 # Builds the site and, on every push to main, uploads the changes to the live hosting over FTPS.
 # One-time setup (GitHub > Settings > Secrets and variables > Actions): FTP_SERVER, FTP_USERNAME, FTP_PASSWORD,
-# and optionally FTP_DIR (folder on the server, default "./"). See docs/DEPLOYMENT.md.
+# and optionally FTP_DIR (folder on the server, default "public_html/"). See docs/DEPLOYMENT.md.
 name: Build and deploy
 
 on:
@@ -63,7 +63,7 @@ jobs:
           protocol: ftps
           port: 21
           local-dir: ./public/
-          server-dir: ${{ secrets.FTP_DIR || './' }}
+          server-dir: ${{ secrets.FTP_DIR || 'public_html/' }}
           # Never touch the server-only settings, saved messages and logs
           exclude: |
             **/.git*
