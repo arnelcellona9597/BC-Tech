@@ -251,3 +251,14 @@ html[data-theme=light] .st3d-front svg{filter:drop-shadow(0 .6rem 1rem rgba(11,1
 /* Chat bubble text in light */
 html[data-theme=light] .chat-card{color:var(--text)}
 html[data-theme=light] .chat-card :is(b,.cc-msg-t){color:var(--text)}
+
+/* Small screens: easier-to-tap footer links; compare labels that fit */
+@media (max-width:959px){
+  .site-footer ul:not(.social){gap:.1rem}
+  .site-footer nav a:not(.soc){display:inline-block;padding-block:.5rem}
+}
+@media (max-width:560px){
+  .cmp-tag{max-width:46%;padding:.28rem .6rem;font-size:.6rem;letter-spacing:.04em;line-height:1.25;text-align:center;white-space:normal}
+  .cmp-tag-bad{left:.6rem;bottom:.6rem}
+  .cmp-tag-good{right:.6rem;bottom:.6rem}
+}

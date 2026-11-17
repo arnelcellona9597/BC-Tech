@@ -120,10 +120,10 @@ export function statement(parts) {
 }
 
 /** A drawn browser window used for the case study placeholder (swap for a screenshot later). */
+// TODO(client): replace .device-screen with an <img src="/assets/img/work/..." width height alt> when the real LYFD screenshots arrive.
 export function browserMock({ url = '', variant = 'a', label = '' }) {
   return `<figure class="device tilt" role="img" aria-label="${esc(label)}">
   <div class="device-bar"><span></span><span></span><span></span><em>${esc(url)}</em></div>
-  <!-- TODO(client): replace .device-screen with <img src="/assets/img/work/..." width height alt> when screenshots arrive -->
   <div class="device-screen mock-${variant}" aria-hidden="true">
     <div class="m-nav"><b></b><i></i><i></i><i></i><u></u></div>
     <div class="m-hero"><div class="m-h1"></div><div class="m-h2"></div><div class="m-btns"><u></u><s></s></div></div>
