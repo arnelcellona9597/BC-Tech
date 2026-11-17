@@ -121,7 +121,14 @@ export function statement(parts) {
 
 /** A drawn browser window used for the case study placeholder (swap for a screenshot later). */
 // TODO(client): replace .device-screen with an <img src="/assets/img/work/..." width height alt> when the real LYFD screenshots arrive.
-export function browserMock({ url = '', variant = 'a', label = '' }) {
+export function browserMock({ url = '', variant = 'a', label = '', shot = null }) {
+  if (shot) {
+    return `<figure class="device tilt">
+  <div class="device-bar"><span></span><span></span><span></span><em>${esc(url)}</em></div>
+  <div class="device-screen has-shot"><img class="device-shot" src="${shot.src}" width="1280" height="800" alt="${esc(shot.alt)}" loading="lazy" decoding="async"></div>
+  <span class="card-sheen" aria-hidden="true"></span>
+</figure>`;
+  }
   return `<figure class="device tilt" role="img" aria-label="${esc(label)}">
   <div class="device-bar"><span></span><span></span><span></span><em>${esc(url)}</em></div>
   <div class="device-screen mock-${variant}" aria-hidden="true">

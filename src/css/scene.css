@@ -72,3 +72,20 @@
 .st3d-front svg{filter:drop-shadow(0 .6rem 1.4rem rgba(0,0,0,.55))}
 @media (max-width:800px){.st3d{right:-16vw;width:80vw;margin-top:-40vw;opacity:.26}}
 @media (prefers-reduced-motion:reduce){.st3d-rig{animation:none;rotate:y -16deg}}
+
+/* ===== Client website cards (real screenshots) ===== */
+.device-screen.has-shot{display:block;padding:0;aspect-ratio:16/10;background:#0b0b0c}
+.device-shot{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.cl-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2rem)}
+.cl-card{display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);transition:transform .4s var(--ease),border-color .3s,box-shadow .4s}
+.cl-card:hover{transform:translateY(-4px);border-color:rgba(255,90,110,.5)}
+.cl-card .device{border:0;border-radius:0;border-bottom:1px solid var(--line);box-shadow:none}
+.cl-body{display:flex;flex-direction:column;gap:.7rem;flex:1;padding:1.4rem 1.5rem 1.6rem}
+.cl-kind{margin:0;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.cl-body h3{margin:0}
+.cl-body>p:not(.cl-kind):not(.cl-links){margin:0;color:var(--muted)}
+.cl-body .chips{margin-top:.2rem}
+.cl-links{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.4rem;margin:auto 0 0;padding-top:.6rem}
+.cl-links .btn .ic{width:1rem;height:1rem}
+@media (max-width:859px){.cl-grid{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.cl-card{transition:none}.cl-card:hover{transform:none}}

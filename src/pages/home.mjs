@@ -1,7 +1,8 @@
 import { mark, icon, btn, slider, heroSlider, faqList, sectionHead, featureCard, journeyPath, statement, chatThread, browserMock, leadForm, heroForm, pricingSection, bookingPanel, conciergeFx, heroScene, stMark3d, picture, preloadImage, peso, esc } from '../lib/components.mjs';
 import { statCard, marketChart, exampleChart } from '../lib/charts.mjs';
-import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd, industries, market } from '../data/content.mjs';
+import { services, problems, promises, why, conversation, journey, packages, faqs, lyfd, industries, market, clients } from '../data/content.mjs';
 import { site } from '../data/site.mjs';
+import { clientCard } from './work.mjs';
 import { phMap } from '../data/ph-map.mjs';
 import { guidesStrip } from '../lib/guides-strip.mjs';
 import { serviceUrl } from '../lib/service-url.mjs';
@@ -186,20 +187,10 @@ export function body() {
 </section>
 
 <section class="sec cv" aria-labelledby="case-title">
-  <div class="wrap split">
-    <div class="reveal">
-      <p class="eyebrow">Our first client</p>
-      <h2 id="case-title">${esc(lyfd.short)}: a stainless steel maker that now takes <span class="accent">quotes and bookings online</span></h2>
-      <p class="lead" style="margin-top:1.1rem">${lyfd.place} restaurants, hotels and homeowners can now see the work, ask for a quote and book a visit from their phone.</p>
-      <ul class="chips">
-        <li class="chip">${icon('pen')}Quote form</li>
-        <li class="chip">${icon('calendar')}Book-a-visit calendar</li>
-        <li class="chip">${icon('layout')}Product pages</li>
-        <li class="chip">${icon('chat')}Messenger chat</li>
-      </ul>
-      <p style="margin-top:1.8rem">${btn('Read the case study', '/work/')}</p>
-    </div>
-    <div class="reveal" style="--d:.12s">${browserMock({ url: 'lyfdfab.com', variant: 'a', label: 'Illustration of the LYFD website on a computer screen' })}</div>
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'Our work', title: 'Two live websites for <span class="accent">Davao City businesses</span>', lead: 'Real websites that people use every day. Open them and see how they work.', id: 'case-title' })}
+    <div class="cl-grid reveal">${clientCard(clients[0])}${clientCard(clients[1])}</div>
+    <p class="center-cta reveal" style="margin-top:2rem">${btn('See all our work', '/work/', { kind: 'ghost' })}</p>
   </div>
 </section>
 

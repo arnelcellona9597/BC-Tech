@@ -1,5 +1,5 @@
 import { site } from '../data/site.mjs';
-import { services, packages, faqs } from '../data/content.mjs';
+import { services, packages, faqs, clients } from '../data/content.mjs';
 
 const abs = (p) => site.url + p;
 const strip = (h) => h.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -56,7 +56,7 @@ function business() {
   };
 }
 
-const pageTypes = { about: 'AboutPage', contact: 'ContactPage', services: 'CollectionPage', pricing: 'CollectionPage', guides: 'CollectionPage' };
+const pageTypes = { about: 'AboutPage', contact: 'ContactPage', services: 'CollectionPage', pricing: 'CollectionPage', guides: 'CollectionPage', work: 'CollectionPage' };
 
 export function jsonLd(meta) {
   const url = abs(meta.path);
@@ -124,18 +124,15 @@ export function jsonLd(meta) {
     });
   }
 
-  if (meta.key === 'work') {
+  if (meta.schema === 'portfolio') {
     graph.push({
-      '@type': 'Article',
-      headline: 'Case study: LYFD Stainless Fabrication and Services',
-      description: meta.description,
-      image: abs(meta.ogImage),
-      author: { '@id': orgId },
-      publisher: { '@id': orgId },
-      datePublished: site.built,
-      dateModified: site.built,
-      mainEntityOfPage: url + '#webpage',
-      inLanguage: site.lang,
+      '@type': 'ItemList',
+      name: 'Websites built by Davao Byte',
+      itemListElement: clients.map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: { '@type': 'WebSite', name: c.name, url: c.url, description: c.text, creator: { '@id': orgId }, inLanguage: site.lang },
+      })),
     });
   }
 
