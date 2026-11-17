@@ -27,6 +27,7 @@ function mail_brand(array $cfg): array
         'url'      => rtrim($s['url'] ?? 'https://davaobyte.com', '/'),
         'email'    => $cfg['mail']['to'] ?? 'info@davaobyte.com',
         'phone'    => $s['phone'] ?? '+63 951 487 4304',
+        'phone2'   => $s['phone2'] ?? '+63 916 312 3173',
         'landline' => $s['landline'] ?? '(082) 2929 822',
         'hours'    => $s['hours'] ?? 'Monday to Friday, 9:00 AM to 5:00 PM (Philippine Time)',
         'city'     => $s['city'] ?? 'Davao City, Philippines',
@@ -67,6 +68,7 @@ function mail_shell(array $b, string $preheader, string $eyebrow, string $title,
     $logo = $b['url'] . '/assets/img/email/logo-white.png';
     $tel = preg_replace('/[^+\d]/', '', $b['phone']);
     $tel2 = preg_replace('/[^+\d]/', '', $b['landline']);
+    $telb = preg_replace('/[^+\d]/', '', $b['phone2']);
     return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only"><title>' . e($title) . '</title></head>'
     . '<body style="margin:0;padding:0;background:#EFECE8;-webkit-text-size-adjust:100%">'
     . '<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#EFECE8;font-size:1px;line-height:1px">' . e($preheader) . str_repeat('&#8199;&#847; ', 40) . '</div>'
@@ -93,6 +95,7 @@ function mail_shell(array $b, string $preheader, string $eyebrow, string $title,
     . '<p style="margin:0 0 16px;font-family:' . MAIL_SANS . ';font-size:13px;line-height:1.6;color:#6B6B73">Call or message us during office hours and a real person will answer.</p>'
     . '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="font-family:' . MAIL_SANS . ';font-size:14px;line-height:1.5;color:' . MAIL_INK . '">'
     . '<tr><td style="padding:3px 14px 3px 0;color:#8A8A92;font-size:11px;letter-spacing:.14em;text-transform:uppercase">Mobile</td><td style="padding:3px 0"><a href="tel:' . e($tel) . '" style="color:' . MAIL_INK . ';text-decoration:none;font-weight:700">' . e($b['phone']) . '</a> <span style="color:#8A8A92">(Viber / WhatsApp)</span></td></tr>'
+    . '<tr><td style="padding:3px 14px 3px 0;color:#8A8A92;font-size:11px;letter-spacing:.14em;text-transform:uppercase">Mobile 2</td><td style="padding:3px 0"><a href="tel:' . e($telb) . '" style="color:' . MAIL_INK . ';text-decoration:none;font-weight:700">' . e($b['phone2']) . '</a></td></tr>'
     . '<tr><td style="padding:3px 14px 3px 0;color:#8A8A92;font-size:11px;letter-spacing:.14em;text-transform:uppercase">Office</td><td style="padding:3px 0"><a href="tel:' . e($tel2) . '" style="color:' . MAIL_INK . ';text-decoration:none;font-weight:700">' . e($b['landline']) . '</a></td></tr>'
     . '<tr><td style="padding:3px 14px 3px 0;color:#8A8A92;font-size:11px;letter-spacing:.14em;text-transform:uppercase">Email</td><td style="padding:3px 0"><a href="mailto:' . e($b['email']) . '" style="color:' . MAIL_INK . ';text-decoration:none;font-weight:700">' . e($b['email']) . '</a></td></tr>'
     . '<tr><td style="padding:3px 14px 3px 0;color:#8A8A92;font-size:11px;letter-spacing:.14em;text-transform:uppercase;vertical-align:top">Hours</td><td style="padding:3px 0;color:#55555D">' . e($b['hours']) . '</td></tr>'
@@ -153,7 +156,7 @@ function confirmation_inquiry(array $d, array $cfg): array
         . (!empty($d['package']) ? "Package: {$d['package']}\n" : '')
         . ($msg !== '' ? "Your message: {$msg}\n" : '')
         . "\nWhat happens next\n1. We read your message.\n2. We reply by email with honest advice and a clear starting price.\n3. If it feels right, we set up a free call. No pressure to buy.\n"
-        . "\nNeed us sooner?\nMobile / Viber / WhatsApp: {$b['phone']}\nOffice: {$b['landline']}\nEmail: {$b['email']}\nHours: {$b['hours']}\n"
+        . "\nNeed us sooner?\nMobile / Viber / WhatsApp: {$b['phone']}\nMobile: {$b['phone2']}\nOffice: {$b['landline']}\nEmail: {$b['email']}\nHours: {$b['hours']}\n"
         . "\n{$b['name']} - {$b['tagline']}\n{$b['url']}\n";
 
     return ['subject' => 'We received your message, ' . $first . ' (' . $ref . ')', 'html' => $html, 'text' => $text];
@@ -220,7 +223,7 @@ function confirmation_booking(array $d, array $cfg, DateTimeImmutable $when): ar
         . (!empty($d['notes']) ? "Notes: {$d['notes']}\n" : '')
         . "\nAdd to Google Calendar: {$gcal}\n"
         . "\nWhat happens next\n1. We confirm your time by email.\n2. We prepare for your call.\n3. We talk. Honest advice and a clear price, no pressure.\n"
-        . "\nNeed us sooner?\nMobile / Viber / WhatsApp: {$b['phone']}\nOffice: {$b['landline']}\nEmail: {$b['email']}\nHours: {$b['hours']}\n"
+        . "\nNeed us sooner?\nMobile / Viber / WhatsApp: {$b['phone']}\nMobile: {$b['phone2']}\nOffice: {$b['landline']}\nEmail: {$b['email']}\nHours: {$b['hours']}\n"
         . "\n{$b['name']} - {$b['tagline']}\n{$b['url']}\n";
 
     return ['subject' => 'Your free call request: ' . $when->format('D, M j') . ' at ' . $when->format('g:i A') . ' (' . $ref . ')', 'html' => $html, 'text' => $text];

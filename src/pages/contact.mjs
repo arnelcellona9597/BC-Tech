@@ -64,6 +64,7 @@ export function body() {
     <ul class="contact-list">
       <li><span class="card-icon">${icon('mail')}</span><div><strong>Email</strong><a href="mailto:${site.email}">${site.email}</a></div></li>
       <li><span class="card-icon">${icon('phone')}</span><div><strong>Mobile or WhatsApp</strong><a href="tel:${site.phone.replace(/[^+\d]/g, '')}">${esc(site.phone)}</a></div></li>
+      <li><span class="card-icon">${icon('phone')}</span><div><strong>Second mobile</strong><a href="tel:${site.phone2.replace(/[^+\d]/g, '')}">${esc(site.phone2)}</a></div></li>
       <li><span class="card-icon">${icon('phone')}</span><div><strong>Office landline</strong><a href="tel:${site.landline.replace(/[^+\d]/g, '')}">${esc(site.landline)}</a></div></li>
       <li><span class="card-icon">${icon('pin')}</span><div><strong>Where we are</strong><span>${site.city}, ${site.countryName}</span></div></li>
       <li><span class="card-icon">${icon('clock')}</span><div><strong>Hours</strong><span>${esc(site.hours)}</span></div></li>
