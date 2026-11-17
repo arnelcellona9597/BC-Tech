@@ -104,9 +104,9 @@ html[data-theme=light] .menu{background:#fff}
 html[data-theme=light] .sec.light{background:#fff}
 html[data-theme=light] .sec.deep{background:#F6F6F7}
 /* cards: white, fine border, soft neutral shadow */
-html[data-theme=light] :is(.card,.price-card,.addon,.stat,.panel,.chart-card,.sv-steps li,.rel-grid a,.guide-card,.nf-list a,.g-toc,.sv-who li,.pc,.hero-form-card,.cta-card,.cc-panel,.eg,.pair-col,.stack-list li,.jump a,.chat-card,.pop-card){
+html[data-theme=light] :is(.card,.price-card,.addon,.stat,.panel,.chart-card,.sv-steps li,.rel-grid a,.guide-card,.nf-list a,.g-toc,.sv-who li,.cl-card,.pc,.hero-form-card,.cta-card,.cc-panel,.eg,.pair-col,.stack-list li,.jump a,.chat-card,.pop-card){
   background:#fff!important;border:1px solid rgba(11,11,12,.09)!important;box-shadow:0 1px 2px rgba(11,11,12,.04),0 14px 34px -18px rgba(11,11,12,.16)!important}
-html[data-theme=light] :is(.card,.price-card,.addon,.stat,.sv-steps li,.rel-grid a,.guide-card,.nf-list a,.pc):hover{border-color:rgba(11,11,12,.16)!important;box-shadow:0 1px 2px rgba(11,11,12,.05),0 22px 44px -18px rgba(11,11,12,.22)!important}
+html[data-theme=light] :is(.card,.price-card,.addon,.stat,.sv-steps li,.rel-grid a,.guide-card,.nf-list a,.pc,.cl-card):hover{border-color:rgba(11,11,12,.16)!important;box-shadow:0 1px 2px rgba(11,11,12,.05),0 22px 44px -18px rgba(11,11,12,.22)!important}
 html[data-theme=light] .pair-col.good{background:#fff!important;border-color:rgba(200,16,46,.28)!important}
 html[data-theme=light] .pc.is-custom{background:#fff!important;border-color:rgba(200,16,46,.3)!important}
 html[data-theme=light] .sec.deep :is(.card,.stat,.sv-steps li,.panel){background:#fff!important}

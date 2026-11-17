@@ -362,3 +362,48 @@ export const lyfd = {
     { icon: 'chat', title: 'Chat on Messenger', text: 'A floating chat button lets people reach the team the way they already talk every day.' },
   ],
 };
+
+export const mangjose = {
+  name: 'Mang Jose Fried Chicken Corner',
+  short: 'Mang Jose',
+  url: 'https://mangjosecorner.com/',
+  place: 'Davao City',
+  does: 'Hand-battered fried chicken and chicken pastil, cooked fresh at the corner, with two branches in Davao City and franchise inquiries open.',
+  features: [
+    { icon: 'layout', title: 'A menu that makes you hungry', text: 'The classic chicken and rice meal and the bottled chicken pastil, shown with big photos and clear prices.' },
+    { icon: 'pin', title: 'Branches people can find', text: 'Both Davao City branches, in Ecoland and Tugbok, with their addresses so customers can find the nearest corner.' },
+    { icon: 'pen', title: 'A franchise inquiry section', text: 'A dedicated spot for people who want to own a Mang Jose corner, with a clear button to inquire.' },
+    { icon: 'brand', title: 'A look that fits the brand', text: 'A rich, dark and golden design that puts the crispy chicken first, on phones and on computers.' },
+    { icon: 'chat', title: 'Facebook and Messenger', text: 'Links to Facebook and Messenger for reservations and questions, the way customers already talk to the shop.' },
+  ],
+};
+
+// Live client websites (shown on the home page and the Work page)
+export const clients = [
+  {
+    id: 'lyfd',
+    name: lyfd.name,
+    short: lyfd.short,
+    kind: 'Stainless steel fabrication',
+    url: lyfd.url,
+    host: 'lyfdfab.com',
+    shot: '/assets/img/work/lyfd-home.webp',
+    alt: 'Homepage of the LYFD Stainless Fabrication website, with the LYFD logo and a request-a-quote button',
+    text: 'Custom kitchens, hoods and metal works for Davao City restaurants and hotels, now with quote requests and a book-a-visit calendar.',
+    chips: ['Quote form', 'Book-a-visit calendar', 'Product pages', 'Messenger chat'],
+    caseId: 'lyfd',
+  },
+  {
+    id: 'mangjose',
+    name: mangjose.name,
+    short: mangjose.short,
+    kind: 'Food business and franchise',
+    url: mangjose.url,
+    host: 'mangjosecorner.com',
+    shot: '/assets/img/work/mangjose-home.webp',
+    alt: 'Homepage of the Mang Jose Fried Chicken Corner website, with a pile of golden fried chicken and an explore-the-menu button',
+    text: 'A Davao City fried chicken favorite with a mouth-watering menu, two branches to find and a franchise inquiry section.',
+    chips: ['Menu with prices', 'Two branches', 'Franchise inquiries', 'Facebook and Messenger'],
+    caseId: 'mangjose',
+  },
+];
