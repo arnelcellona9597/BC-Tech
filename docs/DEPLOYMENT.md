@@ -114,7 +114,7 @@ One-time setup:
    - `FTP_SERVER` = `cpanel11wh.jpt1.cloud.z.com` (the host name that matches the server's certificate)
    - `FTP_USERNAME` = the deployment account
    - `FTP_PASSWORD` = its password
-   - `FTP_DIR` (optional) = `./` (the account already opens in `public_html`)
+   - `FTP_DIR` (optional) = `public_html/` (the default; the FTP account opens in the home folder, not in `public_html`)
 3. (Recommended) **Settings > Environments > production**: add yourself as a required reviewer so each live deploy needs one click to approve.
 4. Merge to `main`. Watch it in the **Actions** tab. The first run uploads everything; later runs upload only what changed.
 
