@@ -12,6 +12,7 @@ export const site = {
   country: 'PH',
   countryName: 'Philippines',
   phone: '+63 951 487 4304', // mobile, Viber and WhatsApp
+  phone2: '+63 916 312 3173', // second mobile number
   landline: '(082) 2929 822',
   // TODO(client): add the Facebook page URL (and other profiles). Used for schema "sameAs" and the footer.
   // Leave a link empty until the page exists. The icon shows as a plain (non-clickable) badge until a link is added.

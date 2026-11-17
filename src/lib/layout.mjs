@@ -86,6 +86,7 @@ ${menuNav.map((n, i) => `      <li style="--i:${i}"><a href="${n.href}"${cur(n.k
       <a class="btn btn-primary" href="/contact/#book"><span>Book a free call</span>${icon('arrow', 'ic ic-arrow')}</a>
       <a class="menu-mail" href="mailto:${site.email}">${site.email}</a>
       <a class="menu-mail" href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a>
+      <a class="menu-mail" href="tel:${site.phone2.replace(/[^+\d]/g, '')}">${site.phone2}</a>
       <p class="menu-time"><span class="live-dot" aria-hidden="true"></span><span data-davao-clock>${site.city}</span></p>
       ${socialIcons('social-menu')}
     </div>
@@ -128,6 +129,7 @@ function footer(meta) {
         <ul class="foot-contact">
           <li><span class="foot-ic">${icon('mail', 'ic')}</span><a href="mailto:${site.email}">${site.email}</a></li>
           <li><span class="foot-ic">${icon('phone', 'ic')}</span><a href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a></li>
+          <li><span class="foot-ic">${icon('phone', 'ic')}</span><a href="tel:${site.phone2.replace(/[^+\d]/g, '')}">${site.phone2}</a></li>
           <li><span class="foot-ic">${icon('phone', 'ic')}</span><a href="tel:${site.landline.replace(/[^+\d]/g, '')}">${site.landline}</a></li>
           <li><span class="foot-ic">${icon('pin', 'ic')}</span><span>${site.city}, ${site.countryName}</span></li>
           <li><span class="foot-ic">${icon('clock', 'ic')}</span><span>${site.hours}</span></li>
