@@ -5,6 +5,7 @@
   var s = document.currentScript, id = s && s.getAttribute('data-gtm'), t0 = new Date().getTime();
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
   if (!id || !/(^|\.)davaobyte\.com$/.test(location.hostname)) return;
   var started = false, evs = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
   function start() {

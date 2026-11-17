@@ -24,6 +24,7 @@ ${meta.noindex ? '' : `<link rel="canonical" href="${url}">`}
 <meta name="theme-color" content="${site.themeColorLight}">
 <meta name="color-scheme" content="light dark">
 <script src="${assets.js['theme-init']}"></script>
+<script src="${assets.js.gtm}" defer data-gtm="${site.gtmId}"></script>
 <meta property="og:site_name" content="${site.name}">
 <meta property="og:locale" content="${site.locale}">
 <meta property="og:type" content="${meta.ogType || 'website'}">
@@ -197,7 +198,7 @@ function promo(meta) {
 
 export function renderPage({ meta, body, css, assets }) {
   const popJs = ['contact', 'notfound', 'privacy'].includes(meta.key) ? [] : ['popup', 'particles', 'forms'];
-  const scripts = [...new Set(['main', 'shell', ...popJs, ...(meta.scripts || [])])].map((s) => `<script src="${assets.js[s]}" defer></script>`).join('\n') + `\n<script src="${assets.js.gtm}" defer data-gtm="${site.gtmId}"></script>`;
+  const scripts = [...new Set(['main', 'shell', ...popJs, ...(meta.scripts || [])])].map((s) => `<script src="${assets.js[s]}" defer></script>`).join('\n');
   return `${head({ meta, css, assets })}
 ${header(meta)}
 ${body}
