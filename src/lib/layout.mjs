@@ -57,6 +57,7 @@ function header(meta) {
   const menuNav = nav.filter((n) => n.key !== 'home');
   const cur = (k) => (meta.key === k ? ' aria-current="page"' : meta.navKey === k ? ' aria-current="true"' : '');
   return `<body class="page-${meta.key}">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${site.gtmId}" title="Google Tag Manager" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"><i></i></div>
 <header class="site-header" id="top">
@@ -196,7 +197,7 @@ function promo(meta) {
 
 export function renderPage({ meta, body, css, assets }) {
   const popJs = ['contact', 'notfound', 'privacy'].includes(meta.key) ? [] : ['popup', 'particles', 'forms'];
-  const scripts = [...new Set(['main', 'shell', ...popJs, ...(meta.scripts || [])])].map((s) => `<script src="${assets.js[s]}" defer></script>`).join('\n');
+  const scripts = [...new Set(['main', 'shell', ...popJs, ...(meta.scripts || [])])].map((s) => `<script src="${assets.js[s]}" defer></script>`).join('\n') + `\n<script src="${assets.js.gtm}" defer data-gtm="${site.gtmId}"></script>`;
   return `${head({ meta, css, assets })}
 ${header(meta)}
 ${body}

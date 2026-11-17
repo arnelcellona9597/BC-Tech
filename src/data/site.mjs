@@ -28,6 +28,7 @@ export const site = {
     leadHours: 12, // earliest slot is this many hours from now
     timezone: 'Asia/Manila',
   },
+  gtmId: 'GTM-TTFTH59F', // Google Tag Manager container (loads on the live domain only)
   built: '2026-11-15',
 };
 

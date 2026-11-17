@@ -59,6 +59,8 @@
         if (!res.ok || !data.ok) throw new Error(data.error || MSG.fail);
         status.className = 'form-status ok';
         status.textContent = data.message || 'Thank you! We got your message and will reply soon.';
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'generate_lead', lead_type: form.hasAttribute('data-booking') ? 'booking' : 'inquiry', form_source: (form.querySelector('[name=source]') || {}).value || '' });
         form.reset();
         if (stamp) stamp.value = String(Date.now());
         if (done) done(data);

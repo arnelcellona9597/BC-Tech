@@ -41,7 +41,7 @@ const css = (await transform(cssSrc, { loader: 'css', minify: true })).code.trim
 
 // ---- JS (small, deferred, content-hashed)
 const js = {};
-for (const name of ['theme-init', 'main', 'shell', 'forms', 'booking', 'charts', 'pricing', 'particles', 'slider-full', 'phmap', 'popup']) {
+for (const name of ['theme-init', 'main', 'shell', 'forms', 'booking', 'charts', 'pricing', 'particles', 'slider-full', 'phmap', 'popup', 'gtm']) {
   const code = (await transform(readFileSync(join(SRC, 'js', `${name}.js`), 'utf8'), { minify: true, target: 'es2019' })).code;
   const file = `${name}.${hash(code)}.js`;
   write(out('assets', 'js', file), code);
