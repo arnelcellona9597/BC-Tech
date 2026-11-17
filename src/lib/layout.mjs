@@ -24,6 +24,7 @@ ${meta.noindex ? '' : `<link rel="canonical" href="${url}">`}
 <meta name="theme-color" content="${site.themeColorLight}">
 <meta name="color-scheme" content="light dark">
 <script src="${assets.js['theme-init']}"></script>
+<script src="${assets.js.gtm}" defer data-gtm="${site.gtmId}"></script>
 <meta property="og:site_name" content="${site.name}">
 <meta property="og:locale" content="${site.locale}">
 <meta property="og:type" content="${meta.ogType || 'website'}">
@@ -57,6 +58,7 @@ function header(meta) {
   const menuNav = nav.filter((n) => n.key !== 'home');
   const cur = (k) => (meta.key === k ? ' aria-current="page"' : meta.navKey === k ? ' aria-current="true"' : '');
   return `<body class="page-${meta.key}">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${site.gtmId}" title="Google Tag Manager" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a class="skip" href="#main">Skip to content</a>
 <div class="progress" aria-hidden="true"><i></i></div>
 <header class="site-header" id="top">

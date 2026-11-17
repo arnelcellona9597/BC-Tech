@@ -40,7 +40,7 @@ export function body() {
       <h2>How long we keep it</h2>
       <p>We keep your message only as long as we need it to talk with you and do the work you ask for, or as the law requires.</p>
       <h2>Cookies and tracking</h2>
-      <p>This website does not use advertising or tracking cookies.</p>
+      <p>We use Google Tag Manager to load measurement tools such as Google Analytics. They may set cookies and collect general usage details, like which pages are viewed, the type of device and the approximate area. We use this only to understand how the website is used and to improve it, not to identify you. The messages you send through our forms are not shared with these tools. You can block or delete cookies in your browser settings at any time, or use Google's opt-out add-on.</p>
       <h2>Your rights</h2>
       <p>You may ask to see, correct or delete the details we hold about you. Email us at <a href="mailto:${site.email}">${site.email}</a> and we will help.</p>
       <h2>Contact</h2>
