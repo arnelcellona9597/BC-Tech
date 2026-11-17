@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arnelcellona9597/BC-Tech.git"
+    "url": "git+https://github.com/arnelcellona9597/Davao-Byte.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/arnelcellona9597/BC-Tech/issues"
+    "url": "https://github.com/arnelcellona9597/Davao-Byte/issues"
   },
-  "homepage": "https://github.com/arnelcellona9597/BC-Tech#readme",
+  "homepage": "https://github.com/arnelcellona9597/Davao-Byte#readme",
   "devDependencies": {
     "@fontsource-variable/cinzel": "^5.3.0",
     "@fontsource-variable/montserrat": "^5.3.0",
