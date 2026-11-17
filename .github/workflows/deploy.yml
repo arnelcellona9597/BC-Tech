@@ -1,0 +1,74 @@
+# Builds the site and, on every push to main, uploads the changes to the live hosting over FTPS.
+# One-time setup (GitHub > Settings > Secrets and variables > Actions): FTP_SERVER, FTP_USERNAME, FTP_PASSWORD,
+# and optionally FTP_DIR (folder on the server, default "./"). See docs/DEPLOYMENT.md.
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Check the build output
+        run: |
+          test -f public/index.html
+          test -f public/.htaccess
+          test -f public/sitemap.xml
+          test -f public/api/contact.php
+          ! grep -ril "bc tech\|bctech" public --include=*.html --include=*.xml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: public
+          include-hidden-files: true
+          retention-days: 7
+
+  deploy:
+    name: Deploy to live site
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: public
+      - name: Upload changed files over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./public/
+          server-dir: ${{ secrets.FTP_DIR || './' }}
+          # Never touch the server-only settings, saved messages and logs
+          exclude: |
+            **/.git*
+            **/.git*/**
+            api/config.php
+            api/storage/**
+            **/*.log
+            **/error_log

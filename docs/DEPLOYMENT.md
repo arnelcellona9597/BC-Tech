@@ -101,3 +101,21 @@ Commits use the project email `arnelcellona9597@gmail.com`.
 Visitors who send any form (hero, popup, home, contact page) or request a call get a designed confirmation email. The templates live in `src/static/api/lib/email_templates.php` and use the contact details under `site` in `config.php`. The logo is loaded from `/assets/img/email/logo-white.png` on your live domain, so it appears once the site is deployed.
 
 Preview the emails without sending anything: `php scripts/email-preview.php`, then open the files in `docs/email-preview/`.
+
+
+## 4. Automatic deploy (GitHub Actions)
+
+Every push to `main` builds the site and uploads only the changed files to the live hosting over FTPS (`.github/workflows/deploy.yml`). Pull requests only build (no upload). `api/config.php`, `api/storage/` and log files are never touched on the server.
+
+One-time setup:
+
+1. In cPanel > **FTP Accounts**, create an account just for deployments (for example `deploy@davaobyte.com`), with **Directory** set to `public_html` and a long random password.
+2. In GitHub open the repository > **Settings > Secrets and variables > Actions > New repository secret** and add:
+   - `FTP_SERVER` = `cpanel11wh.jpt1.cloud.z.com` (the host name that matches the server's certificate)
+   - `FTP_USERNAME` = the deployment account
+   - `FTP_PASSWORD` = its password
+   - `FTP_DIR` (optional) = `./` (the account already opens in `public_html`)
+3. (Recommended) **Settings > Environments > production**: add yourself as a required reviewer so each live deploy needs one click to approve.
+4. Merge to `main`. Watch it in the **Actions** tab. The first run uploads everything; later runs upload only what changed.
+
+Keep `api/config.php` only on the server (edit it in cPanel File Manager). To roll back, revert the commit on `main`; the workflow redeploys the previous version.
