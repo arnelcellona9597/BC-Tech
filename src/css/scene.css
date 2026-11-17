@@ -51,6 +51,7 @@
 .hc2{right:12%;bottom:5%;transform:translate3d(calc(var(--mx,0)*-22px),calc(var(--my,0)*-12px),0);animation-delay:-2s}
 .hc3{left:43.5%;top:33%;transform:translate3d(calc(var(--mx,0)*-8px),calc(var(--my,0)*-5px),0);animation-delay:-4s}
 @keyframes hs-bob{to{translate:0 -.8em}}
+@media (max-width:1399px){.hc3{display:none}}
 @media (max-width:1099px){.hs3d{display:none}}
 @media (prefers-reduced-motion:reduce){.hs3d-float,.hc{animation:none}.hs3d-rig{transition:none}}
 

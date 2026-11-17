@@ -61,7 +61,10 @@
 .flow-track{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 .flow-item{display:flex}
 .flow-item>*{flex:1;min-width:0}
+/* flat grid (no 3D): the badge sits on the card edge, not on the title */
+.flow-item .pc-badge{top:-.8rem}
 @media (scripting:enabled) and (prefers-reduced-motion:no-preference){
+  .flow-item .pc-badge{top:1.2rem}
   .flow{--cw:min(380px,82vw);--step:calc(var(--cw)*.64);--rot:26deg}
   .flow-chooser{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.6rem;margin-bottom:2.4rem}
   .flow-ui{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.4rem}
