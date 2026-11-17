@@ -97,7 +97,7 @@ function email_html(string $heading, array $rows, string $footer = ''): string
               . '</td><td style="padding:8px 0;font-size:15px;color:#0B0B0C">' . nl2br(e((string) $value)) . '</td></tr>';
     }
     return '<div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;border:1px solid #e5e5e8;border-radius:12px;overflow:hidden">'
-         . '<div style="background:#0B0B0C;color:#fff;padding:20px 24px;font-size:18px;letter-spacing:3px">BC <span style="color:#C8102E">&#9670;</span> TECH</div>'
+         . '<div style="background:#0B0B0C;color:#fff;padding:20px 24px;font-size:18px;letter-spacing:3px">DAVAO <span style="color:#C8102E">&#9670;</span> BYTE</div>'
          . '<div style="padding:24px"><h2 style="margin:0 0 14px;font-size:20px;color:#0B0B0C">' . e($heading) . '</h2><table style="border-collapse:collapse;width:100%">' . $trs . '</table>'
          . ($footer !== '' ? '<p style="margin:20px 0 0;color:#6b6b73;font-size:13px;line-height:1.5">' . e($footer) . '</p>' : '')
          . '</div></div>';
