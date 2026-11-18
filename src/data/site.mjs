@@ -14,9 +14,9 @@ export const site = {
   phone: '+63 951 487 4304', // mobile, Viber and WhatsApp
   phone2: '+63 916 312 3173', // second mobile number
   landline: '(082) 2929 822',
-  // TODO(client): add the Facebook page URL (and other profiles). Used for schema "sameAs" and the footer.
+  // Facebook page added. TODO(client): add the Messenger, YouTube and Google Business Profile links once those accounts exist. Used for schema "sameAs" and the footer.
   // Leave a link empty until the page exists. The icon shows as a plain (non-clickable) badge until a link is added.
-  social: { facebook: '', messenger: '', linkedin: '', youtube: '', whatsapp: '', googleBusiness: '' },
+  social: { facebook: 'https://www.facebook.com/profile.php?id=61596439871315', messenger: '', youtube: '', googleBusiness: '' },
   themeColor: '#0B0B0C', // dark theme color (manifest, browser bar)
   themeColorLight: '#FFFFFF', // light theme color (default)
   hours: 'Monday to Friday, 9:00 AM to 5:00 PM (Philippine Time)',

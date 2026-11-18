@@ -29,7 +29,7 @@ function organization() {
     description: 'Davao Byte is a web design and web development company in Davao City, Philippines.',
   };
   if (site.phone) o.telephone = [site.phone, site.phone2].filter(Boolean);
-  const links = Object.entries(site.social).filter(([k, v]) => v && k !== 'messenger' && k !== 'whatsapp').map(([, v]) => v);
+  const links = Object.entries(site.social).filter(([k, v]) => v && k !== 'messenger').map(([, v]) => v);
   if (links.length) o.sameAs = links;
   return o;
 }
