@@ -13,7 +13,8 @@ return [
     'mail' => [
         'driver'     => 'log',                         // 'log' (testing) or 'smtp' (real emails)
         'to'         => 'info@davaobyte.com',             // company inbox (forward it to Gmail in cPanel as well)
-        'bcc'        => 'arnelcellona9597@gmail.com',  // extra copy of every inquiry. Leave '' to turn off.
+        'cc'         => ['elibertbustamante@gmail.com', 'arnelcellona9597@gmail.com'], // copied (Cc) on every inquiry and call request
+        'bcc'        => '',                            // optional hidden copy. Leave '' to turn off.
         'from_email' => 'info@davaobyte.com',             // must be an address on your own domain (helps avoid spam folders)
         'from_name'  => 'Davao Byte Website',
         'autoreply'  => true,                          // send visitors a short "we got your message" email
