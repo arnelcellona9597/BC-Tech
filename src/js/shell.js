@@ -169,11 +169,21 @@
       setTimeout(hideHint, 7000);
     }, 1600);
   }
+  /* Phones: animating colors on every element at once freezes the page for half a second, so the switch is a single
+     repaint, softened by the browser's GPU cross-fade where available. Desktop keeps the original transition. */
+  var phone = matchMedia('(max-width:899px),(pointer:coarse)'), calm = matchMedia('(prefers-reduced-motion:reduce)');
   btns.forEach(function (b) {
     b.addEventListener('click', function () {
       hideHint();
+      var next = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      if (phone.matches) {
+        if (document.startViewTransition && !calm.matches) {
+          try { document.startViewTransition(function () { set(next); }); } catch (e) { set(next); }
+        } else set(next);
+        return;
+      }
       h.classList.add('theme-anim');
-      set(h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      set(next);
       setTimeout(function () { h.classList.remove('theme-anim'); }, 450);
     });
   });
