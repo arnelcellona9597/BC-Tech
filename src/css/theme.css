@@ -262,3 +262,8 @@ html[data-theme=light] .chat-card :is(b,.cc-msg-t){color:var(--text)}
   .cmp-tag-bad{left:.6rem;bottom:.6rem}
   .cmp-tag-good{right:.6rem;bottom:.6rem}
 }
+
+@media (min-width:1680px){
+  html[data-theme=light] .hero.has-form .hero-form-card{background:linear-gradient(160deg,rgba(255,255,255,.97),rgba(255,255,255,.92))}
+  html[data-theme=light] .hs3d::after{background:linear-gradient(90deg,#fff 0,rgba(255,255,255,.96) 36%,rgba(255,255,255,.22) 62%,rgba(255,255,255,.08) 100%),linear-gradient(180deg,rgba(255,255,255,.7) 0,transparent 20%,transparent 74%,#fff 100%)}
+}
