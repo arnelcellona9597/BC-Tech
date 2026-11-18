@@ -89,3 +89,15 @@
 .cl-links .btn .ic{width:1rem;height:1rem}
 @media (max-width:859px){.cl-grid{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){.cl-card{transition:none}.cl-card:hover{transform:none}}
+
+/* Hero on desktop: the laptop and phone only appear where there is room beside the quote form (1680px and wider),
+   so they never collide with the headline or show through the form. Narrower desktops get the clean dark hero. */
+@media (min-width:1100px) and (max-width:1679px){.hs3d{display:none}}
+@media (min-width:1680px){
+  .hs3d{font-size:clamp(14px,1.15vw,19px)}
+  .hs3d-rig{left:46%;right:-4%}
+  .ph{margin:5em 0 0 8em}
+  .hc1{left:auto;right:30%;top:11%}
+  .hc3{left:auto;right:2%;top:40%}
+  .hero.has-form .hero-form-card{background:linear-gradient(160deg,rgba(var(--fg-rgb),.08),rgba(var(--fg-rgb),.02)),rgba(11,11,12,.88)}
+}
