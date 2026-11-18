@@ -37,3 +37,16 @@
   /* the extruded back layers of the 3D mark are too small to see on a phone (about 15 layers fewer); the front mark stays */
   .st3d-l{display:none}
 }
+
+/* Theme switch on phones: bigger tap target, instant press feedback, a quicker knob, and a short GPU cross-fade */
+@media (max-width:899px),(pointer:coarse){
+  .theme-toggle{height:3rem;min-width:3.75rem;touch-action:manipulation}
+  .theme-toggle:hover .ts-knob{scale:1}
+  .theme-toggle:hover .ts-track{transform:none}
+  .theme-toggle:active .ts-track{transform:scale(.94);transition-duration:.08s}
+  .theme-toggle:active .ts-knob{scale:.9}
+  .ts-knob{transition:transform .38s cubic-bezier(.34,1.45,.5,1),scale .12s}
+  .ts-orb{transition:opacity .25s,transform .4s cubic-bezier(.34,1.45,.5,1)}
+  .ts-bg,.ts-stars{transition-duration:.25s;transition-delay:0s}
+  ::view-transition-old(root),::view-transition-new(root){animation-duration:.26s;animation-timing-function:ease-out}
+}
