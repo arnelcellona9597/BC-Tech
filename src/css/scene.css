@@ -96,7 +96,9 @@
 @media (min-width:1680px){
   .hs3d{font-size:clamp(14px,1.15vw,19px)}
   .hs3d-rig{left:46%;right:-4%}
-  .ph{margin:5em 0 0 8em}
+  .ph{margin:5.5em 0 0 9em;transform:translateZ(28em) rotateY(6deg) scale(.88)}
+  .hc2{right:38%;bottom:3%}
+  .hl{scale:1.18;transform-origin:45% 38%}
   .hc1{left:auto;right:30%;top:11%}
   .hc3{left:auto;right:2%;top:40%}
   .hero.has-form .hero-form-card{background:linear-gradient(160deg,rgba(var(--fg-rgb),.08),rgba(var(--fg-rgb),.02)),rgba(11,11,12,.88)}
