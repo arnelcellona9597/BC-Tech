@@ -63,7 +63,8 @@ $ok = deliver_mail(
     email_text('New free call request', $rows),
     $f['email'],
     $f['name'],
-    (string) ($cfg['mail']['bcc'] ?? '')
+    (string) ($cfg['mail']['bcc'] ?? ''),
+    team_cc()
 );
 mark_submission($ref, $ok ? 'emailed' : 'email_failed');
 
