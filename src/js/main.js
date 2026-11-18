@@ -18,8 +18,14 @@
 
   /* ---- Statement: words light up as you scroll past ---- */
   const lits = $$('[data-lit]').map((el) => ({ el, words: $$('.w', el) }));
+  const litVis = new Map();
+  if (lits.length && 'IntersectionObserver' in window) {
+    const litIO = new IntersectionObserver((es) => es.forEach((e) => litVis.set(e.target, e.isIntersecting)), { rootMargin: '0px 0px 30% 0px' });
+    lits.forEach(({ el }) => litIO.observe(el));
+  }
   const scrub = () => {
     lits.forEach(({ el, words }) => {
+      if (litVis.get(el) === false) return; // far from the screen: nothing to update
       const top = el.getBoundingClientRect().top;
       const p = reduce ? 1 : Math.min(1, Math.max(0, (innerHeight * 0.9 - top) / (innerHeight * 0.5)));
       const n = Math.round(p * words.length);
@@ -32,7 +38,7 @@
   const bar = $('.progress');
   const float = $('.float-cta');
   const parallax = $('.hero-mark-wrap, .hero-visual');
-  let ticking = false;
+  let ticking = false, lastP = -1;
   const onScroll = () => {
     if (ticking) return;
     ticking = true;
@@ -41,9 +47,9 @@
       const max = root.scrollHeight - innerHeight;
       header && header.classList.toggle('is-scrolled', y > 24);
       if (lits.length) scrub();
-      bar && bar.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
+      if (bar) { const pv = max > 0 ? y / max : 0; if (Math.abs(pv - lastP) > 0.003 || pv === 0 || pv === 1) { lastP = pv; bar.style.setProperty('--p', pv.toFixed(4)); } }
       if (float) float.classList.toggle('show', y > 520 && !float.dataset.hide);
-      if (parallax && !reduce && y < innerHeight * 1.2) parallax.style.setProperty('--py', `${(y * 0.14).toFixed(1)}px`);
+      if (parallax && !reduce && fine && y < innerHeight * 1.2) parallax.style.setProperty('--py', `${(y * 0.14).toFixed(1)}px`);
       ticking = false;
     });
   };
