@@ -1,0 +1,39 @@
+/* ===== Smooth scrolling on phones and tablets (touch devices) =====
+   Same look, fewer things repainting on every frame: no spinning gradient rings, no animated text gradients,
+   no blur on moving content, and decoration animations that are not needed on a small screen are switched off.
+   Desktop is not affected. */
+.is-off *,.is-off *::before,.is-off *::after{animation-play-state:paused!important}
+
+@media (max-width:899px),(pointer:coarse){
+  /* 1. Spinning conic-gradient rings (animate a custom property, so the whole box repaints every frame) */
+  .hf-glow,.pc-ring,.pop-ring,.price-card.featured::before{animation:none!important}
+  /* 2. Text gradients that slide with background-position (repaint the text every frame) */
+  .hero.has-form h1 .accent,.statement-text .w.hi.on{animation:none!important;background-position:50% 0!important}
+  /* 3. Other always-on decoration that animates paint or layout properties, or that nobody can see on a small screen */
+  .foot-line,.cc-floor,.mc-bar.ecom .mc-fill,.go .mc-fill::after,.ts-track::after,.ts-stars i,.ts-rays,
+  .st-ring,.st-mark,.st-line,.lux::after,.lux-sweep,.lb-1,.lb-2,.hero-orbit,.hero-mark,.st3d-rig,.nf-sway,.nf-mark,.nf-orbit,
+  .cc-steps li.now,.cc-panel .btn-primary::after,.pop-form .btn::after,.pop-media img,.chat-dots i,.co-halo,.co-ring,.co-orbit,
+  .chat.is-open .chat-on,.mc::before,.cc-disc,.c3-ring,.c3-ring b,.c3-cube,.cube,.c3-orb,.cb-1,.cb-2{animation:none!important}
+  .st3d-rig{rotate:y -16deg}
+  .ts-track::after{display:none}
+  .glow,.hero-mark,.st-mark,.chat-orb,.cc-disc,.hs3d-float{will-change:auto}
+  /* 4. Blur on content that moves while you scroll: replace it with the same colour, no blur */
+  *,*::before,*::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+  .site-header.is-scrolled{background:rgba(var(--page-rgb),.96)}
+  .hero-form-card{background:linear-gradient(160deg,rgba(var(--fg-rgb),.1),rgba(var(--fg-rgb),.03)),rgba(var(--page-rgb),.94)}
+  .chat-card{background:linear-gradient(150deg,rgba(var(--fg-rgb),.12),rgba(var(--fg-rgb),.04)),rgba(var(--page-rgb),.97)}
+  .cc-panel{background:linear-gradient(160deg,rgba(var(--fg-rgb),.09),rgba(var(--fg-rgb),.02)),rgba(var(--page-rgb),.96)}
+  .pop-bd{background:radial-gradient(70% 70% at 50% 50%,rgba(60,0,12,.7),rgba(5,5,6,.92))}
+  /* big blurred circles become plain soft gradients */
+  .why-blob,.cc-orb,.menu-orb{filter:none;will-change:auto;animation:none;background:radial-gradient(closest-side,rgba(200,16,46,.28),rgba(200,16,46,0))}
+  /* 5. Pricing 3D cards stay, but with lighter shadows and no glow layers */
+  .flow-item.is-current::after{display:none}
+  .pc{box-shadow:0 18px 32px -22px rgba(0,0,0,.7)}
+  /* 6. Sections far off screen cost less to keep around */
+  .cv{contain-intrinsic-size:auto 700px}
+  /* 7. Fewer GPU layers: pricing cards keep their cover-flow tilt, but the text inside no longer floats in 3D (about 35 layers fewer) */
+  .pc{animation:none!important}
+  .pc-sub,.pc-name,.pc-for,.pc-price,.pc-list,.pc-cta,.pc-badge{transform:none!important}
+  /* the extruded back layers of the 3D mark are too small to see on a phone (about 15 layers fewer); the front mark stays */
+  .st3d-l{display:none}
+}

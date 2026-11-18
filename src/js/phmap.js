@@ -17,7 +17,7 @@
   function dark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
   function size() {
     var r = cv.getBoundingClientRect(); w = Math.max(1, r.width); h = Math.max(1, r.height);
-    dpr = Math.min(window.devicePixelRatio || 1, 2); cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    dpr = (matchMedia('(pointer:coarse)').matches || innerWidth < 900) ? 1 : Math.min(window.devicePixelRatio || 1, 2); cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); cs = w / (g.cols + 8);
   }
   function ease(x) { return x < 0 ? 0 : x > 1 ? 1 : 1 - Math.pow(1 - x, 3); }
@@ -54,7 +54,9 @@
     ctx.font = '700 ' + Math.max(11, cs * 1.7) + 'px Montserrat, system-ui, sans-serif'; ctx.textBaseline = 'middle'; ctx.textAlign = 'right';
     ctx.fillStyle = 'rgb(' + red + ')'; ctx.fillText(home.n, hx - 12, hy); ctx.textAlign = 'left';
   }
-  function loop(ts) { if (!run) return; if (!t0) t0 = ts; draw((ts - t0) / 1000); raf = requestAnimationFrame(loop); }
+  var scrolling = false, st = 0;
+  addEventListener('scroll', function () { scrolling = true; clearTimeout(st); st = setTimeout(function () { scrolling = false; }, 140); }, { passive: true });
+  function loop(ts) { if (!run) return; if (!t0) t0 = ts; if (!scrolling) draw((ts - t0) / 1000); raf = requestAnimationFrame(loop); }
   function go() { var want = vis && !document.hidden && !reduce; if (want && !run) { run = true; raf = requestAnimationFrame(loop); } else if (!want && run) { run = false; cancelAnimationFrame(raf); } }
   size();
   if (reduce) { draw(9); } else { draw(0); }

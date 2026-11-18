@@ -3,11 +3,14 @@
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
   var canvases = document.querySelectorAll('canvas[data-particles]');
   if (!canvases.length) return;
+  var touch = matchMedia('(pointer:coarse)').matches || innerWidth < 900;
+  var scrolling = false, st = 0;
+  addEventListener('scroll', function () { scrolling = true; clearTimeout(st); st = setTimeout(function () { scrolling = false; }, 140); }, { passive: true });
   function start(cv) {
     var host = cv.parentElement;
     var lite = cv.getAttribute('data-particles') === 'lite';
     var ctx = cv.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    var dpr = touch ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
     var w = 0, h = 0, pts = [], run = false, visible = true, raf = 0;
     var mx = -9999, my = -9999;
     function size() {
@@ -16,6 +19,7 @@
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       var n = Math.round(Math.min(w * h / (lite ? 26000 : 15000), lite ? 28 : (w < 700 ? 32 : 70)));
+      if (touch) n = Math.min(n, lite ? 10 : 16);
       pts = [];
       for (var i = 0; i < n; i++) pts.push({
         x: Math.random() * w, y: Math.random() * h,
@@ -43,13 +47,13 @@
         } else {
           ctx.fillStyle = a.red ? 'rgba(255,90,110,' + (a.a * tw).toFixed(3) + ')' : 'rgba(255,255,255,' + (a.a * .8 * tw).toFixed(3) + ')';
           ctx.shadowColor = a.red ? 'rgba(255,60,90,.9)' : 'rgba(255,255,255,.7)';
-          ctx.shadowBlur = 8 + a.r * 3;
+          ctx.shadowBlur = touch ? 0 : 8 + a.r * 3;
         }
         ctx.arc(a.x, a.y, a.r, 0, 6.283);
         ctx.fill();
       }
       ctx.shadowBlur = 0;
-      if (!lite) for (i = 0; i < pts.length; i++) {
+      if (!lite && !touch) for (i = 0; i < pts.length; i++) {
         a = pts[i];
         for (j = i + 1; j < pts.length; j++) {
           b = pts[j]; dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy;
@@ -60,7 +64,7 @@
         }
       }
     }
-    function loop(t) { if (!run) return; draw(t); raf = requestAnimationFrame(loop); }
+    function loop(t) { if (!run) return; if (!scrolling) draw(t); raf = requestAnimationFrame(loop); }
     function go() { var want = visible && !document.hidden && !reduce; if (want && !run) { run = true; raf = requestAnimationFrame(loop); } else if (!want && run) { run = false; cancelAnimationFrame(raf); } }
     size(); draw(0);
     document.addEventListener('themechange', function () { draw(0); });

@@ -62,13 +62,13 @@
   tick(); setInterval(tick, 30000);
 
   /* ---- Back to top with scroll ring + footer watermark parallax ---- */
-  var top = d.querySelector('.to-top'), foot = d.querySelector('.site-footer'), ticking = false;
+  var top = d.querySelector('.to-top'), foot = d.querySelector('.site-footer'), ticking = false, lastSp = -1, fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   if (top) top.addEventListener('click', function () { scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
   function onScroll() {
     ticking = false;
     var max = root.scrollHeight - innerHeight;
-    if (top) top.style.setProperty('--sp', max > 0 ? Math.min(1, scrollY / max).toFixed(3) : 0);
-    if (foot && !reduce) { var r = foot.getBoundingClientRect(); if (r.top < innerHeight) foot.style.setProperty('--fy', ((r.top - innerHeight) * -.06).toFixed(1) + 'px'); }
+    if (top) { var sp = max > 0 ? Math.min(1, scrollY / max) : 0; if (Math.abs(sp - lastSp) > 0.004 || sp === 0 || sp === 1) { lastSp = sp; top.style.setProperty('--sp', sp.toFixed(3)); } }
+    if (foot && !reduce && fine) { var r = foot.getBoundingClientRect(); if (r.top < innerHeight) foot.style.setProperty('--fy', ((r.top - innerHeight) * -.06).toFixed(1) + 'px'); }
   }
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
@@ -189,4 +189,13 @@
     ev = e; if (raf) return;
     raf = requestAnimationFrame(function () { raf = 0; var r = sec.getBoundingClientRect(); sec.style.setProperty('--sx', (((ev.clientX - r.left) / r.width - .5) * 2).toFixed(3)); sec.style.setProperty('--sy', (((ev.clientY - r.top) / r.height - .5) * 2).toFixed(3)); });
   }, { passive: true });
+})();
+
+/* Pause decorative animations in sections that are off screen (saves battery and keeps scrolling smooth) */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { e.target.classList.toggle('is-off', !e.isIntersecting); });
+  }, { rootMargin: '150px 0px' });
+  document.querySelectorAll('main > section, .site-footer').forEach(function (el) { io.observe(el); });
 })();
