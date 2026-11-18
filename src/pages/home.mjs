@@ -189,7 +189,7 @@ export function body() {
 <section class="sec cv" aria-labelledby="case-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Our work', title: 'Two live websites for <span class="accent">Davao City businesses</span>', lead: 'Real websites that people use every day. Open them and see how they work.', id: 'case-title' })}
-    <div class="cl-grid reveal">${clientCard(clients[0])}${clientCard(clients[1])}</div>
+    <div class="reveal">${slider('home-cases', 'Our work: two live websites', [clientCard(clients[0]), clientCard(clients[1])], { cols: 2, trackCls: 'cl-grid' })}</div>
     <p class="center-cta reveal" style="margin-top:2rem">${btn('See all our work', '/work/', { kind: 'ghost' })}</p>
   </div>
 </section>
