@@ -81,7 +81,7 @@ const pages = [
   {
     slug: 'online-store-developer-davao',
     eyebrow: 'Online store developer in Davao',
-    title: 'Online Store Developer in Davao | WooCommerce and Shopify | Davao Byte',
+    title: 'Online Store Developer in Davao | Davao Byte',
     metaDesc: 'Davao Byte builds online stores on WooCommerce or Shopify with GCash, Maya and card payments, shipping and tax setup, and product upload.',
     ogHeadline: 'Online store developer in Davao',
     h1: 'An <span class="accent">online store</span> built by a Davao developer',
@@ -112,6 +112,150 @@ const pages = [
     ],
     related: ['systems', 'integrations'],
     guides: ['shopify-vs-woocommerce'],
+  },
+  {
+    slug: "website-for-salons-davao",
+    eyebrow: "Websites for salons and spas",
+    title: "Website for Salons and Spas in Davao | Davao Byte",
+    metaDesc: "Websites for Davao salons, barbershops and spas: services and prices, photo gallery, branches on a map and easy online appointment requests.",
+    ogHeadline: "Websites for salons and spas in Davao",
+    h1: "A website for your <span class=\"accent\">salon or spa</span> in Davao",
+    lead: "Customers look at photos and prices before they book. We build a clean, fast website that shows your services, your work and your branches, and makes booking simple.",
+    whoTitle: "Made for beauty businesses",
+    who: [
+      "Hair salons, barbershops, nail studios, spas and aesthetic clinics.",
+      "Owners who rely on Facebook messages and want fewer back-and-forth chats about prices.",
+      "Businesses with more than one branch that need each address and phone number clear.",
+      "Stylists who want a gallery that shows their best work.",
+    ],
+    buildTitle: "What your salon website can include",
+    build: [
+      { t: "Services and price menu", d: "A clear list of services with prices, easy to update when something changes." },
+      { t: "Photo gallery", d: "Your best before-and-after photos, prepared so the page stays fast on mobile data." },
+      { t: "Appointment requests", d: "A booking or inquiry form so customers can request a time without messaging back and forth." },
+      { t: "Branches and map", d: "Each branch with address, hours and a map link." },
+    ],
+    steps: [
+      { t: 'Free call', d: 'Tell us about your business and what you want the website to do. No pressure to buy.' },
+      { t: 'Clickable preview', d: 'You approve a preview with your real details before we build the full site.' },
+      { t: 'Launch and Google setup', d: 'We launch, then set up your Google Business Profile so your hours, photos and map pin show on Google.' },
+    ],
+    faq: [
+      { q: "Can customers book online?", a: "We can add an appointment request form, or connect to the booking channels you already use. The details are set on a free call." },
+      { q: "I post my work on Facebook already. Is that enough?", a: "Facebook is great for showing your work. A website adds clear prices, hours and booking in one place, and it can appear on Google searches. See <a href=\"/guides/facebook-page-or-website/\">Facebook page or website</a>." },
+      { q: "Can I change prices myself?", a: "Yes. We build it so you can edit text and prices without coding." },
+    ],
+    related: ["systems", "tools"],
+    guides: ["facebook-page-or-website"],
+    footer: false,
+  },
+  {
+    slug: "website-for-auto-repair-shops-davao",
+    eyebrow: "Websites for auto repair shops",
+    title: "Website for Auto Repair Shops in Davao | Davao Byte",
+    metaDesc: "Websites for Davao auto repair shops and car care centers: services, location on a map, opening hours and a simple way to request a booking or quote.",
+    ogHeadline: "Websites for auto repair shops in Davao",
+    h1: "A website for your <span class=\"accent\">auto repair shop</span> in Davao",
+    lead: "When a car breaks down, people search on their phone. We build a simple website that shows what you repair, where you are and how to reach you, so more drivers find and call you.",
+    whoTitle: "Made for auto and car care shops",
+    who: [
+      "Auto repair shops, aircon and electrical specialists, car wash and detailing.",
+      "Garages that get most customers by word of mouth and want to be found on Google Maps.",
+      "Shops that want customers to request a quote or booking before they arrive.",
+      "Owners who want clear opening hours, directions and a phone number that is easy to tap.",
+    ],
+    buildTitle: "What your auto shop website can include",
+    build: [
+      { t: "Services list", d: "What you repair and service, in plain words customers understand." },
+      { t: "Location and hours", d: "A map link, directions and opening hours that match your Google listing." },
+      { t: "Quote and booking form", d: "Customers send their car details and preferred time in one message." },
+      { t: "Photos and reviews", d: "Real photos of your shop and work, with room for customer reviews." },
+    ],
+    steps: [
+      { t: 'Free call', d: 'Tell us about your business and what you want the website to do. No pressure to buy.' },
+      { t: 'Clickable preview', d: 'You approve a preview with your real details before we build the full site.' },
+      { t: 'Launch and Google setup', d: 'We launch, then set up your Google Business Profile so your hours, photos and map pin show on Google.' },
+    ],
+    faq: [
+      { q: "Will a website help me show on Google Maps?", a: "Your Google Business Profile is what appears on Maps. A website supports it with details and trust, and we help set up both. See <a href=\"/guides/get-your-business-on-google-maps/\">how to get on Google Maps</a>." },
+      { q: "Can customers send photos of the problem?", a: "We can add a form where customers describe the problem and share their contact details. File uploads can be added if you want them." },
+      { q: "How much does it cost?", a: "It depends on the pages and features. See typical ranges on our <a href=\"/pricing/\">pricing page</a>; your exact price is confirmed in writing after a free call." },
+    ],
+    related: ["systems", "seo"],
+    guides: ["get-your-business-on-google-maps"],
+    footer: false,
+  },
+  {
+    slug: "website-for-hardware-and-construction-supply-davao",
+    eyebrow: "Websites for hardware and construction suppliers",
+    title: "Website for Hardware Suppliers in Davao | Davao Byte",
+    metaDesc: "Websites for Davao hardware stores and construction suppliers: product categories, brands, price-list requests, branch locations and contractor quote forms.",
+    ogHeadline: "Websites for hardware suppliers in Davao",
+    h1: "A website for your <span class=\"accent\">hardware or construction supply</span> business",
+    lead: "Contractors and homeowners want to know what you stock before they drive over. We build a simple catalog website with your categories, brands and a quick way to ask for prices.",
+    whoTitle: "Made for suppliers and traders",
+    who: [
+      "Hardware stores, construction supply, paint, electrical and plumbing suppliers.",
+      "Businesses that answer the same price and stock questions by phone every day.",
+      "Suppliers who want contractors to send a bill-of-materials for a quote.",
+      "Owners with more than one branch or a warehouse and a showroom.",
+    ],
+    buildTitle: "What your supplier website can include",
+    build: [
+      { t: "Product categories and brands", d: "A clear catalog of what you carry, so customers know before they call." },
+      { t: "Price-list and quote requests", d: "A form where contractors list what they need and receive a quote." },
+      { t: "Branches and directions", d: "Addresses, hours and map links for each store or warehouse." },
+      { t: "Connect to your inventory", d: "If you keep stock in software, we can connect it so the website matches, as described in our <a href=\"/guides/what-is-erp-integration/\">ERP integration guide</a>." },
+    ],
+    steps: [
+      { t: 'Free call', d: 'Tell us about your business and what you want the website to do. No pressure to buy.' },
+      { t: 'Clickable preview', d: 'You approve a preview with your real details before we build the full site.' },
+      { t: 'Launch and Google setup', d: 'We launch, then set up your Google Business Profile so your hours, photos and map pin show on Google.' },
+    ],
+    faq: [
+      { q: "Do I have to put every product online?", a: "No. Start with your main categories and best-selling items, and add more over time." },
+      { q: "Can the website show live stock?", a: "It can, if your inventory software has a way to connect. We check this on a free call, and a simple catalog works well without it." },
+      { q: "Can I show prices?", a: "You choose. Some suppliers show prices, others ask customers to request a quote." },
+    ],
+    related: ["systems", "integrations"],
+    guides: ["what-is-erp-integration"],
+    footer: false,
+  },
+  {
+    slug: "website-for-bakeries-and-cake-shops-davao",
+    eyebrow: "Websites for bakeries and cake shops",
+    title: "Website for Bakeries and Cake Shops in Davao | Davao Byte",
+    metaDesc: "Websites for Davao bakeries and cake shops: menu with prices, custom cake order form, gallery, branches and delivery or pickup information.",
+    ogHeadline: "Websites for bakeries and cake shops in Davao",
+    h1: "A website for your <span class=\"accent\">bakery or cake shop</span> in Davao",
+    lead: "People choose cakes with their eyes. We build a mouth-watering, fast website with your menu, a gallery of your cakes and a simple form for custom orders.",
+    whoTitle: "Made for bakeries and sweet shops",
+    who: [
+      "Bakeries, cake shops, pastry makers and home bakers who are growing.",
+      "Owners who take orders by message and want one clear place for flavors, sizes and prices.",
+      "Shops that want customers to order custom cakes with date and delivery details.",
+      "Businesses that want to be found when people search for cakes nearby.",
+    ],
+    buildTitle: "What your bakery website can include",
+    build: [
+      { t: "Menu with prices", d: "Breads, pastries and cakes with sizes and prices, easy for you to update." },
+      { t: "Cake gallery", d: "Photos of your best work, prepared so the page loads fast on a phone." },
+      { t: "Custom order form", d: "Customers choose size, flavor, date and delivery or pickup in one message." },
+      { t: "Delivery and pickup info", d: "Your areas, cut-off times and how to pay, shown clearly." },
+    ],
+    steps: [
+      { t: 'Free call', d: 'Tell us about your business and what you want the website to do. No pressure to buy.' },
+      { t: 'Clickable preview', d: 'You approve a preview with your real details before we build the full site.' },
+      { t: 'Launch and Google setup', d: 'We launch, then set up your Google Business Profile so your hours, photos and map pin show on Google.' },
+    ],
+    faq: [
+      { q: "Can customers pay online?", a: "We can connect payment options such as GCash, Maya or cards if you want online payment, or keep payment on delivery or pickup. We decide this together on a free call." },
+      { q: "I take orders on Facebook. Why add a website?", a: "A website lets people find you on Google, see your full menu and send complete order details, which saves you many messages. See <a href=\"/guides/facebook-page-or-website/\">Facebook page or website</a>." },
+      { q: "Can I update the menu myself?", a: "Yes. We build it so you can edit text and prices without coding." },
+    ],
+    related: ["systems", "tools"],
+    guides: ["facebook-page-or-website"],
+    footer: false,
   },
 ];
 
@@ -176,6 +320,13 @@ function build(p) {
   </div>
 </section>
 
+${p.slug === 'web-design-davao-city' ? `<section class="sec cv" aria-labelledby="ind-title">
+  <div class="wrap">
+    ${sectionHead({ eyebrow: 'By business type', title: 'Websites for the kind of business you run', id: 'ind-title' })}
+    <ul class="rel-grid reveal">${industryPages.map((x) => `<li><a href="${x.href}"><span class="rel-k">Industry</span><span class="rel-t">${esc(x.label)}</span>${icon('arrow', 'ic ic-arrow')}</a></li>`).join('')}</ul>
+  </div>
+</section>` : ''}
+
 <section class="sec cv" aria-labelledby="rel-title">
   <div class="wrap">
     ${sectionHead({ eyebrow: 'Keep exploring', title: 'Related services and guides', id: 'rel-title' })}
@@ -191,4 +342,5 @@ ${ctaBand({ title: 'Ready to talk about your website?', lead: 'Book a free call.
 }
 
 export const entries = pages.map(build);
-export const localPages = pages.map((p) => ({ href: `/${p.slug}/`, label: p.eyebrow }));
+export const localPages = pages.filter((p) => p.footer !== false).map((p) => ({ href: `/${p.slug}/`, label: p.eyebrow }));
+export const industryPages = pages.filter((p) => p.footer === false).map((p) => ({ href: `/${p.slug}/`, label: p.eyebrow }));
