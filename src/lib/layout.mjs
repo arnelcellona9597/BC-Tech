@@ -4,6 +4,7 @@ import { socialIcons, messengerHref } from './social.mjs';
 import { mark, icon, esc, picture } from './components.mjs';
 import { jsonLd } from './schema.mjs';
 import { serviceUrl } from './service-url.mjs';
+import { localPages } from '../pages/local.mjs';
 
 const abs = (p) => site.url + p;
 
@@ -116,6 +117,7 @@ function footer(meta) {
         <a class="brand" href="/" aria-label="Davao Byte home page">${mark('brand-mark')}<span class="brand-text">DAVAO <i></i>BYTE</span></a>
         <p class="foot-tag">${site.tagline}</p>
         <p class="foot-small">Web design and web development, based in ${site.city}, ${site.countryName}.</p>
+        <p class="foot-small foot-local">${localPages.map((x) => `<a href="${x.href}">${esc(x.label)}</a>`).join(' · ')}</p>
         ${socialIcons('social-foot')}
       </div>
       <nav aria-label="Footer">
