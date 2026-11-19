@@ -18,7 +18,7 @@ const write = (p, data) => { mkdirSync(dirname(p), { recursive: true }); writeFi
 const hash = (s) => createHash('sha1').update(s).digest('hex').slice(0, 8);
 
 // Remove only the generated files (never /public/api or .htaccess)
-const GENERATED = ['index.html', '404.html', 'services', 'pricing', 'work', 'about', 'contact', 'privacy', 'guides', 'web-design-davao-city', 'website-for-restaurants-davao', 'online-store-developer-davao', 'assets', 'sitemap.xml', 'robots.txt', 'site.webmanifest'];
+const GENERATED = ['index.html', '404.html', 'services', 'pricing', 'work', 'about', 'contact', 'privacy', 'guides', 'web-design-davao-city', 'website-for-restaurants-davao', 'online-store-developer-davao', 'website-for-salons-davao', 'website-for-auto-repair-shops-davao', 'website-for-hardware-and-construction-supply-davao', 'website-for-bakeries-and-cake-shops-davao', 'assets', 'sitemap.xml', 'robots.txt', 'site.webmanifest'];
 for (const g of GENERATED) {
   const target = resolve(OUT, g);
   if (!target.startsWith(OUT + sep)) throw new Error(`Refusing to remove outside public/: ${target}`);
