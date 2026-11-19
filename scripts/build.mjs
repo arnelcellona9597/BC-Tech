@@ -18,7 +18,7 @@ const write = (p, data) => { mkdirSync(dirname(p), { recursive: true }); writeFi
 const hash = (s) => createHash('sha1').update(s).digest('hex').slice(0, 8);
 
 // Remove only the generated files (never /public/api or .htaccess)
-const GENERATED = ['index.html', '404.html', 'services', 'pricing', 'work', 'about', 'contact', 'privacy', 'guides', 'assets', 'sitemap.xml', 'robots.txt', 'site.webmanifest'];
+const GENERATED = ['index.html', '404.html', 'services', 'pricing', 'work', 'about', 'contact', 'privacy', 'guides', 'web-design-davao-city', 'website-for-restaurants-davao', 'online-store-developer-davao', 'assets', 'sitemap.xml', 'robots.txt', 'site.webmanifest'];
 for (const g of GENERATED) {
   const target = resolve(OUT, g);
   if (!target.startsWith(OUT + sep)) throw new Error(`Refusing to remove outside public/: ${target}`);
@@ -53,7 +53,7 @@ const assets = {
 };
 
 // ---- pages
-const pageNames = ['home', 'services', 'service-detail', 'guides', 'pricing', 'work', 'about', 'contact', 'privacy', 'notfound'];
+const pageNames = ['home', 'services', 'service-detail', 'local', 'guides', 'pricing', 'work', 'about', 'contact', 'privacy', 'notfound'];
 const pages = [];
 for (const n of pageNames) {
   const mod = await import(pathToFileURL(join(SRC, 'pages', `${n}.mjs`)).href);

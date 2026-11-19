@@ -45,3 +45,32 @@
   .path .node-dot{transition:none}
   .hero-mark-wrap{transform:none!important}
 }
+
+/* ===== Premium polish (CSS only; richer on desktop, untouched on phones) ===== */
+
+/* 1. Smooth page-to-page cross-fade where the browser supports it. Others simply load as usual. */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.26s;animation-timing-function:ease}
+.site-header{view-transition-name:site-header}
+.chat-wrap{view-transition-name:chat-bubble}
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
+}
+
+/* 2. Scroll-linked depth: cards and section heads settle into place as they enter the screen.
+      Only the independent translate/scale properties are used, so nothing fights the tilt or reveal effects. */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    @keyframes dp-settle{from{translate:0 1.4rem;scale:.982}to{translate:0 0;scale:1}}
+    .card,.cl-card,.guide-card,.chart-card,.sec-head{animation:dp-settle linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+  }
+}
+
+/* 3. Type, depth and finish (desktop screens) */
+@media (min-width:900px){
+  h1,.display{letter-spacing:-.012em}
+  h2{letter-spacing:-.008em}
+  html[data-theme=dark] .card,html[data-theme=dark] .cl-card{box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 22px 44px -30px rgba(0,0,0,.85),0 2px 6px rgba(0,0,0,.28)}
+  .hero.has-form .hero-visual::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  html[data-theme=light] .hero.has-form .hero-visual::before{opacity:.045;filter:invert(1)}
+}

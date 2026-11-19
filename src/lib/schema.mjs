@@ -146,7 +146,7 @@ export function jsonLd(meta) {
       description: meta.description,
       url,
       provider: { '@id': orgId },
-      areaServed: { '@type': 'Country', name: site.countryName },
+      areaServed: meta.area ? { '@type': 'City', name: meta.area } : { '@type': 'Country', name: site.countryName },
       mainEntityOfPage: { '@id': url + '#webpage' },
     });
   }
