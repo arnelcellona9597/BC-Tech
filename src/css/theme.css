@@ -27,8 +27,10 @@ html[data-theme=light] .brand,html[data-theme=light] .brand-mark{color:var(--tex
 html[data-theme=light] .nav a:not(.btn):hover,html[data-theme=light] .nav a[aria-current=page],html[data-theme=light] .nav a[aria-current=true]{color:var(--text)}
 html[data-theme=light] .nav-toggle{color:var(--text)}
 html[data-theme=light] .menu-links a{color:var(--text)}
-html[data-theme=light] .site-footer nav a:not(.soc):hover,html[data-theme=light] a.soc:hover,html[data-theme=light] a.soc:focus-visible,html[data-theme=light] .site-footer a.soc:hover{color:var(--red)}
+html[data-theme=light] .site-footer nav a:not(.soc):hover{color:var(--red)}
+html[data-theme=light] a.soc:hover,html[data-theme=light] a.soc:focus-visible,html[data-theme=light] .site-footer a.soc:hover{color:#fff}
 html[data-theme=light] .to-top{color:var(--text)}
+html[data-theme=light] .to-top:hover,html[data-theme=light] .to-top:focus-visible{color:#fff}
 html[data-theme=light] .crumbs a:hover,html[data-theme=light] .jump a:hover{color:var(--text)}
 
 /* Buttons */
