@@ -165,7 +165,7 @@ export function leadForm({ source = 'home', id = 'lead' } = {}) {
  */
 export function heroForm(packages) {
   const pk = packages.map((p) => `<option value="${esc(p.name)}">${esc(p.name)} (from ${peso(p.from)})</option>`).join('');
-  return `<div class="hero-form-wrap"><span class="hero-orbit" aria-hidden="true"></span><aside class="hero-form-card" aria-labelledby="hf-title">
+  return `<div class="hero-form-wrap"><span class="hero-orbit" aria-hidden="true"></span><section class="hero-form-card" aria-labelledby="hf-title">
   <span class="hf-glow" aria-hidden="true"></span>
   <p class="eyebrow">Free quote</p>
   <h2 id="hf-title">Tell us what you need</h2>
@@ -192,7 +192,7 @@ export function heroForm(packages) {
     <p class="form-note">You get a reference number right away. <a href="/privacy/">Privacy</a></p>
     <p class="form-status" role="status" aria-live="polite" tabindex="-1"></p>
   </form>
-</aside></div>`;
+</section></div>`;
 }
 
 /** Luxury pricing card: layered for 3D tilt, with an animated price. */
