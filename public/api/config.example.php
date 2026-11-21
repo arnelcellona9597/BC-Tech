@@ -30,8 +30,8 @@ return [
         'name'          => 'Davao Byte',
         'url'           => 'https://davaobyte.com',
         // Shown in the confirmation emails
-        'phone'         => '+63 951 487 4304',
-        'phone2'        => '+63 916 312 3173',
+        'phone'         => '+63 916 312 3173',
+        'phone2'        => '+63 951 487 4304',
         'landline'      => '(082) 2929 822',
         'hours'         => 'Monday to Friday, 9:00 AM to 5:00 PM (Philippine Time)',
         'city'          => 'Davao City, Philippines',

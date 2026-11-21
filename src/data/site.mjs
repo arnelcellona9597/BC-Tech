@@ -11,12 +11,12 @@ export const site = {
   region: 'Davao del Sur',
   country: 'PH',
   countryName: 'Philippines',
-  phone: '+63 951 487 4304', // mobile, Viber and WhatsApp
-  phone2: '+63 916 312 3173', // second mobile number
+  phone: '+63 916 312 3173', // mobile, Viber and WhatsApp
+  phone2: '+63 951 487 4304', // second mobile number
   landline: '(082) 2929 822',
   // Facebook page added. TODO(client): add the Google Business Profile link once those accounts exist. Used for schema "sameAs" and the footer.
   // Leave a link empty until the page exists. The icon shows as a plain (non-clickable) badge until a link is added.
-  social: { facebook: 'https://www.facebook.com/davaobyte', messenger: 'https://m.me/davaobyte', youtube: 'https://www.youtube.com/@DavaoByte', linkedin: 'https://www.linkedin.com/company/davaobyte', googleBusiness: '' },
+  social: { facebook: 'https://www.facebook.com/davaobyte', messenger: 'https://m.me/davaobyte', whatsapp: 'https://wa.me/639163123173', youtube: 'https://www.youtube.com/@DavaoByte', linkedin: 'https://www.linkedin.com/company/davaobyte', googleBusiness: '' },
   themeColor: '#0B0B0C', // dark theme color (manifest, browser bar)
   themeColorLight: '#FFFFFF', // light theme color (default)
   hours: 'Monday to Friday, 9:00 AM to 5:00 PM (Philippine Time)',

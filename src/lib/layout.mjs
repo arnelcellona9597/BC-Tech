@@ -90,6 +90,7 @@ ${menuNav.map((n, i) => `      <li style="--i:${i}"><a href="${n.href}"${cur(n.k
       <a class="menu-mail" href="mailto:${site.email}">${site.email}</a>
       <a class="menu-mail" href="tel:${site.phone.replace(/[^+\d]/g, '')}">${site.phone}</a>
       <a class="menu-mail" href="tel:${site.phone2.replace(/[^+\d]/g, '')}">${site.phone2}</a>
+      <a class="menu-mail" href="tel:${site.landline.replace(/[^+\d]/g, '')}">${site.landline}</a>
       <p class="menu-time"><span class="live-dot" aria-hidden="true"></span><span data-davao-clock>${site.city}</span></p>
       ${socialIcons('social-menu')}
     </div>
